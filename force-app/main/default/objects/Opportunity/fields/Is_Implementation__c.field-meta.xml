@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Implementation__c</fullName>
+    <externalId>false</externalId>
+    <formula>AND(TEXT(StageName) = &#39;05 - Pending Letters&#39;,Today() &gt;= CloseDate - 30)
+|| TEXT(StageName) = &#39;06 - Initial Letters Sent&#39;
+|| TEXT(StageName) = &#39;07 - Follow-up Letters Sent&#39;
+|| AND(TEXT(StageName) = &#39;08 - Final Follow-up Letters Sent&#39;, Today() &lt;= CloseDate + 7)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Implementation</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

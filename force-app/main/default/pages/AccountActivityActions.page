@@ -1,0 +1,6 @@
+<apex:page standardController="Account" showChat="false" showHeader="false" sidebar="false" lightningStylesheets="true">
+    <apex:slds />
+    <div style="text-align:right">
+        <a class="slds-button slds-button_neutral" href="{!URLFOR($Action.Account.New)}">Call</a>
+    </div>
+</apex:page>

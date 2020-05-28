@@ -1,0 +1,4 @@
+<design:component>
+    <design:attribute name="flowName" label="Flow Name" description="Name of the flow to run." />	
+    <design:attribute name="pageParameters" label="Page Parameters" description="Pipe (|) delimited name of parameters to pass from the URL to the flow.  The name of the parameters between the URL and the flow must match identically and are case-sensitive." />
+</design:component>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_Stage__c</fullName>
+    <description>Additional stage information based on the overarching stage.</description>
+    <externalId>false</externalId>
+    <label>Sub-Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>StageName</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending CE Feedback</fullName>
+                <default>false</default>
+                <label>Pending CE Feedback</label>
+            </value>
+            <value>
+                <fullName>Pending Payment</fullName>
+                <default>false</default>
+                <label>Pending Payment</label>
+            </value>
+            <value>
+                <fullName>Pending Client Feedback</fullName>
+                <default>false</default>
+                <label>Pending Client Feedback</label>
+            </value>
+            <value>
+                <fullName>Relay Client Feedback</fullName>
+                <default>false</default>
+                <label>Relay Client Feedback</label>
+            </value>
+            <value>
+                <fullName>Sub Follow Up Complete</fullName>
+                <default>false</default>
+                <label>Sub Follow Up Complete</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Open</controllingFieldValue>
+            <controllingFieldValue>Invoiced</controllingFieldValue>
+            <valueName>Pending CE Feedback</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Invoiced</controllingFieldValue>
+            <valueName>Pending Payment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Subscription Follow Up</controllingFieldValue>
+            <valueName>Pending Client Feedback</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Subscription Follow Up</controllingFieldValue>
+            <valueName>Relay Client Feedback</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Subscription Follow Up</controllingFieldValue>
+            <valueName>Sub Follow Up Complete</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

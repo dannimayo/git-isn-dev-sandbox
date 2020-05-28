@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Utilities_Power_Gen</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>ACCOUNT.PHONE1</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Prospect_Status__c</columns>
+    <columns>CompetitorAccount__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Prospect_Status__c</field>
+        <operation>equals</operation>
+        <value>No Active Opportunity</value>
+    </filters>
+    <filters>
+        <field>Verticals__c</field>
+        <operation>equals</operation>
+        <value>&quot;Utilities, Power Gen &amp; Public Sector East&quot;</value>
+    </filters>
+    <label>Utilities &amp; Power Gen</label>
+    <sharedTo>
+        <group>Utilities_East</group>
+    </sharedTo>
+</ListView>

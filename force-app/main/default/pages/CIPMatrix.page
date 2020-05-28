@@ -1,0 +1,212 @@
+<apex:page >
+
+    <style>
+    
+        .table1 {
+            margin:0px;
+            padding:5px;
+            width:100%;
+            border:1px solid black;
+            border-collapse:collapse;
+            color:rgb(103,92,83);
+        }
+        .tableLegend {
+            margin:0px;
+            padding:5px;
+            width:10%;
+            border:1px solid black;
+            border-collapse:collapse;
+            color:rgb(103,92,83);
+        }
+        .capt1 {
+            text-align:left;
+            color:rgb(103,92,83);
+            font-size:16px;
+        }
+        .tdh {
+            margin:0px;
+            padding:5px;
+            vertical-align: middle;
+            border:1px solid black;
+            border-collapse:collapse;
+            width:30%;
+            text-align:center;
+            color:rgb(103,92,83);
+            font-size:16px;
+        }
+        .td0 {
+            margin:0px;
+            padding:5px;
+            vertical-align: middle;
+            border:1px solid black;
+            border-collapse:collapse;
+            width:30%;
+            text-align:left;
+            color:rgb(103,92,83);
+        }
+        .td1 {
+            margin:0px;
+            padding:5px;
+            vertical-align: middle;
+            border:1px solid black;
+            border-collapse:collapse;
+            width:15%;
+            text-align:center;
+            color:rgb(103,92,83);
+            font-size:16px;
+        }
+        .tdCIP {
+            position: relative;
+            margin:0px;
+            padding:5px;
+            vertical-align: middle;
+            border:1px solid black;
+            border-collapse:collapse;
+            width:15%;
+            text-align:center;
+            background-color: rgb(255,109,66);
+            color:rgb(103,92,83);
+        }
+        .tdNonCIP {
+            position: relative;
+            margin:0px;
+            padding:5px;
+            vertical-align: middle;
+            border:1px solid black;
+            border-collapse:collapse;
+            width:15%;
+            text-align:center;
+            background-color: rgb(103,92,83);
+            color:rgb(103,92,83);
+        }
+        .tooltiptext {
+            visibility: hidden;
+            width: 100%;
+            color: #fff;
+            text-align: center;
+            font-size:14px;
+            
+            /* Position the tooltip */
+            position: absolute;
+            top: 35%;
+            left: 0;
+        }
+        .tooltiptextCIP {
+            visibility: hidden;
+            width: 100%;
+            color: #fff;
+            text-align: center;
+            font-size:14px;
+            
+            /* Position the tooltip */
+            position: absolute;
+            top: 35%;
+            left: 0;
+        }
+        .tdNonCIP:hover .tooltiptext {
+            visibility: visible;
+        }
+        .tdCIP:hover .tooltiptextCIP {
+            visibility: visible;
+        }
+    
+    </style>
+
+    <div style="overflow-x:auto;">
+
+    <table class="table1">
+        
+        <tr class="th1">
+        
+            <td class="tdh"><b>Source</b><br />with examples</td>
+            <td class="td1">Bug Task</td>
+            <td class="td1">One time - minimal impact</td>
+            <td class="td1">One time - large impact (management involved)</td>
+            <td class="td1">Same issue reported by multiple people (customers or internal)</td>
+            <td class="td1">Reoccuring and/or Systemic</td>
+            
+        </tr>
+        
+        <tr class="tr1">
+        
+            <td class="td0"><b>Internal Process</b><br />Setting up grading incorrectly, not performing tasks correctly, employee errors that cause major issues for a customer</td>
+            <td class="tdNonCIP"><span class="tooltiptext">No CIP Form</span></td>
+            <td class="tdNonCIP"><span class="tooltiptext">No CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            
+        </tr>
+        
+        <tr class="tr1">
+        
+            <td class="td0"><b>System Related</b><br />ISNetworld timing out for a long period of time, calculations not running correctly (not because of set up), reoccurring Technical Problem screens, system issues that were corrected, but keep occurring</td>
+            <td class="tdNonCIP"><span class="tooltiptext">No CIP Form</span></td>
+            <td class="tdNonCIP"><span class="tooltiptext">No CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            
+        </tr>
+        
+        <tr class="tr1">
+        
+            <td class="td0"><b>Valid Customer Complaint</b><br />Customer report continually not refreshing, export data not being correct, our team not handling a request to typical standards (e.g. not following up, not completing requests within a deadline, missing appointments, sharing incorrect information), escalated calls where management has to be involved to correct</td>
+            <td class="tdNonCIP"><span class="tooltiptext">No CIP Form</span></td>
+            <td class="tdNonCIP"><span class="tooltiptext">No CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            
+        </tr>
+        
+        <tr class="tr1">
+        
+            <td class="td0"><b>ISN Supplier</b><br />Feedeback from the supplier re-evaluation form</td>
+            <td class="tdNonCIP"><span class="tooltiptext">No CIP Form</span></td>
+            <td class="tdNonCIP"><span class="tooltiptext">No CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            
+        </tr>
+        
+        <tr class="tr1">
+        
+            <td class="td0"><b>Audit</b><br />3rd party audit, internal audit</td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            <td class="tdCIP"><span class="tooltiptextCIP">CIP Form</span></td>
+            
+        </tr>
+        
+    </table>
+    
+    </div>
+    
+    <br />
+    <br />
+    
+    <table class="tableLegend">
+
+        <caption class="capt1"><b><u>Legend:</u></b></caption>
+    
+        <tr class="tr1">
+        
+            <td class="tdCIP"></td>
+            <td class="td0">CIP Form</td>
+            
+        </tr>
+        
+        <tr class="tr1">
+        
+            <td class="tdNonCIP"></td>
+            <td class="td0">No CIP Form</td>
+            
+        </tr>
+        
+    </table>
+
+</apex:page>

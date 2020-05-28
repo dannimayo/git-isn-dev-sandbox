@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Additional_Functionality__c</fullName>
+    <externalId>false</externalId>
+    <label>Open Additional Functionality</label>
+    <summaryFilterItems>
+        <field>Opportunity__c.Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Closed - Won, Closed - Lost</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Opportunity__c.Account__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

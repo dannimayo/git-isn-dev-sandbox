@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Temporary_Pardot_Exclusion__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checkbox field used to temporarily exclude an entire account from a Pardot mailing. Box should be reset to false after each use.</description>
+    <externalId>false</externalId>
+    <label>Temporary Pardot Exclusion</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

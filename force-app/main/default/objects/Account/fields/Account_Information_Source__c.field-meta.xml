@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Information_Source__c</fullName>
+    <externalId>false</externalId>
+    <label>Account Information Source</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>ACC Smartbrief</fullName>
+                <default>false</default>
+                <label>ACC Smartbrief</label>
+            </value>
+            <value>
+                <fullName>Akin Gump</fullName>
+                <default>false</default>
+                <label>Akin Gump</label>
+            </value>
+            <value>
+                <fullName>API SmartBrief</fullName>
+                <default>false</default>
+                <label>API SmartBrief</label>
+            </value>
+            <value>
+                <fullName>Bloomberg</fullName>
+                <default>false</default>
+                <label>Bloomberg</label>
+            </value>
+            <value>
+                <fullName>Canadian Manufacturing</fullName>
+                <default>false</default>
+                <label>Canadian Manufacturing</label>
+            </value>
+            <value>
+                <fullName>Capital Hill Group</fullName>
+                <default>false</default>
+                <label>Capital Hill Group</label>
+            </value>
+            <value>
+                <fullName>COMAH</fullName>
+                <default>false</default>
+                <label>COMAH</label>
+            </value>
+            <value>
+                <fullName>Company Website</fullName>
+                <default>false</default>
+                <label>Company Website</label>
+            </value>
+            <value>
+                <fullName>Conference Attendee List</fullName>
+                <default>false</default>
+                <label>Conference Attendee List</label>
+            </value>
+            <value>
+                <fullName>CONNECT Conference</fullName>
+                <default>false</default>
+                <label>CONNECT Conference</label>
+            </value>
+            <value>
+                <fullName>DISC Belgium</fullName>
+                <default>false</default>
+                <label>DISC Belgium</label>
+            </value>
+            <value>
+                <fullName>Downstream Today</fullName>
+                <default>false</default>
+                <label>Downstream Today</label>
+            </value>
+            <value>
+                <fullName>E&amp;P Newsletter</fullName>
+                <default>false</default>
+                <label>E&amp;P Newsletter</label>
+            </value>
+            <value>
+                <fullName>EHS Today</fullName>
+                <default>false</default>
+                <label>EHS Today</label>
+            </value>
+            <value>
+                <fullName>Hart Energy Newsletter/Oil and Gas Investor Weekly</fullName>
+                <default>false</default>
+                <label>Hart Energy Newsletter/Oil and Gas Investor Weekly</label>
+            </value>
+            <value>
+                <fullName>Industrial BIOtech SmartBrief</fullName>
+                <default>false</default>
+                <label>Industrial BIOtech SmartBrief</label>
+            </value>
+            <value>
+                <fullName>Industry Website</fullName>
+                <default>false</default>
+                <label>Industry Website</label>
+            </value>
+            <value>
+                <fullName>LNG World News</fullName>
+                <default>false</default>
+                <label>LNG World News</label>
+            </value>
+            <value>
+                <fullName>Lubes&#39;N&#39;Greases</fullName>
+                <default>false</default>
+                <label>Lubes&#39;N&#39;Greases</label>
+            </value>
+            <value>
+                <fullName>Manufacturing.net</fullName>
+                <default>false</default>
+                <label>Manufacturing.net</label>
+            </value>
+            <value>
+                <fullName>Midstream Business</fullName>
+                <default>false</default>
+                <label>Midstream Business</label>
+            </value>
+            <value>
+                <fullName>Offshore Energy Today</fullName>
+                <default>false</default>
+                <label>Offshore Energy Today</label>
+            </value>
+            <value>
+                <fullName>OHS Canada</fullName>
+                <default>false</default>
+                <label>OHS Canada</label>
+            </value>
+            <value>
+                <fullName>Oil &amp; Gas Journal</fullName>
+                <default>false</default>
+                <label>Oil &amp; Gas Journal</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Renewable Fuels Association</fullName>
+                <default>false</default>
+                <label>Renewable Fuels Association</label>
+            </value>
+            <value>
+                <fullName>Rig Zone Daily News (Downstream)</fullName>
+                <default>false</default>
+                <label>Rig Zone Daily News (Downstream)</label>
+            </value>
+            <value>
+                <fullName>Shale Smart Brief Powered by API</fullName>
+                <default>false</default>
+                <label>Shale Smart Brief Powered by API</label>
+            </value>
+            <value>
+                <fullName>SmartBrief on Sustainability</fullName>
+                <default>false</default>
+                <label>SmartBrief on Sustainability</label>
+            </value>
+            <value>
+                <fullName>Tank News International</fullName>
+                <default>false</default>
+                <label>Tank News International</label>
+            </value>
+            <value>
+                <fullName>Wall Street Journal</fullName>
+                <default>false</default>
+                <label>Wall Street Journal</label>
+            </value>
+            <value>
+                <fullName>Wind Energy Smart Brief</fullName>
+                <default>false</default>
+                <label>Wind Energy Smart Brief</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

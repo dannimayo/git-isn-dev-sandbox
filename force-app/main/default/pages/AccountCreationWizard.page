@@ -1,0 +1,3 @@
+<apex:page standardController="Account" lightningStylesheets="true">
+  <flow:interview name="Account_Creation_Wizard" />
+</apex:page>

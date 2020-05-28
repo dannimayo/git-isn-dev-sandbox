@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Add_New_CE_Testimonial</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Add New CE Testimonial</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/00T/e?RecordType=01280000000BiuK
+&amp;what_id=0018000001AbpZg
+&amp;who_id=0038000001aXCOj
+&amp;00N80000004GgoR={!User.Name}
+&amp;00N800000059Hf8={!User.Team__c}
+&amp;IsReminderSet=False
+&amp;tsk4={!Today}
+&amp;00N80000005ASMQ={!Today}
+&amp;tsk12={!&#39;Completed&#39;}
+&amp;tsk5={!&#39;Updates After Save&#39;}
+&amp;retURL=/0018000001AbpZg
+&amp;saveURL=/0018000001AbpZg 
+&amp;cancelURL=/0018000001AbpZg</url>
+</WebLink>

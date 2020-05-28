@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Physical_Country_and_State_US</fullName>
+    <active>false</active>
+    <description>Validates that the account Physical State/Province is a valid two-character
+abbreviation if Physical Country is United States</description>
+    <errorConditionFormula>AND(NOT( ISCHANGED( LastActivityDate )),
+NOT( ISCHANGED( Last_Activity_Type__c )),
+NOT( ISCHANGED( Last_Meeting_Date_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Subject_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Type_Account__c ) )) 
+&amp;&amp;
+AND (
+ShippingCountry = &quot;United States&quot;,
+OR (
+LEN(ShippingState) &lt; 2,
+NOT (
+CONTAINS(&quot;AL:AK:AZ:AR:CA:CO:CT:DE:DC:FL:GA:HI:ID:IL:IN:IA:KS:KY:LA:ME:MD:MA:MI:MN:MS:MO:MT:NE:NV:NH:NJ:NM:NY:NC:ND:OH:OK:OR:PA:PR:RI:SC:SD:TN:TX:UT:VI:VT:VA:WA:WV:WI:WY&quot;, ShippingState)
+)))</errorConditionFormula>
+    <errorDisplayField>ShippingState</errorDisplayField>
+    <errorMessage>A valid two-letter state code is required.</errorMessage>
+</ValidationRule>

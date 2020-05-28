@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EEI_Member__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Edison Electric Institute - association of shareholder-owned electric companies</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Edison Electric Institute - association of shareholder-owned electric companies</inlineHelpText>
+    <label>EEI Member</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

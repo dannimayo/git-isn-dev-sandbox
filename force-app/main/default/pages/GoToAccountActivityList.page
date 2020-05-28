@@ -1,0 +1,8 @@
+<apex:page standardController="Account" showChat="false" showHeader="false" sidebar="false" lightningStylesheets="true">
+    <apex:slds />
+    <div style="text-align:right">
+        <a class="slds-button slds-button_neutral" href="https://isn.lightning.force.com/lightning/r/{!Account.Id}/related/OpenActivities/view">Open Activities</a>
+        <a class="slds-button slds-button_neutral" href="https://isn.lightning.force.com/lightning/r/{!Account.Id}/related/ActivityHistories/view">Activity History</a>
+        <a class="slds-button slds-button_neutral" href="{!URLFOR('/apex/TaskSearchPage',null,[id=Account.Id])}">Search Activities</a>
+    </div>
+</apex:page>

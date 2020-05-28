@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Metrics_Badge_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE( Account_Metrics_Badge_Item_Count__c ,5,IMAGE(&quot;https://c.na29.content.force.com/servlet/servlet.FileDownload?file=015340000024Asv&quot;, &quot;Account Apprentice&quot;), 
+6,IMAGE(&quot;https://c.na29.content.force.com/servlet/servlet.FileDownload?file=015340000024Asv&quot;, &quot;Account Apprentice&quot;), 
+7,IMAGE(&quot;https://c.na29.content.force.com/servlet/servlet.FileDownload?file=015340000024At0&quot;, &quot;Account Rockstar&quot; ), 
+8,IMAGE(&quot;https://c.na29.content.force.com/servlet/servlet.FileDownload?file=015340000024At0&quot;, &quot;Account Rockstar&quot; ), 
+9,IMAGE(&quot;https://c.na29.content.force.com/servlet/servlet.FileDownload?file=015340000024At5&quot;, &quot;Account Wizard&quot; ), 
+10,IMAGE(&quot;https://c.na29.content.force.com/servlet/servlet.FileDownload?file=015340000024At5&quot;, &quot;Account Wizard&quot; ),&quot;Just Getting Started&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Badges are earned by checklist items that are added after July 1, 2015. If a badge is displayed in Salesforce and no name is present in Awarded To field, the badge was earned prior to July 1, 2015.</inlineHelpText>
+    <label>Account Metrics Badge Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

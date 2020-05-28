@@ -1,0 +1,4 @@
+function sayHelloFromAnotherJS()
+ {
+ alert('Hello World! - Static resources');
+ }

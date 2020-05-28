@@ -1,0 +1,98 @@
+        .activeTab {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+            height: 48px;
+            line-height: 48px;
+            border-style: none; 
+            border-bottom: 2px solid transparent;
+            padding: 0 16px;
+            border-color: #0070d2;
+            color: #16325c;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .0625em;
+            background: #fff;
+        }
+        
+        .inactiveTab {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+            height: 48px;
+            line-height: 48px;
+            border-style: none; 
+            border-bottom: 2px solid transparent;
+            padding: 0 16px;
+            color: #16325c;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .0625em;
+            background: #fff;
+        }
+        
+        .inactiveTab:hover {
+            border-color: #0070d2;
+        }
+        
+        .activeTab2 {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+            height: 36px;
+            line-height: 36px;
+            border-style: none; 
+            border-bottom: 0px solid transparent;
+            padding: 0 16px;
+            color: #005fb2;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .0625em;
+            background: #d8dde6;
+        }
+        
+        .inactiveTab2 {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+            height: 36px;
+            line-height: 36px;
+            border-style: none; 
+            border-bottom: 0px solid transparent;
+            padding: 0 16px;
+            color: #16325c;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .0625em;
+            background: #fff;
+        }
+        
+        .inactiveTab2:hover {
+            border-color: #f4f6f9;
+            color: #005fb2;
+        }
+        
+        .rich-tabhdr-side-border {
+            background-image: none; 
+        }
+        
+        .rich-tabhdr-side-cell {
+            border-top: none; 
+            border-bottom: none; 
+        }

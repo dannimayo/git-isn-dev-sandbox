@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Healthy_Account_Badge_Count__c</fullName>
+    <description>Numerical count of Healthy Account Badge status</description>
+    <externalId>false</externalId>
+    <formula>IF( Badge_Item_Count__c &gt;=5, 1, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>1 = Healthy Account Badge
+0 = No Healthy Account Badge</inlineHelpText>
+    <label>Healthy Account Badge Count</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

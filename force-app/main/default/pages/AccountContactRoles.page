@@ -1,0 +1,205 @@
+<apex:page standardController="Account" extensions="ContactRoleController" showHeader="false" sidebar="false" lightningStylesheets="true">
+    <apex:form id="theform">
+        <apex:pageMessages id="errorsRole" rendered="false"/>
+        <table width="100%" border="0">
+            <tr>  
+                <td style="width:10%" valign="top">
+                    <apex:pageBlock id="criteria" title="Filters">
+                        <script type="text/javascript">
+                            function doRoleSearch() {
+                                searchServerCRole(
+                                    document.getElementById("lSite").options[document.getElementById("lSite").selectedIndex].value,
+                                    document.getElementById("appType").options[document.getElementById("appType").selectedIndex].value,
+                                    document.getElementById("appLevel").options[document.getElementById("appLevel").selectedIndex].value);
+                            }   
+                        </script> 
+                        <apex:actionFunction name="searchServerCRole" action="{!runSearch}" reRender="resultsRole,errorsRole,debugRole">
+                            <apex:param name="lSite" value="" />
+                            <apex:param name="appType" value="" />
+                            <apex:param name="appLevel" value="" />
+                        </apex:actionFunction>
+                        <apex:actionFunction name="searchServerCRole" action="{!runSearch}" reRender="resultsRole,errorsRole,debugRole">
+                            <apex:param name="lSite" value="" />
+                            <apex:param name="appType" value="" />
+                            <apex:param name="appLevel" value="" />
+                        </apex:actionFunction>
+    
+                        <table cellpadding="2" cellspacing="2">
+                            <tr>
+                                <td style="font-weight:bold;">Site<br/>
+                                    <select id="lSite" onchange="doRoleSearch();">
+                                        <option value=""></option>
+                                        <apex:repeat value="{!lSites}" var="s">
+                                            <option value="{!s}">{!s}</option>
+                                        </apex:repeat>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Approval Type<br/>
+                                    <select id="appType" onchange="doRoleSearch();">
+                                        <option value=""></option>
+                                        <apex:repeat value="{!appTypes}" var="s">
+                                            <option value="{!s.value}">{!s.label}</option>
+                                        </apex:repeat>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">Approval Level<br/>
+                                    <select id="appLevel" onchange="doRoleSearch();">
+                                        <option value=""></option>
+                                        <apex:repeat value="{!appLevels}" var="l">
+                                            <option value="{!l}">{!l}</option>
+                                        </apex:repeat>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </apex:pageBlock> 
+                </td>
+                <td style="width:90%" valign="top">
+                    <apex:outputpanel id="resultspanel">
+                    <apex:pageBlock id="resultsRole" title="Contact Roles">
+                        <apex:pageBlockButtons >
+                            <apex:commandButton Value="Add Role" action="{!addnew}" rerender="newpopup"/>
+                        </apex:pageBlockButtons>
+                        <apex:pageBlockTable value="{!conRoles}" var="c" >
+                             <apex:column headerValue="Action">
+                                <apex:commandLink action="{!edit}" value="Edit" rerender="editpopup" >
+                                    <apex:param name="roleId" value="{!c.Id}" assignTo="{!roleId}"/>
+                                </apex:commandLink>
+                                &nbsp;|&nbsp;
+                                <apex:commandLink action="{!deleteRole}" value="Del" rerender="resultsRole" >
+                                    <apex:param name="roleIddel" value="{!c.Id}" assignTo="{!roleIddel}"/>
+                                </apex:commandLink>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:commandLink value="Name" action="{!toggleSortCRole}" rerender="resultsRole,debugRole">
+                                        <apex:param name="sortFieldCRole" value="Contact__r.Name" assignTo="{!sortFieldCRole}"/>
+                                    </apex:commandLink>
+                                </apex:facet>
+                                <apex:outputLink value="/{!c.Contact__c}" target="_parent">{!c.Contact__r.Name}</apex:outputLink>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:commandLink value="Account" action="{!toggleSortCRole}" rerender="resultsRole,debugRole">
+                                        <apex:param name="sortFieldCRole" value="Account__r.Name" assignTo="{!sortFieldCRole}"/>
+                                    </apex:commandLink>
+                                </apex:facet>
+                                <apex:outputLink value="/{!c.Account__c}" target="_parent">{!c.Account__r.Name}</apex:outputLink>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:commandLink value="Site" action="{!toggleSortCRole}" rerender="resultsRole,debugRole">
+                                        <apex:param name="sortFieldCRole" value="Site__r.Name" assignTo="{!sortFieldCRole}"/>
+                                    </apex:commandLink>
+                                </apex:facet>
+                                <apex:outputLink value="/{!c.Site__r}" target="_parent">{!c.Site__r.Name}</apex:outputLink>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">
+                                    <apex:commandLink value="Approval Level" action="{!toggleSortCRole}" rerender="resultsRole,debugRole">
+                                        <apex:param name="sortFieldCRole" value="Approval_Level__c" assignTo="{!sortFieldCRole}"/>
+                                    </apex:commandLink>
+                                </apex:facet>
+                                <apex:outputText value="{!c.Approval_Level__c}" />
+                            </apex:column>
+                            <apex:column headerValue="Approvals in ISN" >
+                                <apex:outputtext escape="false" value="{!SUBSTITUTE(c.Approvals_in_ISN__c,';','<br />')}"/>
+                            </apex:column>
+                            <apex:column headerValue="Account Approvals" >
+                                <apex:outputtext escape="false" value="{!SUBSTITUTE(c.Account_Approvals__c,';','<br />')}"/>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlock>
+                    </apex:outputpanel>
+                </td>
+            </tr>
+        </table>
+        <apex:pageBlock title="debugRole" id="debugRole" rendered="false">
+            <apex:outputText value="Query:  {!debugQuery}" /> <br /><br />
+        </apex:pageBlock> 
+    </apex:form>
+    
+    <!--Section below, when rendered, is used to edit a selected Contact role-->
+    <apex:outputPanel id="newpopup">
+        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displaynewPopUp}"/>
+        <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displaynewPopUp}">
+            <apex:form >
+                <apex:pageBlock mode="edit" title="Contact Role">
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="Save" action="{!createrole}" rerender="newpopup,resultspanel"/>
+                    <apex:commandButton value="Cancel" action="{!canceledit}" rerender="newpopup"/>
+                </apex:pageBlockButtons>
+                    <apex:pageBlockSection columns="1">
+                        <apex:inputfield value="{!theRole.Contact__c}"/>
+                        <apex:inputfield value="{!theRole.Account__c}"/>
+                        <apex:inputfield value="{!theRole.Site__c}"/>
+                        <apex:inputfield value="{!theRole.Approval_Level__c}"/>
+                        <apex:inputfield value="{!theRole.Approvals_in_ISN__c}"/>
+                        <apex:inputfield value="{!theRole.Account_Approvals__c}"/>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:form>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    
+    <!--Section below, when rendered, is used to edit a selected Contact role-->
+    <apex:outputPanel id="editpopup">
+        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+        <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp}">
+            <apex:form >
+                <apex:pageBlock mode="edit" title="Contact Role">
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="Save" action="{!saveedit}" rerender="editpopup,resultspanel"/>
+                    <apex:commandButton value="Cancel" action="{!canceledit}" rerender="editpopup"/>
+                </apex:pageBlockButtons>
+                    <apex:pageBlockSection columns="1">
+                        <apex:inputfield value="{!theRole.Contact__c}"/>
+                        <apex:inputfield value="{!theRole.Account__c}"/>
+                        <apex:inputfield value="{!theRole.Site__c}"/>
+                        <apex:inputfield value="{!theRole.Approval_Level__c}"/>
+                        <apex:inputfield value="{!theRole.Approvals_in_ISN__c}"/>
+                        <apex:inputfield value="{!theRole.Account_Approvals__c}"/>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:form>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    <!--Style classes for the edit modal above-->
+    <style type="text/css">
+        .custPopup{
+            background-color: white;                          
+            border-radius:3px;
+            z-index: 9999;
+            left: 50%;
+            padding:10px;
+            position: absolute;
+            width: 60%;
+            margin-left: -30%;
+            top:20px;
+        }
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 200%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+        .header{
+            color:#CC0033;
+            font-size:19px;            
+        }
+        .datePicker { 
+            /*z-index for datepicker must be greater than background and popup else picker shows behind them*/
+            z-index:11511; 
+            position:fixed; 
+        }
+    </style> 
+</apex:page>

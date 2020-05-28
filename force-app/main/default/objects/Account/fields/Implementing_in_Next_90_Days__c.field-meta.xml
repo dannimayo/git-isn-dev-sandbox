@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Implementing_in_Next_90_Days__c</fullName>
+    <externalId>false</externalId>
+    <formula>(Estimated_Implementation_Date__c &lt;= Today() + 90) &amp;&amp; (Estimated_Implementation_Date__c &gt;= Today())</formula>
+    <label>Implementing in Next 90 Days</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

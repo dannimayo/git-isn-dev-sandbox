@@ -1,0 +1,188 @@
+<apex:page standardController="Class__c" showHeader="false" sidebar="false" showChat="false" >
+    <style>
+        td.nowrap{
+            white-space: nowrap;
+            width: 1%;
+        }
+        td.underline{
+            border-bottom: 1px solid black;
+            text-align: center;
+        }
+        table{counter-reset:section;}
+        .count:before
+        {
+        counter-increment:section;
+        content:counter(section);
+        }
+        td.heightadjust {
+            height: 30px;
+        }
+    </style>
+
+    <table width="95%" align="center">
+        <tr>
+            <td width="50%">
+                <p>
+                    <span style="color: rgb(255,109,66); font-size: 24px;">Training Signature Sheet</span><br />
+                    <span style="color: rgb(103,92,83); font-size: 20px;">ISN-FRM-ADM-007</span>
+                </p>
+            </td>
+            <td width="50%" align="right">
+                <img src="{!URLFOR($Resource.ISNLogoLetterhead)}" width="233px" height="105px" alt="ISNLogo"/>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    <table width="95%" align="center">
+        <tr>
+            <td class="nowrap">Dates of Training: </td>
+            <td class="underline"><apex:outputField value="{!Class__c.Date_Offered__c}"/></td>
+        </tr>
+    </table>
+    <table width="95%" align="center">
+        <tr>
+            <td class="nowrap">Duration (in hours): </td>
+            <td class="underline"><apex:outputField value="{!Class__c.Duration__c}"/></td>
+        </tr>
+    </table>
+    <table width="95%" align="center">
+        <tr>
+            <td class="nowrap">Title or subject of training: </td>
+            <td class="underline"><apex:outputText value="{!Class__c.Course__r.Name}"/></td>
+        </tr>
+    </table>
+    <table width="95%" align="center">
+        <tr>
+            <td class="nowrap">Name of instructor or mentor: </td>
+            <td class="underline"></td>
+        </tr>
+    </table>
+    <table width="95%" align="center">
+        <tr>
+            <td class="nowrap">Signature of instructor or mentor, if applicable: </td>
+            <td class="underline"></td>
+        </tr>
+    </table>
+    <table width="95%" align="center">
+        <tr>
+            <td class="nowrap">Signature of supervisor, if applicable: </td>
+            <td class="underline"></td>
+        </tr>
+    </table>
+    <table width="95%" align="center">
+        <tr>
+            <td class="nowrap">Signature of director, if applicable: </td>
+            <td class="underline"></td>
+        </tr>
+    </table>
+    <table width="95%" align="center">
+        <tr>
+            <td class="nowrap">Reference the training materials: </td>
+            <td class="underline"></td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    <table id="signintable" width="92%" border="1" style="border-collapse: collapse" align="center">
+        <thead>
+        <tr>
+            <td class="heightadjust" align="center" width="3%"><b>No.</b></td>
+            <td class="heightadjust" align="center"><b>Name of Student</b></td>
+            <td class="heightadjust" align="center"><b>Signature of Student</b></td>
+        </tr>
+        </thead>
+        <tbody>
+            <apex:repeat var="student" value="{!Class__c.Course_Enrollments__r}">
+                <apex:outputText rendered="{!student.Status__c == 'Registered'}">
+                <tr>
+                    <td class="count heightadjust" align="center" width="3%"></td>
+                    <td class="sortnr heightadjust" style="padding-left:10px;">{!student.Student_Full_Name__c}&nbsp;&nbsp;({!student.Student_Team__c})</td>
+                    <td class="heightadjust"></td>
+                </tr>
+                </apex:outputText>
+            </apex:repeat>
+            </tbody>
+            <tbody>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+            <tr>
+                <td class="count heightadjust" align="center" width="3%"></td>
+                <td class="heightadjust"></td>
+                <td class="heightadjust"></td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        function sortTable(){
+            var table = document.getElementById("signintable").tBodies[0];
+            
+            var Arr = [];
+            
+            for(var i=0, ln=table.rows.length; i<ln; i++){
+                var row = table.rows[i];
+                var firstCell = row.cells[1].textContent;
+                console.log(firstCell);
+                Arr.push([firstCell, row]);  
+            }
+            Arr = Arr.sort(function(a,b) {
+                return a[0] > b[0] ? 1
+                       : a[0] < b[0] ? -1
+                       : 0;
+            });
+            for(var i=0, ln=Arr.length; i<ln; i++){
+                table.appendChild(Arr[i][1]);
+            }
+            Arr = null;
+        }
+        
+        sortTable();
+    </script>
+</apex:page>

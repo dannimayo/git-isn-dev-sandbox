@@ -1,0 +1,41 @@
+<apex:page showChat="false" showHeader="false" sidebar="false" standardController="Account" lightningStylesheets="true">
+    <apex:pageblock id="healthybadges" mode="maindetail" title="Account Badges">
+        <br />
+        <i>Updates to this section are made in the Subscriber Checklist on the Details Tab</i>
+        <br />
+        <i>Badges are earned by checklist items that are added after July 1, 2015. If a badge is displayed in Salesforce and no name is present in Awarded To field, the badge was earned prior to July 1, 2015.</i>
+        <br />
+        <br />
+        <apex:pageblocksection collapsible="false" title="Healthy Account Badge" showheader="true" columns="1"> 
+            <apex:outputfield value="{!Account.Healthy_Account_Badge_Status__c}" />
+            <apex:pageblocksection id="healthychecklist" title="Healthy Account Badge Checklist" showheader="true" columns="2">
+                <APEX:REPEAT value="{!$ObjectType.Account.FieldSets.HealthyAccount}" var="f">
+                    <APEX:Outputfield value="{!Account[f]}"></APEX:OUTPUTFIELD>           
+                </APEX:REPEAT> 
+            </apex:pageblocksection>
+            <apex:pageblocksection id="healthyhistory" title="Healthy Account Badge History" showheader="true" columns="2">            
+                <APEX:REPEAT value="{!$ObjectType.Account.FieldSets.HealthyAccountAwarded}" var="g">                     
+                    <APEX:Outputfield value="{!Account[g]}"></APEX:OUTPUTFIELD>             
+                </APEX:REPEAT>     
+            </apex:pageblocksection>                 
+        </apex:pageblocksection>    
+        <apex:pageblocksection title="" showheader="false" columns="1">
+            <br />
+            <br />
+            <br />
+        </apex:pageblocksection>    
+        <apex:pageblocksection collapsible="false" title="Account Metrics Assessment Badge" showheader="true" columns="1">    
+            <apex:outputfield value="{!Account.Account_Metrics_Badge_Status__c}" />        
+            <apex:pageblocksection id="metricschecklist" title="Account Metrics Assessment Badge Checklist" showheader="true" columns="2">        
+                <APEX:REPEAT value="{!$ObjectType.Account.FieldSets.AccountMetricsAssessment}" var="h">                     
+                    <APEX:Outputfield value="{!Account[h]}"></APEX:OUTPUTFIELD>            
+                </APEX:REPEAT>             
+            </apex:pageblocksection>
+            <apex:pageblocksection id="metricshistory" title="Account Metrics Assessment Badge History" showheader="true" columns="2">
+                <APEX:REPEAT value="{!$ObjectType.Account.FieldSets.AccountMetricsAwarded}" var="i">
+                    <APEX:Outputfield value="{!Account[i]}"></APEX:OUTPUTFIELD>
+                </APEX:REPEAT> 
+            </apex:pageblocksection>
+        </apex:pageblocksection>
+    </apex:pageblock>
+</apex:page>

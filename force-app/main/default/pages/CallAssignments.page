@@ -1,0 +1,100 @@
+<apex:page controller="CallAssignments_Conroller">
+    <head>
+        <script>
+            var j$ = jQuery.noConflict();
+        </script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jsforce/1.4.1/jsforce.min.js"></script>
+        <apex:includeScript value="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+        <apex:includeScript value="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"/>
+        <apex:includeScript value="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"/>
+        <apex:includeScript value="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"/>
+        <apex:includeScript value="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"/>
+        <apex:includeScript value="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"/>
+        <apex:includeScript value="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"/>
+        <apeX:stylesheet value="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
+        <apex:includeScript value="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"/>
+        <apeX:stylesheet value="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css"/>
+        <apex:stylesheet value="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic,300"/>
+        <style>
+            body {
+                font-family: 'Open Sans', serif;
+                font-size: 13px;
+            }
+        </style>
+        <apex:slds />
+    </head>
+    <div class="slds-scope">
+        <div class="slds-box">
+            <div class="slds-page-header">
+                <div class="slds-grid">
+                    <div class="slds-col slds-has-flexi-truncate">
+                        <div class="slds-media slds-no-space slds-grow">
+                            <div class="slds-media__figure">
+                            </div>
+                            <div class="slds-media__body">
+                                <p class="slds-text-title--caps slds-line-height--reset">Call Assignments</p>
+                                <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="Current and Previous Calls">Current and Previous Calls</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-box">
+      <table id="callTable" class="display" cellspacing="0" width="100%">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Title</th>
+                  <th>Team</th>
+                  <th style="white-space:normal;color:rgb(255,109,66);background-color:rgb(241,241,241);">Next Assignment Order</th>
+                  <th style="white-space:normal;color:rgb(123,187,178);">Calls Completed YTD</th>
+                  <th style="white-space:normal;color:rgb(123,187,178);">Calls Completed Last 30 Days</th>
+                  <th style="white-space:normal;color:rgb(103,92,83);">Calls Due (All)</th>
+                  <th style="white-space:normal;color:rgb(103,92,83);">Calls Due in 30 Days</th>
+                  <th style="white-space:normal;color:rgb(103,92,83);">Calls Due in 7 Days</th>
+                  <th style="white-space:normal;color:rgb(146,212,0);">Prospecting Calls YTD</th>
+                  <th style="white-space:normal;color:rgb(137,104,185);">Total Calls YTD</th>
+              </tr>
+          </thead>
+          <tbody>
+              <apex:repeat value="{!userCalls}" var="u">
+                  <tr>
+                      <td>{!u.userName}</td>
+                      <td>{!u.userTitle}</td>
+                      <td>{!u.userTeam}</td>
+                      <td>{!u.nextAssignmentSuggestion}</td>
+                      <td>{!u.completeYTD}</td>
+                      <td>{!u.complete30}</td>
+                      <td>{!u.dueTotal}</td>
+                      <td>{!u.due30}</td>
+                      <td>{!u.due7}</td>
+                      <td>{!u.prospectCalls}</td>
+                      <td>{!u.totalCallsYTD}</td>
+                  </tr>
+              </apex:repeat>
+          </tbody>
+      </table>
+      <script>
+        j$(document).ready(function() {
+            j$('#callTable').DataTable( {
+                "lengthMenu": [[15,25,50,-1],[15,25,50,"All"]],
+                "order": [[3,"asc"],[0,"asc"]],
+                dom: 'fltip',
+                buttons: [
+                            {
+                                extend: 'collection',
+                                text: 'Export',
+                                buttons: [
+                                    'copy',
+                                    'excel',
+                                    'csv'
+                                ]
+                            }
+                        ]
+            } );
+        } );
+      </script>
+      </div>
+  </div>
+</apex:page>

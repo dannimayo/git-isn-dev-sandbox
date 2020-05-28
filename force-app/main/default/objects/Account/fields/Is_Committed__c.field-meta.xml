@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Committed__c</fullName>
+    <externalId>false</externalId>
+    <formula>Prospect_Pipeline__c = &#39;Committed&#39; || Prospect_Pipeline__c = &#39;Won&#39;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Committed</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

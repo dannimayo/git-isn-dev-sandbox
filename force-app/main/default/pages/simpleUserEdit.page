@@ -1,0 +1,33 @@
+<apex:page standardController="User" lightningStylesheets="true">
+    <apex:form >
+        <apex:sectionHeader title="User Quick Edit" subtitle="{!User.Name}"/>
+        <apex:pageBlock title="Edit User">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!quicksave}" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="2" collapsible="false">
+            <apex:pageBlockSection columns="1" title="Information" collapsible="false">
+                <apex:inputField value="{!User.FirstName}"/>
+                <apex:inputField value="{!User.LastName}"/>
+                <apex:inputField value="{!User.Department}"/>
+                <apex:inputField value="{!User.Division}"/>
+                <apex:inputField value="{!User.Title}"/>
+                <apex:inputField value="{!User.Standardized_Title__c}"/>
+                <apex:inputField value="{!User.Position_ID__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1" title="User Options" collapsible="false">
+                <apex:inputField value="{!User.IsActive}"/>
+                <apex:inputField value="{!User.UserRoleId}"/>
+                <apex:inputField value="{!User.ProfileId}"/>
+                <apex:inputField value="{!User.UserPermissionsInteractionUser}"/>
+                <apex:inputField value="{!User.ManagerId}"/>
+                <apex:inputField value="{!User.Group__c}"/>
+                <apex:inputField value="{!User.Team__c}"/>
+                <apex:inputField value="{!User.Update_Groups__c}"/>
+                <apex:inputField value="{!User.Activity_Team_Override__c}"/>
+                <apex:inputField value="{!User.Engage_User__c}"/>
+            </apex:pageBlockSection>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

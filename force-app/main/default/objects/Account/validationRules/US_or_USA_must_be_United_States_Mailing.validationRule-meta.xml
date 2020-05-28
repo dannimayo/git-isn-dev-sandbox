@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>US_or_USA_must_be_United_States_Mailing</fullName>
+    <active>false</active>
+    <description>If the user enters US or USA in the Mailing Country field, they must change to United States</description>
+    <errorConditionFormula>AND(NOT( ISCHANGED( LastActivityDate )),
+NOT( ISCHANGED( Last_Activity_Type__c )),
+NOT( ISCHANGED( Last_Meeting_Date_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Subject_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Type_Account__c ) )) 
+&amp;&amp;
+OR(BillingCountry = &quot;US&quot;, BillingCountry=&quot;USA&quot;)</errorConditionFormula>
+    <errorDisplayField>BillingCountry</errorDisplayField>
+    <errorMessage>Please enter United States as the country name.</errorMessage>
+</ValidationRule>

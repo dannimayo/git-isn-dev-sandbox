@@ -1,0 +1,114 @@
+.THIS .content { display: flex; }
+.THIS .content > div:nth-child(2) { flex: 1; }
+
+.THIS .content {
+    padding: 15px 0;
+}
+
+.THIS .header {
+    border-bottom: 1px solid #7f7f7f;
+}
+
+.THIS .box {
+    min-height: 50px;
+    min-width: 150px;
+    margin-right: 15px;
+}
+
+.THIS .box-header {
+    min-width: 150px;
+    margin-right: 15px;
+    text-align: left;
+
+}
+
+.THIS .box-header .column-name {
+    font-size: 15px;
+    color: grey;
+    font-weight: bold;
+}
+
+.THIS .information p {
+    font-size: 12px;
+    color: #949698;
+}
+
+.THIS .information span {
+    color: #61a8e8;
+}
+
+.THIS .content .image {
+    width: 100px;
+}
+
+.THIS .actions {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.THIS .actions .quantity-inp{
+    padding-right: 10px;
+    width: 70px;
+}
+
+.THIS .actions .date-inp {
+    padding-right: 10px;
+    width: 140px
+}
+
+.THIS .trash {
+    margin-right: 10px;
+    padding: 1px;
+    cursor: pointer;
+}
+
+.THIS .price {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.THIS .price span {
+    font-weight: bold;
+}
+
+.THIS .subtotal {
+    font-weight: bold;
+}
+
+.THIS .cart-footer {
+    text-align: right;
+    height: 50px;
+}
+
+.THIS .exampleHolder{
+    position: relative;
+    margin-right: 5px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.THIS .exampleHolder{
+    position: fixed;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    top: 47%;
+    left: 47%;
+}
+
+.THIS .subtotal{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 272px;
+    margin-left: auto;
+}
+
+.THIS .subtotal > .item{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}

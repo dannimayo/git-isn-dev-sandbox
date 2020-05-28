@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CE_Account_Information</fullName>
+    <active>true</active>
+    <description>Checks to make sure C/E Account information is provided is box is checked indicating they have a C/E account in ISNetworld.</description>
+    <errorConditionFormula>AND(NOT( ISCHANGED( LastActivityDate )),
+NOT( ISCHANGED( Last_Activity_Type__c )),
+NOT( ISCHANGED( Last_Meeting_Date_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Subject_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Type_Account__c ) )) 
+&amp;&amp;
+( Has_C_E_Account_in_ISN__c = True ) &amp;&amp;  ISBLANK( C_E_Account_Name_ID__c )</errorConditionFormula>
+    <errorDisplayField>C_E_Account_Name_ID__c</errorDisplayField>
+    <errorMessage>Please enter the Account Name(s) and ID(s) for the C/E accounts.</errorMessage>
+</ValidationRule>

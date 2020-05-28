@@ -1,0 +1,13 @@
+<design:component>
+    <design:attribute name="recordId" label="Record Id" description="Record id identifying the object associated with the payment." />
+	<design:attribute name="orientation" label="Orientation" description="Determines the layouyt of the buttons in the panel." datasource="horizontal,vertical"/>	
+    <design:attribute name="button1Label" label="Button 1 Label" description="Label to appear on the button at runtime." />
+    <design:attribute name="button1Command" label="Button 1 Command" datasource="apex://CPQMultiButtonPanelPicklist"/>	
+    <design:attribute name="button1DefaultDestination"  label="Button 1 Default URL" description="Default destination URL for button 1."/>
+    <design:attribute name="button2Label" label="Button 2 Label" description="Label to appear on the button at runtime." />
+    <design:attribute name="button2Command" label="Button 2 Command" datasource="apex://CPQMultiButtonPanelPicklist"/>	
+    <design:attribute name="button2DefaultDestination"  label="Button 2 Default URL" description="Default destination URL for button 2."/>
+    <design:attribute name="button3Label" label="Button 3 Label" description="Label to appear on the button at runtime." />
+    <design:attribute name="button3Command" label="Button 3 Command" datasource="apex://CPQMultiButtonPanelPicklist"/>	
+    <design:attribute name="button3DefaultDestination"  label="Button 3 Default URL" description="Default destination URL for button 3."/>
+</design:component>

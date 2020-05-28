@@ -1,0 +1,63 @@
+<aura:component controller='CPQMultiButtonPanelServerController' implements="forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens,force:hasRecordId" access="global">
+    <aura:attribute name="orientation" type="String" access="global"/>
+    <aura:attribute name="button1Command" type="String" access="global" />
+    <aura:attribute name="button1Label" type="String" access="global" />
+    <aura:attribute name="button1DefaultDestination" type="String" access="global"/>
+    <aura:attribute name="button2Command" type="String" access="global" />
+    <aura:attribute name="button2Label" type="String" access="global" />
+    <aura:attribute name="button2DefaultDestination" type="String" access="global"/>
+    <aura:attribute name="button3Command" type="String" access="global" />
+    <aura:attribute name="button3Label" type="String" access="global" />
+    <aura:attribute name="button3DefaultDestination" type="String" access="global"/>
+    <aura:attribute name="button4Command" type="String" access="global" />
+    <aura:attribute name="button4Label" type="String" access="global" />
+    <aura:attribute name="button5Command" type="String" access="global" />
+    <aura:attribute name="button5Label" type="String" access="global" />
+    <aura:attribute name="button6Command" type="String" access="global" />
+    <aura:attribute name="button6Label" type="String" access="global" />
+    <aura:attribute name="button7Command" type="String" access="global" />
+    <aura:attribute name="button7Label" type="String" access="global" />
+    <aura:attribute name="button8Command" type="String" access="global" />
+    <aura:attribute name="button8Label" type="String" access="global" />
+    <aura:attribute name="button9Command" type="String" access="global" />
+    <aura:attribute name="button9Label" type="String" access="global" />
+    <aura:attribute name="button10Command" type="String" access="global" />
+    <aura:attribute name="button10Label" type="String" access="global" />
+    <aura:attribute name="spinner" type="Boolean" access="private" default="false"/>
+    <aura:attribute name="button1Enabled" type="Boolean" access="private" default="false"/>
+    <aura:attribute name="button2Enabled" type="Boolean" access="private" default="false"/>
+    <aura:attribute name="button3Enabled" type="Boolean" access="private" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+
+    <!--loading spinner start... style=Brand Medium (blue dots)-->
+    <aura:if isTrue="{!v.spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+           <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+             <span class="slds-assistive-text">Processing, please wait...</span>
+             <div class="slds-spinner__dot-a"></div>
+             <div class="slds-spinner__dot-b"></div>
+           </div>
+        </div>
+    </aura:if>
+    <!-- Loading spinner end-->        
+    <aura:if isTrue="{!and(v.button1Command != '', and(v.button1Command != null, v.button1Enabled))}">
+        <span><lightning:button name="{!v.button1Command + '|' + v.button1DefaultDestination + '|v.button1Enabled'}" label="{!v.button1Label}" onclick="{! c.handleClick }"/></span>
+    	<aura:if isTrue="{!v.orientation == 'vertical'}">
+            <br/><br/>
+        </aura:if>
+    </aura:if>
+    <aura:if isTrue="{!and(v.button2Command != '', and(v.button2Command != null, v.button2Enabled))}"> 
+        <span><lightning:button name="{!v.button2Command + '|' + v.button2DefaultDestination + '|v.button2Enabled'}" label="{!v.button2Label}" onclick="{! c.handleClick }"/></span>
+    	<aura:if isTrue="{!v.orientation == 'vertical'}">
+            <br/><br/>
+        </aura:if>
+    </aura:if>
+    <aura:if isTrue="{!and(v.button3Command != '', and(v.button3Command != null, v.button3Enabled))}"> 
+        <span><lightning:button name="{!v.button3Command + '|' + v.button3DefaultDestination + '|v.button3Enabled'}" label="{!v.button3Label}" onclick="{! c.handleClick }"/></span>
+    	<aura:if isTrue="{!v.orientation == 'vertical'}">
+            <br/><br/>
+        </aura:if>
+    </aura:if>
+</aura:component>

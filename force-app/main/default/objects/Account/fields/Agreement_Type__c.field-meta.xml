@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreement_Type__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>For Client Agreements, please get with a supervisor/manager to review agreement or status from the agreements server. Status in Salesforce should not be relied on as primary source for agreement status.</inlineHelpText>
+    <label>Agreement Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Agreement_Status__c</controllingField>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Amendment</fullName>
+                <default>false</default>
+                <label>Amendment</label>
+            </value>
+            <value>
+                <fullName>Client Form Agreement</fullName>
+                <default>false</default>
+                <label>Client Form Agreement</label>
+            </value>
+            <value>
+                <fullName>Confidential Disclosure Agreement</fullName>
+                <default>false</default>
+                <label>Confidential Disclosure Agreement</label>
+            </value>
+            <value>
+                <fullName>Data Provider Agreement</fullName>
+                <default>false</default>
+                <label>Data Provider Agreement</label>
+            </value>
+            <value>
+                <fullName>Data Sharing Agreement</fullName>
+                <default>false</default>
+                <label>Data Sharing Agreement</label>
+            </value>
+            <value>
+                <fullName>ISN Form Hiring Client User Agreement</fullName>
+                <default>false</default>
+                <label>ISN Form Hiring Client User Agreement</label>
+            </value>
+            <value>
+                <fullName>No Agreement on File</fullName>
+                <default>false</default>
+                <label>No Agreement on File</label>
+            </value>
+            <value>
+                <fullName>Non-disclosure Agreement</fullName>
+                <default>false</default>
+                <label>Non-disclosure Agreement</label>
+            </value>
+            <value>
+                <fullName>Online Agreement (as is)</fullName>
+                <default>false</default>
+                <label>Online Agreement (as is)</label>
+            </value>
+            <value>
+                <fullName>Online Agreement w/ Amendment</fullName>
+                <default>false</default>
+                <label>Online Agreement w/ Amendment</label>
+            </value>
+            <value>
+                <fullName>Online Agreement w/ Signature</fullName>
+                <default>false</default>
+                <label>Online Agreement w/ Signature</label>
+            </value>
+            <value>
+                <fullName>Online Services Agreement</fullName>
+                <default>false</default>
+                <label>Online Services Agreement</label>
+            </value>
+            <value>
+                <fullName>Onsite Validation Data Agreement</fullName>
+                <default>false</default>
+                <label>Onsite Validation Data Agreement</label>
+            </value>
+            <value>
+                <fullName>Purchase Order</fullName>
+                <default>false</default>
+                <label>Purchase Order</label>
+            </value>
+            <value>
+                <fullName>Quote</fullName>
+                <default>false</default>
+                <label>Quote</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>No</controllingFieldValue>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Pending Termination</controllingFieldValue>
+            <controllingFieldValue>Pending New Agreement</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>No Agreement on File</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Amendment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Client Form Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Pending Termination</controllingFieldValue>
+            <controllingFieldValue>Pending New Agreement</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Confidential Disclosure Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Pending Termination</controllingFieldValue>
+            <controllingFieldValue>Pending New Agreement</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Data Provider Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Pending Termination</controllingFieldValue>
+            <controllingFieldValue>Pending New Agreement</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Data Sharing Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>ISN Form Hiring Client User Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Non-disclosure Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Online Agreement (as is)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Online Agreement w/ Amendment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Online Agreement w/ Signature</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Pending Termination</controllingFieldValue>
+            <controllingFieldValue>Pending New Agreement</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Online Services Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Pending Termination</controllingFieldValue>
+            <controllingFieldValue>Pending New Agreement</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Onsite Validation Data Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Pending New Agreement</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Purchase Order</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Terminated</controllingFieldValue>
+            <controllingFieldValue>Pending New Agreement</controllingFieldValue>
+            <controllingFieldValue>Signed/Executed</controllingFieldValue>
+            <controllingFieldValue>Sent New Agreement</controllingFieldValue>
+            <controllingFieldValue>Pending Legal</controllingFieldValue>
+            <controllingFieldValue>Pending Client</controllingFieldValue>
+            <valueName>Quote</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

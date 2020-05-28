@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PS_Project_Highlights</fullName>
+    <fields>Name</fields>
+    <fields>OwnerId</fields>
+    <fields>Type</fields>
+    <fields>CloseDate</fields>
+    <fields>Amount</fields>
+    <label>PS Project Highlights</label>
+</CompactLayout>

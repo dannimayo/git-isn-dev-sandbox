@@ -1,0 +1,118 @@
+<apex:page StandardController="Conference__c" sidebar="false" showHeader="false">
+
+        <style>
+    
+            body,p {
+                font: 10pt arial,helvetica,sans-serif !important;
+                margin: 0;
+            }
+            
+            ul,ol,li {
+                font: 10pt arial,helvetica,sans-serif !important;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+            
+            p.big {
+                font: 12pt arial,helvetica,sans-serif;
+                margin: 0;
+            }
+            
+            li.none {
+                list-style-type: none;
+            }
+            
+            a {
+                color: rgb(255,109,66);
+            }
+    
+        </style>
+        
+        <body>
+            
+            <br /><br />
+            <p class="instructions"><i>Review the template below. Complete remaining items surrounded by [ ]. Once QAd send to busdev, copy ISNMeetings and individual ISN Attendees by name.</i></p>
+            <br />
+            <br />
+            <p class="big"><b><u><i>Subject:</i></u></b></p>
+            <br />
+            <p>UGM/HD Recap - {!Conference__c.City__c}, {!IF(NOT(ISBLANK(Conference__c.State__c)),Conference__c.State__c,Conference__c.Country__c)} - Hosted By [Client Names]</p>
+            <br />
+            <br />
+            
+            <p class="big"><b><u><i>Body:</i></u></b></p>
+            <br />
+            <div id="selectable" onclick="selectText2();">
+        
+            <p><b>{!Conference__c.City__c}, {!IF(NOT(ISBLANK(Conference__c.State__c)),Conference__c.State__c,Conference__c.Country__c)}</b></p>
+            <br />
+            <p><b><u>HD/UGM Rating:</u> {!Conference__c.Overall_Score__c}</b>
+                <ul>
+                    <li>{!Conference__c.Driven_By__c} Driven Meeting</li>
+                    <li>UGM Score based on:</li>
+                        <ul>
+                            <li>[Include meeting details (i.e. attendance, client/contractor participation, Q&amp;A, networking event etc.)]</li>
+                        </ul>
+                    <li>UGM/HD details can be found <a href="https://isn.my.salesforce.com/{!Conference__c.Id}">here</a>.</li>
+                </ul>
+            </p>
+            <br />
+            <p><i>Highlight: ["Quote" - Contact, Company]</i></p>
+            <br />
+            <p><b><u>Attendees:</u></b>
+                <ul>
+                <li><b>UGM Contractor Attendance:</b> {!FLOOR(Conference__c.UGM_Attendance_Actual__c)} attendees from {!FLOOR(Conference__c.UGM_Companies_Actual__c)} companies</li>
+                    <ul><li><b>Help Desk Contractor Attendance:</b> {!FLOOR(Conference__c.HD_Attendees_Actual__c)} attendees from {!FLOOR(Conference__c.HD_Companies_Actual__c)} companies</li></ul>
+                <li><b>UGM Hiring Client Attendance:</b> {!Floor(Conference__c.Client_Attendees__c)} attendees from [X] companies</li>
+                <ul><apex:repeat value="{!Conference__c.ConferenceContacts__r}" var="a" >
+                        <apex:outputtext value="<li><b>{!if(a.RecordType.Name != 'ISN Attendee', a.Account__r.Name,'')}:</b> {!if(a.RecordType.Name != 'ISN Attendee', a.Contact__r.Name,'')}</li>" escape="false"  rendered="{!if(a.RecordType.Name == 'ISN Attendee', FALSE, TRUE)}"/>
+                    </apex:repeat>
+                    </ul>
+                    <li><b>ISN:</b>
+                        <apex:repeat value="{!Conference__c.ConferenceContacts__r}" var="a">
+                            <apex:outputtext value=" {!if(a.RecordType.Name == 'ISN Attendee', a.ISN_Rep__r.Name,'')}," rendered="{!if(a.RecordType.Name == 'ISN Attendee', TRUE, FALSE)}"/> 
+                        </apex:repeat> 
+                    </li>
+                    
+                </ul>
+            </p>
+            <br />
+            <p><b><u>Key Takeaways/Notable Questions:</u></b>
+                <ul>
+                    <li>Positive Takeaways:</li>
+                        <ul>
+                            <li>[Example: Contractors expressed appreciation for ISN’s presence and outreach in their region.]</li>
+                            <li>[Example: Positive feedback was received from both clients and contractors regarding the opportunity to have a networking event.]</li>
+                        </ul>
+                </ul>
+                <br />
+                <ul>
+                    <li>Client/Contractor Quotes:</li>
+                        <ul>
+                            <li>[“Quote.” – Contact Name, Company Name]</li>
+                            <li>[“Quote.” – Contact Name, Company Name]</li>
+                        </ul>
+                <br />
+                    <li>Notable Questions:</li>
+                        <ol>
+                            <li>
+                                Q:
+                                <br />A:
+                            </li>
+                            <li>
+                                Q:
+                                <br />A:
+                            </li>
+                        </ol>
+                </ul>
+            </p>
+            <br />
+            <p>Please let our team know if there are any questions.</p>
+            <br />
+            <p>Regards,</p>
+            <p>[Rep]</p>  
+            </div>
+            
+        </body>
+        
+</apex:page>

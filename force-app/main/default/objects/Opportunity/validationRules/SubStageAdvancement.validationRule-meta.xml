@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SubStageAdvancement</fullName>
+    <active>true</active>
+    <description>Sub-stage can only advance (Relay Client Feedback to Sub Follow Up Complete)</description>
+    <errorConditionFormula>(CASE(
+   PRIORVALUE(Sub_Stage__c) , &#39;Pending Client Feedback&#39;, 1, 
+   &#39;Relay Client Feedback&#39;, 2,
+   &#39;Sub Follow Up Complete&#39;, 3,
+   &#39;Pending CE Feedback&#39;,0,
+   &#39;Pending Payment&#39;,0,
+   0) 
+  
+
+ &gt; 
+
+   CASE(
+   Sub_Stage__c , &#39;Pending Client Feedback&#39;, 1, 
+   &#39;Relay Client Feedback&#39;, 2,
+   &#39;Sub Follow Up Complete&#39;, 3,
+   &#39;Pending CE Feedback&#39;,5,
+   &#39;Pending Payment&#39;,5,
+   5)
+)</errorConditionFormula>
+    <errorDisplayField>Sub_Stage__c</errorDisplayField>
+    <errorMessage>Sub-stage can only advance (Relay Client Feedback to Sub Follow Up Complete)</errorMessage>
+</ValidationRule>

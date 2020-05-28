@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Metrics_Current_Badge_Text__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Account_Metrics_Badge_Item_Count__c,5,&quot;Account Apprentice&quot;, 
+6,&quot;Account Apprentice&quot;, 
+7,&quot;Account Rock Star&quot;, 
+8,&quot;Account Rock Star&quot;, 
+9,&quot;Account Wizard&quot;, 
+10,&quot;Account Wizard&quot;,&quot;Just Getting Started&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Account Metrics Current Badge (Text)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

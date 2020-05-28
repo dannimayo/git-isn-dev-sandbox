@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MainBillingCannotChangeToBlank</fullName>
+    <active>true</active>
+    <description>Validation rule prevents a user from updating the Main Billing Contact field from not blank to blank.</description>
+    <errorConditionFormula>ISCHANGED( Main_Billing_Contact__c ) 
+&amp;&amp; PRIORVALUE( Main_Billing_Contact__c ) != NULL
+&amp;&amp; Main_Billing_Contact__c = NULL</errorConditionFormula>
+    <errorDisplayField>Main_Billing_Contact__c</errorDisplayField>
+    <errorMessage>Main Billing Contact cannot be removed without selecting a new Main Billing Contact</errorMessage>
+</ValidationRule>

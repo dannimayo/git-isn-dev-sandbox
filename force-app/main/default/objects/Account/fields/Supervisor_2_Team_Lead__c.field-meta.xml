@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Supervisor_2_Team_Lead__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF ( Owner.Manager.Manager.LastName &lt;&gt; &#39;Callahan&#39; , Owner.Manager.Manager.FirstName &amp; &#39; &#39; &amp; Owner.Manager.Manager.LastName , null )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Supervisor 2 (Team Lead)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

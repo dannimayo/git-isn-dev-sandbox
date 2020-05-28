@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Gets account based on recordId input</description>
+    <interviewLabel>Reusable Component - Fast Lookup Account by recordId {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Reusable Component - Fast Lookup Account by recordId</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Fast_Lookup_Basic_Account_Details</name>
+        <label>Fast Lookup Basic Account Details</label>
+        <locationX>295</locationX>
+        <locationY>129</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Record_Type_Name</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Account</object>
+        <outputReference>currentAccount</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>ISNetworld_Status__c</queriedFields>
+        <queriedFields>Prospect_Status__c</queriedFields>
+        <queriedFields>Buying_Process__c</queriedFields>
+        <queriedFields>RecordTypeId</queriedFields>
+        <queriedFields>OwnerId</queriedFields>
+        <queriedFields>BillingStreet</queriedFields>
+        <queriedFields>BillingCity</queriedFields>
+        <queriedFields>BillingState</queriedFields>
+        <queriedFields>BillingPostalCode</queriedFields>
+        <queriedFields>BillingCountry</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Record_Type_Name</name>
+        <label>Get Record Type Name</label>
+        <locationX>296</locationX>
+        <locationY>256</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>currentAccount.RecordTypeId</elementReference>
+            </value>
+        </filters>
+        <object>RecordType</object>
+        <outputReference>currentAccountRecordType</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>SobjectType</queriedFields>
+    </recordLookups>
+    <startElementReference>Fast_Lookup_Basic_Account_Details</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>currentAccount</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>currentAccountRecordType</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>RecordType</objectType>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

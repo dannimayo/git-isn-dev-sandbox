@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prospect_Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Prospect Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>ISNetworld_Status__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Selling_Process</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Prospect</controllingFieldValue>
+            <controllingFieldValue>Lapsed</controllingFieldValue>
+            <valueName>Not Viable</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Prospect</controllingFieldValue>
+            <controllingFieldValue>Lapsed</controllingFieldValue>
+            <valueName>No Active Opportunity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Prospect</controllingFieldValue>
+            <controllingFieldValue>Lapsed</controllingFieldValue>
+            <valueName>Active Opportunity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Subscriber</controllingFieldValue>
+            <valueName>Subscriber</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

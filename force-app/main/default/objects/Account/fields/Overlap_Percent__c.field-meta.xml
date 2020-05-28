@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Overlap_Percent__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Potential_Number_of_Contractors__c &gt; 0, (Potential_Number_of_Contractors__c - Potential_Net_New__c) / Potential_Number_of_Contractors__c,  0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Overlap %</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Percent</type>
+</CustomField>

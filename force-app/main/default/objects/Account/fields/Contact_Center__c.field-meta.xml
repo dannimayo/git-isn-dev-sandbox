@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Center__c</fullName>
+    <description>Lists the CS call center that supports the customer</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Lists the CS call center that supports the customer</inlineHelpText>
+    <label>Contact Center</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Contact_Center</valueSetName>
+    </valueSet>
+</CustomField>

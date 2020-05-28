@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recent_Renewal__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+	AND(
+		TEXT(ISNetworld_Status__c) = &#39;Subscriber&#39;,
+		(Year(Renewal_Date__c) - Year(Subscription_Start_Date__c)) &gt;= 2,
+		Renewal_Date__c &gt;= Today()+180
+	),
+	&#39;renewed&#39;,
+	IF(
+		TEXT(ISNetworld_Status__c) = &#39;Lapsed&#39;,
+		&#39;lapsed&#39;,
+		null
+	)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Recent Renewal</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

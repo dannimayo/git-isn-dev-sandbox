@@ -1,0 +1,250 @@
+/*custom font*/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: ApexNew, 'open sans';
+}
+/*form styles*/
+#msform {
+	width: 650px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+#msform fieldset {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+	
+	/*stacking fieldsets above each other*/
+	position: relative;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+/*inputs*/
+#msform input {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: ApexNew, 'open sans';
+	color: rgb(103,92,83);
+	font-size: 1em;
+}
+#msform textarea {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	line-height: 100px;
+	box-sizing: border-box;
+	font-family: ApexNew, 'open sans';
+	color: rgb(103,92,83);
+	font-size: 1em;
+}
+#msform select {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: ApexNew, 'open sans';
+	color: rgb(103,92,83);
+	font-size: 1em;
+}
+/*buttons*/
+#msform .action-button {
+	width: 100px;
+	background: rgb(123,187,178);
+	font-weight: bold;
+	font-family: ApexNew, 'open sans';
+	color: white;
+	border: 0 none;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+	opacity: 0.8;
+}
+/*headings*/
+.top-title {
+	font-size: 3em;
+	font-weight: bold;
+	font-family: ApexNew, 'open sans';
+	text-transform: uppercase;
+	color: white;
+	margin-bottom: 20px;
+	padding-bottom: 15px;
+}
+.fs-title {
+	font-size: 1.4em;
+	font-weight: bold;
+	font-family: ApexNew, 'open sans';
+	text-transform: uppercase;
+	color: rgb(103,92,83);
+	margin-bottom: 10px;
+}
+.fs-subtitle {
+	font-weight: normal;
+	font-family: ApexNew, 'open sans';
+	font-size: 0.9em;
+	color: rgba(103,92,83,0.9);
+	margin-bottom: 20px;
+}
+.fs-question {
+	font-weight: normal;
+	font-family: ApexNew, 'open sans';
+	font-size: 1em;
+	color: rgba(103,92,83,1);
+	margin-bottom: 20px;
+	text-align: left;
+}
+.invalid {
+	border: 1px solid red;
+	border-radius: 3px;
+}
+/*progressbar*/
+#progressbar {
+	margin-bottom: 30px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#progressbar li {
+	list-style-type: none;
+	color: white;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-family: ApexNew, 'open sans';
+	width: 33.33%;
+	float: left;
+	position: relative;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 20px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	font-family: ApexNew, 'open sans';
+	color: rgb(103,92,83);
+	background: white;
+	border-radius: 3px;
+	margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 2px;
+	background: white;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: rgb(123,187,178);
+	color: white;
+}
+
+.btn {
+  width: 100px;
+  display: inline-block;
+  font-family: 'Open Sans';
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+  text-decoration: none !important;
+  text-cursor: pointer;
+  line-height: 28px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s;
+  color: #ffffff;
+  background-color: #7bbbb2;
+  border: 0px; }
+  .btn:hover {
+    text-decoration: none; }
+  .btn:hover {
+    opacity: 0.8; }
+	
+  .isn-selector  {
+	width: 100%;
+    font-family: 'Open Sans';
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center;
+    text-decoration: none !important;
+    text-cursor: pointer;
+    line-height: 28px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+    color: #ff6d42;
+    background-color: transparent;
+    border: 1px solid #ff6d42; }
+    .isn-selector:hover {
+      text-decoration: none; }
+    .isn-selector:hover {
+      color: #ffffff;
+      background-color: #ff6d42; }
+
+.isn-selected {
+  width: 100%;
+  font-family: 'Open Sans';
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+  text-decoration: none !important;
+  text-cursor: pointer;
+  line-height: 28px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s;
+  color: #ffffff;
+  background-color: #ff6d42;
+  border: 1px solid #ff6d42; }
+  .isn-selected:hover {
+    text-decoration: none; }
+  .isn-selected:hover {
+    opacity: 0.8; }

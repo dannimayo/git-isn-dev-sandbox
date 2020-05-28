@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Selling_Buying_Process_Alignment__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISNUMBER(Left(Text(Prospect_Status__c),1)), 
+Case(Value(Left(Text(Prospect_Status__c),1)) - Value(Left(Text(Buying_Process__c),1)), 
+0,IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asS&amp;oid=00DL0000005xuC6&amp;lastMod=1460558760000&#39;, &#39;Aligned&#39;) + &#39; Aligned&#39;, 
+1,IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asX&amp;oid=00DL0000005xuC6&amp;lastMod=1460558784000&#39;, &#39;Misaligned&#39;) + &#39; Misaligned - Selling +1&#39;, 
+2,IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asX&amp;oid=00DL0000005xuC6&amp;lastMod=1460558784000&#39;, &#39;Misaligned&#39;) + &#39; Misaligned - Selling +2&#39;, 
+3,IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asX&amp;oid=00DL0000005xuC6&amp;lastMod=1460558784000&#39;, &#39;Misaligned&#39;) + &#39; Misaligned - Selling +3&#39;, 
+4,IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asX&amp;oid=00DL0000005xuC6&amp;lastMod=1460558784000&#39;, &#39;Misaligned&#39;) + &#39; Misaligned - Selling +4&#39;, 
+-1,IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asX&amp;oid=00DL0000005xuC6&amp;lastMod=1460558784000&#39;, &#39;Misaligned&#39;) + &#39; Misaligned - Buying +1&#39;, 
+-2,IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asX&amp;oid=00DL0000005xuC6&amp;lastMod=1460558784000&#39;, &#39;Misaligned&#39;) + &#39; Misaligned - Buying +2&#39;, 
+-3,IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asX&amp;oid=00DL0000005xuC6&amp;lastMod=1460558784000&#39;, &#39;Misaligned&#39;) + &#39; Misaligned - Buying +3&#39;, 
+-4,IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asX&amp;oid=00DL0000005xuC6&amp;lastMod=1460558784000&#39;, &#39;Misaligned&#39;) + &#39; Misaligned - Buying +4&#39;, 
+&#39;Select Something&#39;), 
+IF(TEXT(Prospect_Status__c)=&#39;Lost to Competitor&#39;, 
+IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asX&amp;oid=00DL0000005xuC6&amp;lastMod=1460558784000&#39;, &#39;Misaligned&#39;) + &#39; &#39; + TEXT(Prospect_Status__c), 
+IF(TEXT(Prospect_Status__c)=&#39;Subscriber&#39;, 
+IMAGE(&#39;/servlet/servlet.ImageServer?id=015340000021asS&amp;oid=00DL0000005xuC6&amp;lastMod=1460558760000&#39;, &#39;Subscriber&#39;) + &#39; &#39; + TEXT(Prospect_Status__c), 
+TEXT(Prospect_Status__c))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Selling/Buying Process Alignment</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

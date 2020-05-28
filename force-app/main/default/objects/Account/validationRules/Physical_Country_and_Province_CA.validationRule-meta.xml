@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Physical_Country_and_Province_CA</fullName>
+    <active>false</active>
+    <description>Validates that the account Physical State/Province is a valid two-character
+abbreviation if Physical Country is Canada</description>
+    <errorConditionFormula>AND(NOT( ISCHANGED( LastActivityDate )),
+NOT( ISCHANGED( Last_Activity_Type__c )),
+NOT( ISCHANGED( Last_Meeting_Date_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Subject_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Type_Account__c ) )) 
+&amp;&amp;
+AND (
+ShippingCountry = &quot;Canada&quot;,
+OR (
+LEN(ShippingState) &lt; 2,
+NOT (
+CONTAINS(&quot;AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT:PEI&quot;,ShippingState)
+)))</errorConditionFormula>
+    <errorDisplayField>ShippingState</errorDisplayField>
+    <errorMessage>A valid two-letter province is required.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_Details__c</fullName>
+    <description>Provides additional details re: reason for not subscribing picklist.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Populate if Reason for Not Subscribing is No Cost Justification or Reporting in Another Account.</inlineHelpText>
+    <label>Reason Details</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Reason_for_Not_Subscribing__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Annual price adjustment</fullName>
+                <default>false</default>
+                <label>Annual price adjustment</label>
+            </value>
+            <value>
+                <fullName>Hierarchy dissolution</fullName>
+                <default>false</default>
+                <label>Hierarchy dissolution</label>
+            </value>
+            <value>
+                <fullName>Limited/no work with client</fullName>
+                <default>false</default>
+                <label>Limited/no work with client</label>
+            </value>
+            <value>
+                <fullName>Merger/acquisition</fullName>
+                <default>false</default>
+                <label>Merger/acquisition</label>
+            </value>
+            <value>
+                <fullName>Parent company account</fullName>
+                <default>false</default>
+                <label>Parent company account</label>
+            </value>
+            <value>
+                <fullName>Reinstatement fee</fullName>
+                <default>false</default>
+                <label>Reinstatement fee</label>
+            </value>
+            <value>
+                <fullName>Tier increase</fullName>
+                <default>false</default>
+                <label>Tier increase</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>No cost justification</controllingFieldValue>
+            <valueName>Annual price adjustment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>No cost justification</controllingFieldValue>
+            <valueName>Limited/no work with client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>No cost justification</controllingFieldValue>
+            <valueName>Reinstatement fee</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>No cost justification</controllingFieldValue>
+            <valueName>Tier increase</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Reporting in another account</controllingFieldValue>
+            <valueName>Hierarchy dissolution</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Reporting in another account</controllingFieldValue>
+            <valueName>Merger/acquisition</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Reporting in another account</controllingFieldValue>
+            <valueName>Parent company account</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

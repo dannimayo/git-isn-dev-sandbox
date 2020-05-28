@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BCS_Total_Contractors__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISN_Company_Record__r.TotalContractors__c&lt;250,1,
+IF(ISN_Company_Record__r.TotalContractors__c&lt;500,2,
+IF(ISN_Company_Record__r.TotalContractors__c&lt;1000,3,
+IF(ISN_Company_Record__r.TotalContractors__c&lt;2000,4,5))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>BCS - Total Contractors</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

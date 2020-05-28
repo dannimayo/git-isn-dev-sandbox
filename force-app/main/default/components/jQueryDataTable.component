@@ -1,0 +1,61 @@
+<apex:component >
+    <head>
+        <!-- Jquery -->
+        <apex:includeScript value="//code.jquery.com/jquery-1.11.3.min.js"/>
+        <apex:stylesheet value="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
+        <!-- DataTable -->
+        <apex:includeScript value="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"/>
+        <apex:stylesheet value="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"/>
+        <!-- Search Highlight -->
+        <apex:includeScript value="//bartaz.github.io/sandbox.js/jquery.highlight.js"/>
+        <apex:includeScript value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.min.js"/>
+        <apex:stylesheet value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.css"/>
+        <!-- DataTable buttons -->
+        <apex:includeScript value="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"/>
+        <apex:includeScript value="//cdn.datatables.net/buttons/1.0.3/js/buttons.flash.min.js"/>
+        <apex:includeScript value="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"/>
+        <apex:includeScript value="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"/>
+        <apex:includeScript value="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"/>
+        <apex:includeScript value="//cdn.datatables.net/buttons/1.0.3/js/buttons.html5.min.js"/>
+        <apex:includeScript value="//cdn.datatables.net/buttons/1.0.3/js/buttons.print.min.js"/>
+        <apex:stylesheet value="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css"/>
+        <style>
+            .filterMatches{
+              background-color: #BFFF00;
+            }
+            .tertiaryPalette{
+              color: #000 !important;
+            }
+            .dt-buttons{
+              margin-left: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="jQueryTable">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <script type="text/javascript">
+            $j = jQuery.noConflict();
+            
+            $j(document).ready(function(){
+                $j('#jQueryTable').DataTable({
+                    //enables results highlight
+                    searchHighlight: true,
+                    
+                    //sets record lengths to show in picklist
+                    aLengthMenu: [[10, 25, 50, -1],[10, 25, 50, "All"]],
+                    "iDisplayLength": 10,
+                    
+                    //adds buttons
+                    dom: 'lBfrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls
+                    buttons: ['copy', 'csv', 'excel', 'pdf'],
+                });
+            
+            });
+        </script>
+    </body>
+</apex:component>

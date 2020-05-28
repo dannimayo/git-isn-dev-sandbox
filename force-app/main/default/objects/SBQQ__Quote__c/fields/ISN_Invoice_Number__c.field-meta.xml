@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ISN_Invoice_Number__c</fullName>
+    <description>This formula field populates a unique, ISN invoice number for every quote created. This ISN Invoice number will be populated on the opportunity, and other objects that relate to this quote. (Opty, Quote, Order, Invoice all have an ISN_Invoice_Number__c)
+
+Note: this field works in conjunction with a unique, auto number field called ISN_Invoice_Number_Seq__c. It concatenates the prefix number of the ISN Invoice Number with the unique, auto number. Prefix number is determined by Pricebook. (or in functional terms, what region a quote belongs to)</description>
+    <externalId>false</externalId>
+    <formula>IF(OR(SBQQ__PriceBook__r.Name = &#39;USD Pricing&#39;, SBQQ__PriceBook__r.Name = &#39;EMEA &amp; APAC USD Pricing&#39;, SBQQ__PriceBook__r.Name = &#39;South America USD Pricing&#39;), &#39;1-&#39; + ISN_Invoice_Number_Seq__c, 
+	IF(SBQQ__PriceBook__r.Name = &#39;CAD Pricing&#39;, &#39;2-&#39; + ISN_Invoice_Number_Seq__c,
+		IF(OR(SBQQ__PriceBook__r.Name = &#39;AUD Pricing&#39;, SBQQ__PriceBook__r.Name = &#39;NZD Pricing&#39;), &#39;3-&#39; + ISN_Invoice_Number_Seq__c,
+			IF(OR(SBQQ__PriceBook__r.Name = &#39;GBP Pricing&#39;, SBQQ__PriceBook__r.Name = &#39;EUR Pricing&#39;, SBQQ__PriceBook__r.Name = &#39;Israel USD Pricing&#39;), &#39;4-&#39; + ISN_Invoice_Number_Seq__c,
+				IF(SBQQ__PriceBook__r.Name = &#39;MXN Pricing&#39;, &#39;5-&#39; + ISN_Invoice_Number_Seq__c, &#39;0-&#39; + ISN_Invoice_Number_Seq__c
+				)
+			)
+		)
+	)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>ISN Invoice Number</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gift_Policy__c</fullName>
+    <description>Describes the client&#39;s policy for receiving gifts.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>What is the client&#39;s policy for receiving gifts?  What types of gifts/dollar amount is acceptable?</inlineHelpText>
+    <label>Gift Policy</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>TextArea</type>
+</CustomField>

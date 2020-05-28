@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Avg_Employee_Initial__c</fullName>
+    <description>Used in Billing Employee Count calculation</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Customer&#39;s stated employee count, typically captured on new subscriptions. Only the Billing Team can edit for subscribed accounts.</inlineHelpText>
+    <label>Avg Employee (Initial)</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

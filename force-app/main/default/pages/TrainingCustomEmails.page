@@ -1,0 +1,262 @@
+<apex:page standardController="Class__c" extensions="trainingCustomEmailsController" showHeader="false" sidebar="false" standardStylesheets="false" title="Training Custom Email">
+    <html>
+        <head>
+            <apex:stylesheet value="{!URLFOR($Resource.isnSiimpleCSS, 'siimple.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.isnSiimpleCSS, 'isnconfpage.js')}"/>
+            <script>
+                function showDiv(target){
+                    document.getElementById(target).style.display = 'block';
+                }
+                function hideDiv(target){
+                    document.getElementById(target).style.display = 'none';
+                }
+                function showRecip(target,source){
+                    if (document.getElementById(source).options[document.getElementById(source).selectedIndex].value == "custom") {
+                        document.getElementById(target).style.display = 'block';
+                        document.getElementById('toemailrow').style.display = 'block';
+                        document.getElementById('ccemailrow').style.display = 'block';
+                    } else {
+                        document.getElementById(target).style.display = 'block';
+                        document.getElementById('toemailrow').style.display = 'none';
+                        document.getElementById('ccemailrow').style.display = 'block';
+                        showDiv('email');
+                    }
+                }
+                function sentAndClose(){
+                    document.getElementById('setup').style.display = 'none';
+                    document.getElementById('confirm').style.display = 'block';
+                    setTimeout(function () { window.close();}, 5000);
+                }
+                function displayDefaultEmail(emailValue) {
+                    var val = emailValue.value;
+                    if (val == "New") {
+                        document.getElementById("newtrainingemaildiv").style.display = 'block';
+                        document.getElementById("posttrainingemaildiv").style.display = 'none';
+                        document.getElementById("customemaildiv").style.display = 'none';
+                    } else if (val == "Post") {
+                        document.getElementById("newtrainingemaildiv").style.display = 'none';
+                        document.getElementById("posttrainingemaildiv").style.display = 'block';
+                        document.getElementById("customemaildiv").style.display = 'none';
+                    } else if (val == "Custom") {
+                        document.getElementById("newtrainingemaildiv").style.display = 'none';
+                        document.getElementById("posttrainingemaildiv").style.display = 'none';
+                        document.getElementById("customemaildiv").style.display = 'block';
+                    }
+                }
+                function newtrainingemailData () {
+                    if ( CKEDITOR.instances.newtrainingemail.getData() == '' ) {
+                        alert( 'There is no data available.' );
+                    } else {
+                        alert(CKEDITOR.instances.newtrainingemail.getData());
+                    }
+                }
+                function checkAndSend() {
+                    var emailTypeJS = document.getElementById("emailType").options[document.getElementById("emailType").selectedIndex].value;
+                    var recipientTypeJS = document.getElementById("recipSelect").options[document.getElementById("recipSelect").selectedIndex].value;
+                    var toRecipientsJS = document.getElementById("tolist").value;
+                    var ccRecipientsJS = document.getElementById("cclist").value;
+                    var subjectJS = document.getElementById("emailsubject").value;
+                    var bodyJS = "";
+                    
+                    if (emailTypeJS == "New") {
+                        bodyJS = CKEDITOR.instances.newtrainingemail.getData();
+                    } else if (emailTypeJS == "Post") {
+                        bodyJS = CKEDITOR.instances.posttrainingemail.getData();
+                    } else if (emailTypeJS == "Custom") {
+                        bodyJS = CKEDITOR.instances.customemail.getData();
+                    }
+                    
+                    console.log(emailTypeJS);
+                    console.log(recipientTypeJS);
+                    console.log(toRecipientsJS);
+                    console.log(ccRecipientsJS);
+                    console.log(subjectJS);
+                    console.log(bodyJS);
+                    
+                    if (subjectJS == "" || subjectJS == null) {
+                        alert('Please add an email subject.');
+                    } else {
+                        checkAndSendEmail(recipientTypeJS,toRecipientsJS,ccRecipientsJS,subjectJS,bodyJS); 
+                        sentAndClose();
+                    }
+                }
+                window.onload = function () {
+                    var ne = "<p>Team,</p><p>You are now able to register for the <b>";
+                    ne += "{!Class__c.Name}</b> training session in Salesforce. This training session gives you the opportunity to earn the ";
+                    ne += "{!Class__c.Eligible_Badge__c} training badge. Please <a href=\"https://isn.my.salesforce.com/{!Class__c.Id}\">click here</a> to view more information and register for this session.</p>";
+                    ne += "<p></p>";
+                    ne += "<p>Please email the {!Class__c.Responsible_Team__c} team if you have any questions.</p>";
+                    ne += "<p>Thank you,<br />{!Class__c.Responsible_Team__c} Team</p>";
+                    CKEDITOR.instances.newtrainingemail.setData(ne);
+                    
+                    var pe = "<p>Team,</p><p>Thank you for attending the <b>";
+                    pe += "{!Class__c.Course__r.Name}</b> training on {!CASE(MONTH(Class__c.Date_Offered__c),1,'January',2,'February',3,'March',4,'April',5,'May',6,'June',7,'July',8,'August',9,'September',10,'October',11,'November',12,'December','')} {!DAY(Class__c.Date_Offered__c)}, {!YEAR(Class__c.Date_Offered__c)}')}. Please find a brief recap of the session below:";
+                    pe += "<ol><li><b>Presentation</b> - The slides we reviewed are located <a href=\"{!Class__c.Presentation_URL__c}\">here</a></li>";
+                    pe += "<li><b>Badges</b> - We will let you know the results of your quiz and if you received a {!Class__c.Eligible_Badge__c} badge.</li>";
+                    pe += "<li><b>Attendee Feedback Survey</b> - We appreciate your participation in the <a href=\"{!Class__c.CVent_URL__c}\">feedback survey</a>, and value your feedback to enhance and improve the course. Please complete this survey by <b>{!CASE(MONTH(Class__c.Survey_Due_Date__c),1,'January',2,'February',3,'March',4,'April',5,'May',6,'June',7,'July',8,'August',9,'September',10,'October',11,'November',12,'December','')} {!DAY(Class__c.Survey_Due_Date__c)}, {!YEAR(Class__c.Survey_Due_Date__c)}')}</b>.</li></ol>";
+                    pe += "<p>Please let the {!Class__c.Responsible_Team__c} team know if you have any questions.</p>";
+                    pe += "<p>Thank you,<br />{!Class__c.Responsible_Team__c} Team</p>";
+                    CKEDITOR.instances.posttrainingemail.setData(pe);
+                    
+                    var ce = "<p>Insert Custom Text Here</p>";
+                    CKEDITOR.instances.customemail.setData(ce);
+                    
+                }
+            </script>
+            <script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+            <style>
+                .editable {
+                    font-family: 'Open Sans';
+                    font-size: 16px;
+                    font-weight: 300;
+                    display: inline-block;
+                    width: 100%;
+                    transition: all 0.3s;
+                    color: #675c53;
+                    padding: 10px;
+                    margin-top: 0px;
+                    margin-bottom: 20px;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    border: 1px solid #675c53;
+                    border-radius: 5px;
+                    outline: 0px;
+                    box-sizing: border-box;
+                    line-height: 40px;
+                    height: 400px;
+                } .editable:focus {
+                    border: 1px solid #09a0f6;
+                }
+            </style>
+        </head>
+        <body class="center-div" style="background-image: none">
+        <apex:form >
+            <apex:actionFunction name="checkAndSendEmail" action="{!checkAndSendEmail}" rerender="result">
+                <apex:param name="recipientsType" assignto="{!recipientsType}" value=""/>
+                <apex:param name="toRecipients" assignto="{!toRecipients}" value=""/>
+                <apex:param name="ccRecipients" assignto="{!ccRecipients}" value=""/>
+                <apex:param name="subject" assignto="{!subject}" value=""/>
+                <apex:param name="body" assignto="{!body}" value=""/>
+            </apex:actionFunction>
+            <div id="setup" class="grid grid-fluid" style="display: block">
+                <div class="row">
+                    <h1>
+                        Send Email for {!Class__c.Name}
+                    </h1>
+                </div>
+                <div class="row" id="recipients" style="display:block">
+                    <div class="col-12">
+                        <h4>
+                            Select Recipients
+                        </h4>
+                        <select id="recipSelect" class="form-select" onchange="showRecip('emaillist','recipSelect');">
+                            <option selected="selected" disabled="disabled"></option>
+                            <option value="enrollments">All Enrolled Students ({!enrollments.size})</option>
+                            <option value="custom">Custom List</option>
+                        </select>
+                    </div>
+                </div> 
+                <div class="row" id="emaillist" style="display:none">
+                    <div id="toemailrow" style="display:none">
+                        <div class="col-1" style="display:inherit">
+                            <h5>To:</h5>
+                        </div>
+                        <div class="col-11" style="display:inherit">
+                            <textarea id="tolist" name="tolist" class="form-textarea" placeholder="Enter comma separated list of email addresses (employee@isn.com,employee@isn.com,etc)" onkeyup="showDiv('email');"></textarea>
+                        </div>
+                    </div>
+                    <div id="ccemailrow" style="display:none">
+                        <div class="col-1" style="display:inherit">
+                            <h5>CC:</h5>
+                        </div>
+                        <div class="col-11" style="display:inherit">
+                            <textarea id="cclist" name="cclist" class="form-textarea" placeholder="Enter comma separated list of email addresses (employee@isn.com,employee@isn.com,etc)"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="email" style="display:none">
+                    <div class="col-12">
+                        <h4>
+                            Select Email
+                        </h4>
+                        <select id="emailType" class="form-select" onchange="showDiv('nextbtn');displayDefaultEmail(this);">
+                            <option selected="selected" disabled="disabled"></option>
+                            <option value="New">New Training Email</option>
+                            <option value="Post">Post Training Email</option>
+                            <option value="Custom">Custom Email</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="nextbtn" class="btn" style="float: right; display:none;" onclick="showDiv('bodyedit');showDiv('sendemail');hideDiv('recipients');hideDiv('emaillist');hideDiv('nextbtn');hideDiv('email');showDiv('prevbtn');">Next</div>
+                <div class="row" id="bodyedit" style="display:none">
+                    <div class="col-12">
+                        <h4>
+                            Edit Subject
+                        </h4>
+                        <input type="text" class="form-input" id="emailsubject" placeholder="Subject"/>
+                    </div>
+                    <div class="col-12" id="newtrainingemaildiv" style="display:none">
+                        <h4>
+                            Edit New Training Email Body
+                        </h4>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.newtrainingemail.insertText('{!Class__c.Name}')})()">Class Name</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.newtrainingemail.insertText('https://isn.my.salesforce.com/{!Class__c.Id}')})()">Class Link</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.newtrainingemail.insertText('{!CASE(MONTH(Class__c.Date_Offered__c),1,'January',2,'February',3,'March',4,'April',5,'May',6,'June',7,'July',8,'August',9,'September',10,'October',11,'November',12,'December','')} {!DAY(Class__c.Date_Offered__c)}, {!YEAR(Class__c.Date_Offered__c)}')})()">Class Date</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.newtrainingemail.insertText('{!Class__c.Remote_Option_URL__c}')})()">Remote Options URL</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.newtrainingemail.insertText('{!Class__c.Eligible_Badge__c}')})()">Badge</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.newtrainingemail.insertText('{!Class__c.Responsible_Team__c}')})()">Responsible Team</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.newtrainingemail.insertText('{!Class__c.Presentation_URL__c}')})()">Presentation Link</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.newtrainingemail.insertText('{!Class__c.CVent_URL__c}')})()">Survey Link</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.newtrainingemail.insertText('{!CASE(MONTH(Class__c.Survey_Due_Date__c),1,'January',2,'February',3,'March',4,'April',5,'May',6,'June',7,'July',8,'August',9,'September',10,'October',11,'November',12,'December','')} {!DAY(Class__c.Survey_Due_Date__c)}, {!YEAR(Class__c.Survey_Due_Date__c)}')})()">Survey Date</div>
+                        <textarea id="newtrainingemail" name="newtrainingemail" class="form-textarea"></textarea>
+                        <script>CKEDITOR.replace( 'newtrainingemail' );</script>
+                    </div> 
+                    <div class="col-12" id="posttrainingemaildiv" style="display:none">
+                        <h4>
+                            Edit Post Training Email Body
+                        </h4>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.posttrainingemail.insertText('{!Class__c.Name}')})()">Class Name</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.posttrainingemail.insertText('https://isn.my.salesforce.com/{!Class__c.Id}')})()">Class Link</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.posttrainingemail.insertText('{!CASE(MONTH(Class__c.Date_Offered__c),1,'January',2,'February',3,'March',4,'April',5,'May',6,'June',7,'July',8,'August',9,'September',10,'October',11,'November',12,'December','')} {!DAY(Class__c.Date_Offered__c)}, {!YEAR(Class__c.Date_Offered__c)}')})()">Class Date</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.posttrainingemail.insertText('{!Class__c.Remote_Option_URL__c}')})()">Remote Options URL</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.posttrainingemail.insertText('{!Class__c.Eligible_Badge__c}')})()">Badge</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.posttrainingemail.insertText('{!Class__c.Responsible_Team__c}')})()">Responsible Team</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.posttrainingemail.insertText('{!Class__c.Presentation_URL__c}')})()">Presentation Link</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.posttrainingemail.insertText('{!Class__c.CVent_URL__c}')})()">Survey Link</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.posttrainingemail.insertText('{!CASE(MONTH(Class__c.Survey_Due_Date__c),1,'January',2,'February',3,'March',4,'April',5,'May',6,'June',7,'July',8,'August',9,'September',10,'October',11,'November',12,'December','')} {!DAY(Class__c.Survey_Due_Date__c)}, {!YEAR(Class__c.Survey_Due_Date__c)}')})()">Survey Date</div>
+                        <textarea id="posttrainingemail" name="posttrainingemail" class="form-textarea"></textarea>
+                        <script>CKEDITOR.replace( 'posttrainingemail' );</script>
+                    </div>
+                    <div class="col-12" id="customemaildiv" style="display:none">
+                        <h4>
+                            Edit Custom Email Body
+                        </h4>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.customemail.insertText('{!Class__c.Name}')})()">Class Name</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.customemail.insertText('https://isn.my.salesforce.com/{!Class__c.Id}')})()">Class Link</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.customemail.insertText('{!CASE(MONTH(Class__c.Date_Offered__c),1,'January',2,'February',3,'March',4,'April',5,'May',6,'June',7,'July',8,'August',9,'September',10,'October',11,'November',12,'December','')} {!DAY(Class__c.Date_Offered__c)}, {!YEAR(Class__c.Date_Offered__c)}')})()">Class Date</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.customemail.insertText('{!Class__c.Remote_Option_URL__c}')})()">Remote Options URL</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.customemail.insertText('{!Class__c.Eligible_Badge__c}')})()">Badge</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.customemail.insertText('{!Class__c.Responsible_Team__c}')})()">Responsible Team</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.customemail.insertText('{!Class__c.Presentation_URL__c}')})()">Presentation Link</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.customemail.insertText('{!Class__c.CVent_URL__c}')})()">Survey Link</div>
+                        <div class="btn-outline btn-small" onclick="(function(){CKEDITOR.instances.customemail.insertText('{!CASE(MONTH(Class__c.Survey_Due_Date__c),1,'January',2,'February',3,'March',4,'April',5,'May',6,'June',7,'July',8,'August',9,'September',10,'October',11,'November',12,'December','')} {!DAY(Class__c.Survey_Due_Date__c)}, {!YEAR(Class__c.Survey_Due_Date__c)}')})()">Survey Date</div>
+                        <textarea id="customemail" name="customemail" class="form-textarea"></textarea>
+                        <script>CKEDITOR.replace( 'customemail' );</script>
+                    </div>
+                </div>
+                <div id="prevbtn" class="btn" style="float: left; display:none;" onclick="hideDiv('bodyedit');hideDiv('sendemail');showDiv('recipients');showRecip('emaillist','recipSelect');showDiv('nextbtn');showDiv('email');hideDiv('prevbtn');">Previous</div>
+                <div id="sendemail" class="btn" style="float: right; display:none;" onclick="checkAndSend();">Send Email</div>
+            </div>
+            <apex:outputPanel id="result">
+            </apex:outputPanel>
+            <div id="confirm" class="grid grid-fluid" style="display: none">
+                <div class="row">
+                    <div class="alert">
+                        Email Sent for {!Class__c.Name}
+                    </div>
+                </div>
+            </div>
+        </apex:form>
+        </body>
+    </html>
+</apex:page>

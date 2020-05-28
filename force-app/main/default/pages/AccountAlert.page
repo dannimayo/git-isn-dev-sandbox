@@ -1,0 +1,25 @@
+<apex:page applyHtmlTag="false" lightningStylesheets="true" showHeader="false" sidebar="false" standardController="Account">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:slds />
+        </head>
+        <body class="slds-scope" style="font-size:13px;">
+            <table style="margin:0px;padding:0px;">
+                <apex:outputPanel >
+                    <tr>
+                        <td style="width:7%;margin:0px;padding:0px;" valign="top">
+                            <span class="slds-icon_container slds-icon-utility-alert" title="Account Alert">
+                                <svg class="slds-icon slds-icon-text-error slds-icon_medium" aria-hidden="true">
+                                    <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#alert')}"></use>
+                                </svg>
+                            </span>
+                        </td>
+                        <td style="width:93%;margin:0px;padding:3px;">
+                            <apex:outputField value="{!Account.Account_Alert__c}"/>
+                        </td>
+                    </tr>
+                </apex:outputPanel>
+            </table>
+        </body>
+    </html>
+</apex:page>

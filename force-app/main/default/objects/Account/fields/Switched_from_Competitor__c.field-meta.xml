@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Switched_from_Competitor__c</fullName>
+    <externalId>false</externalId>
+    <label>Switched from Competitor</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Achilles/FPAL</fullName>
+                <default>false</default>
+                <label>Achilles/FPAL</label>
+            </value>
+            <value>
+                <fullName>Browz</fullName>
+                <default>false</default>
+                <label>Browz</label>
+            </value>
+            <value>
+                <fullName>CanQual</fullName>
+                <default>false</default>
+                <label>CanQual</label>
+            </value>
+            <value>
+                <fullName>Cognibox / SIM Experts</fullName>
+                <default>false</default>
+                <label>Cognibox / SIM Experts</label>
+            </value>
+            <value>
+                <fullName>ComplyWorks</fullName>
+                <default>false</default>
+                <label>ComplyWorks</label>
+            </value>
+            <value>
+                <fullName>ConstructSecure</fullName>
+                <default>false</default>
+                <label>ConstructSecure</label>
+            </value>
+            <value>
+                <fullName>Contractor Check</fullName>
+                <default>false</default>
+                <label>Contractor Check</label>
+            </value>
+            <value>
+                <fullName>Ebix</fullName>
+                <default>false</default>
+                <label>Ebix</label>
+            </value>
+            <value>
+                <fullName>First, Verify (Formerly SMI Safety / Safety Management Inc.)</fullName>
+                <default>false</default>
+                <label>First, Verify (Formerly SMI Safety / Safety Management Inc.)</label>
+            </value>
+            <value>
+                <fullName>Impac</fullName>
+                <default>false</default>
+                <label>Impac</label>
+            </value>
+            <value>
+                <fullName>In-House</fullName>
+                <default>false</default>
+                <label>In-House</label>
+            </value>
+            <value>
+                <fullName>MICCS</fullName>
+                <default>false</default>
+                <label>MICCS</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>true</default>
+                <label>N/A</label>
+            </value>
+            <value>
+                <fullName>PEC Premier</fullName>
+                <default>false</default>
+                <label>PEC Premier</label>
+            </value>
+            <value>
+                <fullName>PICS Auditing</fullName>
+                <default>false</default>
+                <label>PICS Auditing</label>
+            </value>
+            <value>
+                <fullName>Quadrem - Supply Chain Management Solutions</fullName>
+                <default>false</default>
+                <label>Quadrem - Supply Chain Management Solutions</label>
+            </value>
+            <value>
+                <fullName>Risk Masters</fullName>
+                <default>false</default>
+                <label>Risk Masters</label>
+            </value>
+            <value>
+                <fullName>Safecontractor</fullName>
+                <default>false</default>
+                <label>Safecontractor</label>
+            </value>
+            <value>
+                <fullName>Safety Council</fullName>
+                <default>false</default>
+                <label>Safety Council</label>
+            </value>
+            <value>
+                <fullName>The Bridge</fullName>
+                <default>false</default>
+                <label>The Bridge</label>
+            </value>
+            <value>
+                <fullName>Veriforce</fullName>
+                <default>false</default>
+                <label>Veriforce</label>
+            </value>
+            <value>
+                <fullName>Visser Consulting</fullName>
+                <default>false</default>
+                <label>Visser Consulting</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

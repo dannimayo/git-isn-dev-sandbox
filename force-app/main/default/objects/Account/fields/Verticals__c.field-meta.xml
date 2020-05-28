@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verticals__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the Primary Client Dev Vertical Team that manages the account. Values are dependent on Group.</inlineHelpText>
+    <label>Verticals</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Group__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>Verticals</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>EMEA</controllingFieldValue>
+            <valueName>EMEA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Public Sector</controllingFieldValue>
+            <valueName>Public Sector</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Consumer Goods, Retail, Tech &amp; Pharma</controllingFieldValue>
+            <valueName>Consumer Goods</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Consumer Goods, Retail, Tech &amp; Pharma</controllingFieldValue>
+            <valueName>Pharma &amp; Facilities Management</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Midstream &amp; Downstream</controllingFieldValue>
+            <valueName>Downstream</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Midstream &amp; Downstream</controllingFieldValue>
+            <valueName>Midstream</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Midstream &amp; Downstream</controllingFieldValue>
+            <valueName>Pipelines Cross Borders</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Food, Beverages &amp; Chemicals</controllingFieldValue>
+            <valueName>Agriculture &amp; Life Sciences</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Food, Beverages &amp; Chemicals</controllingFieldValue>
+            <valueName>Beverages &amp; Dairy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Food, Beverages &amp; Chemicals</controllingFieldValue>
+            <valueName>Chemicals North</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Food, Beverages &amp; Chemicals</controllingFieldValue>
+            <valueName>Chemicals South</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Food, Beverages &amp; Chemicals</controllingFieldValue>
+            <valueName>Food/Protein</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Utilities &amp; Power Gen</controllingFieldValue>
+            <valueName>Utilities, Power Gen &amp; Public Sector East</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Utilities &amp; Power Gen</controllingFieldValue>
+            <valueName>Utilities, Power Gen &amp; Public Sector West</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Upstream</controllingFieldValue>
+            <valueName>Mining</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Upstream</controllingFieldValue>
+            <valueName>Offshore</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Upstream</controllingFieldValue>
+            <valueName>Onshore East</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Energy: Upstream</controllingFieldValue>
+            <valueName>Onshore West</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ISN Professional Services</controllingFieldValue>
+            <valueName>ISN Professional Services</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Canada</controllingFieldValue>
+            <valueName>Eastern Canada</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Canada</controllingFieldValue>
+            <valueName>Western Canada C/Os, Utilities &amp; Public Sector</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Canada</controllingFieldValue>
+            <valueName>Western Canada Mining / Oil &amp; Gas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contractor Development</controllingFieldValue>
+            <valueName>CS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contractor Development</controllingFieldValue>
+            <valueName>LCO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Heavy Manufacturing</controllingFieldValue>
+            <valueName>Aerospace &amp; Defense</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Heavy Manufacturing</controllingFieldValue>
+            <valueName>Automotive &amp; Transportation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Heavy Manufacturing</controllingFieldValue>
+            <valueName>Building Products</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Heavy Manufacturing</controllingFieldValue>
+            <valueName>Paper &amp; Packaging</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Manu: Heavy Manufacturing</controllingFieldValue>
+            <valueName>Steel &amp; Metals</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Australia &amp; New Zealand</controllingFieldValue>
+            <valueName>Australia &amp; New Zealand</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Latin America</controllingFieldValue>
+            <valueName>Latin America</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>R&amp;D</controllingFieldValue>
+            <valueName>R&amp;D</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>SFAdmin</controllingFieldValue>
+            <valueName>All ISN Verticals</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>SFAdmin</controllingFieldValue>
+            <valueName>SFAdmin</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>RAVS</controllingFieldValue>
+            <valueName>RAVS</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

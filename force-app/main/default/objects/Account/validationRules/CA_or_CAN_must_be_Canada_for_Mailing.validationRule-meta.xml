@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CA_or_CAN_must_be_Canada_for_Mailing</fullName>
+    <active>false</active>
+    <description>Requires user to update to Canada if they enter CA or CAN</description>
+    <errorConditionFormula>AND(NOT( ISCHANGED( LastActivityDate )),
+NOT( ISCHANGED( Last_Activity_Type__c )),
+NOT( ISCHANGED( Last_Meeting_Date_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Subject_Account__c )),
+NOT( ISCHANGED( Last_Meeting_Type_Account__c ) )) 
+&amp;&amp;
+OR(BillingCountry = &quot;CA&quot;, BillingCountry=&quot;CAN&quot;)</errorConditionFormula>
+    <errorDisplayField>BillingCountry</errorDisplayField>
+    <errorMessage>Please enter Canada as the country name.</errorMessage>
+</ValidationRule>

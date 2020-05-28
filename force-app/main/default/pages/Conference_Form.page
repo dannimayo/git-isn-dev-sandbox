@@ -1,0 +1,825 @@
+<apex:page standardStylesheets="false" showChat="false" showHeader="false" sidebar="false" title="Connect with ISN" controller="WebLeadExt" cache="false">
+
+<html>
+    <head>
+        <style>
+            @font-face{
+                font-family: ApexNew;
+                src: url("{!URLFOR($Resource.CustomFonts, 'ApexNew_book.otf')}");
+            }
+    
+            body {
+                font-family: ApexNew,'Open Sans' !important;
+            }
+            
+            html {
+                background-image: url("{!URLFOR($Resource.ConferenceForm, 'IMG/Dave_Anderson_General-2066.bmp')}");
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+        </style>
+        <apex:stylesheet value="{!URLFOR($Resource.ConferenceForm, 'CSS/ISNConferenceFormCSS.css')}" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script>
+            var j$ = jQuery.noConflict();
+        </script>
+    </head>
+    <body>
+        <form id="msform">
+            <div class="top-title">Connect with ISN</div>
+            <ul id="progressbar">
+                <li class="active">Personal Information</li>
+                <li>Company Information</li>
+                <li>Additional Questions</li>
+            </ul>
+            <fieldset>
+                <h2 class="fs-title">Personal Information</h2>
+                <h3 class="fs-subtitle"></h3>
+                <input type="text" name="firstName" id="firstName" placeholder="First Name" onkeyup="validate('next1','firstName;lastName;email;phone')"/>
+                <input type="text" name="lastName" id="lastName" placeholder="Last Name" onkeyup="validate('next1','firstName;lastName;email;phone')"/>
+                <label id="emailfail" for="email" class="fs-question" style="color: rgb(255,109,66); display: none">Please add a valid email</label>
+                <input type="email" name="email" id="email" placeholder="Company Email" onkeyup="validate('next1','firstName;lastName;email;phone')" onblur="isEmail('email');"/>
+                <input type="text" name="phone" id="phone" class="phone" placeholder="Phone Number" onkeyup="validate('next1','firstName;lastName;email;phone')"/>
+                <input id="next1" type="button" name="next" class="next action-button" value="Next"  style="display: none"/>
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">Company Information</h2>
+                <h3 class="fs-subtitle"></h3>
+                <input type="text" name="companyName" id="companyName" placeholder="Company Name" onkeyup="validate('next2','companyName;title;department;industry')"/>
+                <input type="text" name="title" id="title" placeholder="Title" onkeyup="validate('next2','companyName;title;department;industry')"/>
+                <input type="text" name="department" id="department" placeholder="Department" onkeyup="validate('next2','companyName;title;department;industry')"/>
+                <input type="text" name="industry" id="industry" placeholder="Industry" onkeyup="validate('next2','companyName;title;department;industry')"/>
+                <input id="next2" type="button" name="next" class="next action-button" value="Next" style="display: none" onclick="addWebLead();"/>
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">Additional Questions</h2>
+                <h3 class="fs-subtitle"></h3>
+                <div id="questionContainer1">
+                    <div id="q1" class="fs-question">Do you review information on your contractors prior to awarding/outsourcing work?</div>
+                    <div id="a1y" class="btn" onclick="show('questionContainer2','questionContainer1');addToNotes('q1','a1y');">Yes</div>
+                    <div id="a1n" class="btn" onclick="show('questionContainer2','questionContainer1');addToNotes('q1','a1n');">No</div>
+                </div>
+                <div id="questionContainer2" style="display: none">
+                    <div id="q2" class="fs-question">Do you obtain sufficient information from contractors today?</div>
+                    <div id="q2y" class="btn" onclick="show('questionContainer2b','questionContainer2');addToNotes('q2','q2y');">Yes</div>
+                    <div id="q2n" class="btn" onclick="show('questionContainer2b','questionContainer2');addToNotes('q2','q2n');">No</div>
+                </div>
+                <div id="questionContainer2b" style="display: none">
+                    <div id="q2b" class="fs-question">What part of the qualification process is time consuming and uses a large amount of resources? (Select all that apply)</div>
+                    <div id="q2bo1" name="q2bo1" class="isn-selector btn" onclick="toggleCheckBox('q2bo1')">Document Collection</div>
+                    <div id="q2bo2" name="q2bo2" class="isn-selector btn" onclick="toggleCheckBox('q2bo2')">Document Review</div>
+                    <div id="q2bo3" name="q2bo3" class="isn-selector btn" onclick="toggleCheckBox('q2bo3')">Tracking Information</div>
+                    <div id="q2bo4" name="q2bo4" class="isn-selector btn" onclick="toggleCheckBox('q2bo4')">Contractor Follow-Up</div>
+                    <input type="textarea" class="addValuestoNotes"  id="q2bo5" name="q2bo5" placeholder="Other" />
+                    <div class="btn" onclick="show('questionContainer3','questionContainer2b');addToNotesMultiSelect('q2b','q2bo1;q2bo2;q2bo3;q2bo4;q2bo5');">Continue</div>
+                </div>
+                <div id="questionContainer3" style="display: none">
+                    <div id="q3" class="fs-question">What departments are involved in the contractor/supplier management process at your organization? (Select all that apply)</div>
+                    <div id="q3o1" name="q3o1" class="isn-selector btn" onclick="toggleCheckBox('q3o1')">HSE</div>
+                    <div id="q3o2" name="q3o2" class="isn-selector btn" onclick="toggleCheckBox('q3o2')">Procurement</div>
+                    <div id="q3o3" name="q3o3" class="isn-selector btn" onclick="toggleCheckBox('q3o3')">Purchasing</div>
+                    <div id="q3o4" name="q3o4" class="isn-selector btn" onclick="toggleCheckBox('q3o4')">Security/Badging</div>
+                    <input type="textarea" class="addValuestoNotes"  id="q3o5" name="q3o5" placeholder="Other" />
+                    <div class="btn" onclick="show('questionContainer4','questionContainer3');addToNotesMultiSelect('q3','q3o1;q3o2;q3o3;q3o4;q3o5');">Continue</div>
+                </div>
+                <div id="questionContainer4" style="display: none">
+                    <div id="q4" class="fs-question">What information is important to you? (Select all that apply)</div>
+                    <div id="q4o1" name="q4o1" class="isn-selector btn" onclick="toggleCheckBox('q4o1')">Insurance</div>
+                    <div id="q4o2" name="q4o2" class="isn-selector btn" onclick="toggleCheckBox('q4o2')">Written Safety Programs</div>
+                    <div id="q4o3" name="q4o3" class="isn-selector btn" onclick="toggleCheckBox('q4o3')">Hours and Incidents</div>
+                    <div id="q4o4" name="q4o4" class="isn-selector btn" onclick="toggleCheckBox('q4o4')">Experience Modifier</div>
+                    <div id="q4o5" name="q4o5" class="isn-selector btn" onclick="toggleCheckBox('q4o5')">Individual Level Training</div>
+                    <input type="textarea" class="addValuestoNotes" id="q4o6" name="q4o6" placeholder="Other" />
+                    <div class="btn" onclick="show('questionContainer5','questionContainer4');addToNotesMultiSelect('q4','q4o1;q4o2;q4o3;q4o4;q4o5;q4o6');">Continue</div>
+                </div>
+                <div id="questionContainer5" style="display: none">
+                    <div id="q5" class="fs-question">Where are there gaps in your current process? (Select all that apply)</div>
+                    <div id="q5o1" name="q5o1" class="isn-selector btn" onclick="toggleCheckBox('q5o1')">Collecting Information</div>
+                    <div id="q5o2" name="q5o2" class="isn-selector btn" onclick="toggleCheckBox('q5o2')">Enforcing Requirements</div>
+                    <div id="q5o3" name="q5o3" class="isn-selector btn" onclick="toggleCheckBox('q5o3')">Tracking Document Expiration</div>
+                    <div id="q5o4" name="q5o4" class="isn-selector btn" onclick="toggleCheckBox('q5o4')">Individual Level Qualification</div>
+                    <div id="q5o5" name="q5o5" class="isn-selector btn" onclick="toggleCheckBox('q5o5')">Standardization Across Sites</div>
+                    <input type="textarea" class="addValuestoNotes" id="q5o6" name="q5o6" placeholder="Other" />
+                    <div id="btn5" name="btn5" class="btn" onclick="show('questionContainer6','questionContainer5');addToNotesMultiSelect('q5','q5o1;q5o2;q5o3;q5o4;q5o5;q5o6');">Continue</div>
+                </div>
+                <div id="questionContainer6" style="display: none">
+                    <div id="q6" class="fs-question">Are there any gaps not identified in the previous question?</div>
+                    <div id="q6y" class="btn" onclick="show('questionContainer7','questionContainer6');addToNotes('q6','q6y');">Yes</div>
+                    <div id="q6n" class="btn" onclick="show('questionContainer7','questionContainer6');addToNotes('q6','q6n');">No</div>
+                </div>
+                <div id="questionContainer7" style="display: none">
+                    <div id="q7" class="fs-question">Does your organization partner with an outsourced contractor management service?</div>
+                    <div id="q7y" class="btn" onclick="show('otherNotesContainer7b','questionContainer6');addToNotes('q7','q7y');">Yes</div>
+                    <div id="q7n" class="btn" onclick="show('finishContainer','questionContainer7');hide('CMS');addToNotes('q7','q7n');;reloadPage();">No</div>
+                </div>
+                <div id="otherNotesContainer7b" style="display: none">
+                    <input type="textarea" id="CMS" name="CMS" placeholder="Please list any contractor management service providers" style="display: block"/>
+                    <div id="finish" class="btn" onclick="addToNotes('CMS','CMS');show('finishContainer','otherNotesContainer7b');hide('questionContainer7');reloadPage();">Finish</div>
+                </div>
+                <div id="finishContainer" style="display: none">
+                    <h2 class="fs-subtitle">Thank you! The ISN Team will be in touch soon.</h2>
+                </div>
+            </fieldset>
+        </form>
+        <script>
+            j$(document).ready(function(){
+              j$('.phone').mask('(000) 000-0000');
+            });
+            
+            //jQuery time
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var left, opacity, scale; //fieldset properties which we will animate
+            var animating; //flag to prevent quick multi-click glitches
+            
+            j$(".next").click(function(){
+                if(animating) return false;
+                animating = true;
+                
+                current_fs = j$(this).parent();
+                next_fs = j$(this).parent().next();
+                
+                //activate next step on progressbar using the index of next_fs
+                j$("#progressbar li").eq(j$("fieldset").index(next_fs)).addClass("active");
+                
+                //show the next fieldset
+                next_fs.show(); 
+                //hide the current fieldset with style
+                current_fs.animate({opacity: 0}, {
+                    step: function(now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50)+"%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        current_fs.css({
+                    'transform': 'scale('+scale+')',
+                    'position': 'absolute'
+                  });
+                        next_fs.css({'left': left, 'opacity': opacity});
+                    }, 
+                    duration: 800, 
+                    complete: function(){
+                        current_fs.hide();
+                        animating = false;
+                    }, 
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+            });
+            
+            j$(".previous").click(function(){
+                if(animating) return false;
+                animating = true;
+                
+                current_fs = j$(this).parent();
+                previous_fs = j$(this).parent().prev();
+                
+                //de-activate current step on progressbar
+                j$("#progressbar li").eq(j$("fieldset").index(current_fs)).removeClass("active");
+                
+                //show the previous fieldset
+                previous_fs.show(); 
+                //hide the current fieldset with style
+                current_fs.animate({opacity: 0}, {
+                    step: function(now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale previous_fs from 80% to 100%
+                        scale = 0.8 + (1 - now) * 0.2;
+                        //2. take current_fs to the right(50%) - from 0%
+                        left = ((1-now) * 50)+"%";
+                        //3. increase opacity of previous_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        current_fs.css({'left': left});
+                        previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+                    }, 
+                    duration: 800, 
+                    complete: function(){
+                        current_fs.hide();
+                        animating = false;
+                    }, 
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+            });
+            
+            j$(".submit").click(function(){
+                return false;
+            })
+            
+            function show(target,source){
+                document.getElementById(target).style.display = 'block';
+                document.getElementById(source).style.display = 'none';
+            }
+            function hide(target){
+                document.getElementById(target).style.display = 'none';
+            }
+            function reloadPage(){
+                addNotesToNewWebLead();
+                setTimeout("location.href = '/ConferenceForm?conference={!$CurrentPage.Parameters.Conference}';",4000);
+            }
+            function toggleCheckBox(divId){
+                var NAME = document.getElementById(divId);
+                var currentClass = NAME.className;
+                if (currentClass == "isn-selected btn btn-small") {
+                    NAME.className = "isn-selector btn-small";
+                } else {
+                    NAME.className = "isn-selected btn btn-small";
+                }
+            }
+            var wlId;
+            var notes = "";
+            function addToNotes(addText1,addText2){
+                checkVal = document.getElementById(addText2).value;
+                console.log(checkVal);
+                console.log(notes);
+                if (checkVal == null || checkVal === false || checkVal == "") {
+                    notes = notes + document.getElementById(addText1).innerHTML.trim() + "\r\n" + document.getElementById(addText2).innerHTML.trim() + "\r\n\r\n";
+                } else {
+                    notes = notes + document.getElementById(addText1).innerHTML.trim() + "\r\n" + document.getElementById(addText2).value.trim() + "\r\n\r\n";
+                }
+            }
+            function addToNotesMultiSelect(addText1,addText2){
+                notes = notes + document.getElementById(addText1).innerHTML.trim() + "\r\n";
+                arr = addText2.split(";");
+                var NAME;
+                var currentClass;
+                for (i=0;i<arr.length;i++) {
+                    NAME = document.getElementById(arr[i]);
+                    currentClass = NAME.className;
+                    if (currentClass == "isn-selected btn btn-small") {
+                        notes = notes + document.getElementById(arr[i]).innerHTML.trim() + "; ";
+                    } else if (currentClass == "addValuestoNotes") {
+                        notes = notes + document.getElementById(arr[i]).value;
+                    }
+                }
+                notes = notes + "\r\n\r\n";
+            }
+            
+            function validate(button,fields) {
+                arr = fields.split(";");
+                var name;
+                var val;
+                var count = 0;
+                for (i=0;i<arr.length;i++) {
+                    name = document.getElementById(arr[i]);
+                    val = name.value;
+                    if (val == null || val == "") {
+                        count++;
+                    }
+                }
+                if (count == 0 ) {
+                    document.getElementById(button).style.display = 'inline-block';
+                }
+                console.log(count);
+            }
+            
+            function addWebLead() {
+                var firstname = document.getElementById('firstName').value;
+                var lastname = document.getElementById('lastName').value;
+                var phone_number = document.getElementById('phone').value;
+                var email = document.getElementById('email').value;
+                var title = document.getElementById('title').value;
+                var companyname = document.getElementById('companyName').value;
+                var department = document.getElementById('department').value;
+                var industry = document.getElementById('industry').value;
+                var conference = "{!$CurrentPage.Parameters.Conference}";
+                WebLeadExt.addNewWebLead( 
+                    firstname, 
+                    lastname, 
+                    phone_number,
+                    email,
+                    title,
+                    companyname,
+                    department,
+                    industry,
+                    conference,
+                    notes,
+                    function(results, event) {
+                        console.log(results);
+                        wlId = results.Id;
+                        var wlName = results.First_Name__c;
+                    } 
+                );
+            }
+            function addNotesToNewWebLead() {
+                WebLeadExt.addNotesToNewWebLead( 
+                    wlId,
+                    notes,
+                    function(results, event) {
+                        console.log(results);
+                    } 
+                );
+            }
+            function isEmail(email) {
+              var emailValue = document.getElementById(email).value;
+              var regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+              console.log(emailValue);
+              console.log(regex.test(emailValue));
+              if (!regex.test(emailValue)) { 
+                  document.getElementById('emailfail').style.display = 'inline-block';
+                  document.getElementById(email).focus(); 
+              } else {
+                  document.getElementById('emailfail').style.display = 'none';
+              }
+              
+            }
+        </script>
+        <script>
+            var j$ = jQuery.noConflict();
+
+            'use strict';
+            
+            // UMD (Universal Module Definition) patterns for JavaScript modules that work everywhere.
+            // https://github.com/umdjs/umd/blob/master/jqueryPluginCommonjs.js
+            (function (factory, jQuery, Zepto) {
+            
+                if (typeof define === 'function' && define.amd) {
+                    define(['jquery'], factory);
+                } else if (typeof exports === 'object') {
+                    module.exports = factory(require('jquery'));
+                } else {
+                    factory(jQuery || Zepto);
+                }
+            
+            }(function (j$) {
+            
+                var Mask = function (el, mask, options) {
+            
+                    var p = {
+                        invalid: [],
+                        getCaret: function () {
+                            try {
+                                var sel,
+                                    pos = 0,
+                                    ctrl = el.get(0),
+                                    dSel = document.selection,
+                                    cSelStart = ctrl.selectionStart;
+            
+                                // IE Support
+                                if (dSel && navigator.appVersion.indexOf('MSIE 10') === -1) {
+                                    sel = dSel.createRange();
+                                    sel.moveStart('character', -p.val().length);
+                                    pos = sel.text.length;
+                                }
+                                // Firefox support
+                                else if (cSelStart || cSelStart === '0') {
+                                    pos = cSelStart;
+                                }
+            
+                                return pos;
+                            } catch (e) {}
+                        },
+                        setCaret: function(pos) {
+                            try {
+                                if (el.is(':focus')) {
+                                    var range, ctrl = el.get(0);
+            
+                                    // Firefox, WebKit, etc..
+                                    if (ctrl.setSelectionRange) {
+                                        ctrl.focus();
+                                        ctrl.setSelectionRange(pos, pos);
+                                    } else { // IE
+                                        range = ctrl.createTextRange();
+                                        range.collapse(true);
+                                        range.moveEnd('character', pos);
+                                        range.moveStart('character', pos);
+                                        range.select();
+                                    }
+                                }
+                            } catch (e) {}
+                        },
+                        events: function() {
+                            el
+                            .on('keydown.mask', function(e) {
+                                el.data('mask-keycode', e.keyCode || e.which);
+                            })
+                            .on(j$.jMaskGlobals.useInput ? 'input.mask' : 'keyup.mask', p.behaviour)
+                            .on('paste.mask drop.mask', function() {
+                                setTimeout(function() {
+                                    el.keydown().keyup();
+                                }, 100);
+                            })
+                            .on('change.mask', function(){
+                                el.data('changed', true);
+                            })
+                            .on('blur.mask', function(){
+                                if (oldValue !== p.val() && !el.data('changed')) {
+                                    el.trigger('change');
+                                }
+                                el.data('changed', false);
+                            })
+                            // it's very important that this callback remains in this position
+                            // otherwhise oldValue it's going to work buggy
+                            .on('blur.mask', function() {
+                                oldValue = p.val();
+                            })
+                            // select all text on focus
+                            .on('focus.mask', function (e) {
+                                if (options.selectOnFocus === true) {
+                                    j$(e.target).select();
+                                }
+                            })
+                            // clear the value if it not complete the mask
+                            .on('focusout.mask', function() {
+                                if (options.clearIfNotMatch && !regexMask.test(p.val())) {
+                                   p.val('');
+                               }
+                            });
+                        },
+                        getRegexMask: function() {
+                            var maskChunks = [], translation, pattern, optional, recursive, oRecursive, r;
+            
+                            for (var i = 0; i < mask.length; i++) {
+                                translation = jMask.translation[mask.charAt(i)];
+            
+                                if (translation) {
+            
+                                    pattern = translation.pattern.toString().replace(/.{1}j$|^.{1}/g, '');
+                                    optional = translation.optional;
+                                    recursive = translation.recursive;
+            
+                                    if (recursive) {
+                                        maskChunks.push(mask.charAt(i));
+                                        oRecursive = {digit: mask.charAt(i), pattern: pattern};
+                                    } else {
+                                        maskChunks.push(!optional && !recursive ? pattern : (pattern + '?'));
+                                    }
+            
+                                } else {
+                                    maskChunks.push(mask.charAt(i).replace(/[-\/\\^j$*+?.()|[\]{}]/g, '\\j$&'));
+                                }
+                            }
+            
+                            r = maskChunks.join('');
+            
+                            if (oRecursive) {
+                                r = r.replace(new RegExp('(' + oRecursive.digit + '(.*' + oRecursive.digit + ')?)'), '(j$1)?')
+                                     .replace(new RegExp(oRecursive.digit, 'g'), oRecursive.pattern);
+                            }
+            
+                            return new RegExp(r);
+                        },
+                        destroyEvents: function() {
+                            el.off(['input', 'keydown', 'keyup', 'paste', 'drop', 'blur', 'focusout', ''].join('.mask '));
+                        },
+                        val: function(v) {
+                            var isInput = el.is('input'),
+                                method = isInput ? 'val' : 'text',
+                                r;
+            
+                            if (arguments.length > 0) {
+                                if (el[method]() !== v) {
+                                    el[method](v);
+                                }
+                                r = el;
+                            } else {
+                                r = el[method]();
+                            }
+            
+                            return r;
+                        },
+                        getMCharsBeforeCount: function(index, onCleanVal) {
+                            for (var count = 0, i = 0, maskL = mask.length; i < maskL && i < index; i++) {
+                                if (!jMask.translation[mask.charAt(i)]) {
+                                    index = onCleanVal ? index + 1 : index;
+                                    count++;
+                                }
+                            }
+                            return count;
+                        },
+                        caretPos: function (originalCaretPos, oldLength, newLength, maskDif) {
+                            var translation = jMask.translation[mask.charAt(Math.min(originalCaretPos - 1, mask.length - 1))];
+            
+                            return !translation ? p.caretPos(originalCaretPos + 1, oldLength, newLength, maskDif)
+                                                : Math.min(originalCaretPos + newLength - oldLength - maskDif, newLength);
+                        },
+                        behaviour: function(e) {
+                            e = e || window.event;
+                            p.invalid = [];
+            
+                            var keyCode = el.data('mask-keycode');
+            
+                            if (j$.inArray(keyCode, jMask.byPassKeys) === -1) {
+                                var caretPos    = p.getCaret(),
+                                    currVal     = p.val(),
+                                    currValL    = currVal.length,
+                                    newVal      = p.getMasked(),
+                                    newValL     = newVal.length,
+                                    maskDif     = p.getMCharsBeforeCount(newValL - 1) - p.getMCharsBeforeCount(currValL - 1),
+                                    changeCaret = caretPos < currValL;
+            
+                                p.val(newVal);
+            
+                                if (changeCaret) {
+                                    // Avoid adjusting caret on backspace or delete
+                                    if (!(keyCode === 8 || keyCode === 46)) {
+                                        caretPos = p.caretPos(caretPos, currValL, newValL, maskDif);
+                                    }
+                                    p.setCaret(caretPos);
+                                }
+            
+                                return p.callbacks(e);
+                            }
+                        },
+                        getMasked: function(skipMaskChars, val) {
+                            var buf = [],
+                                value = val === undefined ? p.val() : val + '',
+                                m = 0, maskLen = mask.length,
+                                v = 0, valLen = value.length,
+                                offset = 1, addMethod = 'push',
+                                resetPos = -1,
+                                lastMaskChar,
+                                check;
+            
+                            if (options.reverse) {
+                                addMethod = 'unshift';
+                                offset = -1;
+                                lastMaskChar = 0;
+                                m = maskLen - 1;
+                                v = valLen - 1;
+                                check = function () {
+                                    return m > -1 && v > -1;
+                                };
+                            } else {
+                                lastMaskChar = maskLen - 1;
+                                check = function () {
+                                    return m < maskLen && v < valLen;
+                                };
+                            }
+            
+                            while (check()) {
+                                var maskDigit = mask.charAt(m),
+                                    valDigit = value.charAt(v),
+                                    translation = jMask.translation[maskDigit];
+            
+                                if (translation) {
+                                    if (valDigit.match(translation.pattern)) {
+                                        buf[addMethod](valDigit);
+                                         if (translation.recursive) {
+                                            if (resetPos === -1) {
+                                                resetPos = m;
+                                            } else if (m === lastMaskChar) {
+                                                m = resetPos - offset;
+                                            }
+            
+                                            if (lastMaskChar === resetPos) {
+                                                m -= offset;
+                                            }
+                                        }
+                                        m += offset;
+                                    } else if (translation.optional) {
+                                        m += offset;
+                                        v -= offset;
+                                    } else if (translation.fallback) {
+                                        buf[addMethod](translation.fallback);
+                                        m += offset;
+                                        v -= offset;
+                                    } else {
+                                      p.invalid.push({p: v, v: valDigit, e: translation.pattern});
+                                    }
+                                    v += offset;
+                                } else {
+                                    if (!skipMaskChars) {
+                                        buf[addMethod](maskDigit);
+                                    }
+            
+                                    if (valDigit === maskDigit) {
+                                        v += offset;
+                                    }
+            
+                                    m += offset;
+                                }
+                            }
+            
+                            var lastMaskCharDigit = mask.charAt(lastMaskChar);
+                            if (maskLen === valLen + 1 && !jMask.translation[lastMaskCharDigit]) {
+                                buf.push(lastMaskCharDigit);
+                            }
+            
+                            return buf.join('');
+                        },
+                        callbacks: function (e) {
+                            var val = p.val(),
+                                changed = val !== oldValue,
+                                defaultArgs = [val, e, el, options],
+                                callback = function(name, criteria, args) {
+                                    if (typeof options[name] === 'function' && criteria) {
+                                        options[name].apply(this, args);
+                                    }
+                                };
+            
+                            callback('onChange', changed === true, defaultArgs);
+                            callback('onKeyPress', changed === true, defaultArgs);
+                            callback('onComplete', val.length === mask.length, defaultArgs);
+                            callback('onInvalid', p.invalid.length > 0, [val, e, el, p.invalid, options]);
+                        }
+                    };
+            
+                    el = j$(el);
+                    var jMask = this, oldValue = p.val(), regexMask;
+            
+                    mask = typeof mask === 'function' ? mask(p.val(), undefined, el,  options) : mask;
+            
+            
+                    // public methods
+                    jMask.mask = mask;
+                    jMask.options = options;
+                    jMask.remove = function() {
+                        var caret = p.getCaret();
+                        p.destroyEvents();
+                        p.val(jMask.getCleanVal());
+                        p.setCaret(caret - p.getMCharsBeforeCount(caret));
+                        return el;
+                    };
+            
+                    // get value without mask
+                    jMask.getCleanVal = function() {
+                       return p.getMasked(true);
+                    };
+            
+                    // get masked value without the value being in the input or element
+                    jMask.getMaskedVal = function(val) {
+                       return p.getMasked(false, val);
+                    };
+            
+                   jMask.init = function(onlyMask) {
+                        onlyMask = onlyMask || false;
+                        options = options || {};
+            
+                        jMask.clearIfNotMatch  = j$.jMaskGlobals.clearIfNotMatch;
+                        jMask.byPassKeys       = j$.jMaskGlobals.byPassKeys;
+                        jMask.translation      = j$.extend({}, j$.jMaskGlobals.translation, options.translation);
+            
+                        jMask = j$.extend(true, {}, jMask, options);
+            
+                        regexMask = p.getRegexMask();
+            
+                        if (onlyMask === false) {
+            
+                            if (options.placeholder) {
+                                el.attr('placeholder' , options.placeholder);
+                            }
+            
+                            // this is necessary, otherwise if the user submit the form
+                            // and then press the "back" button, the autocomplete will erase
+                            // the data. Works fine on IE9+, FF, Opera, Safari.
+                            if (el.data('mask')) {
+                              el.attr('autocomplete', 'off');
+                            }
+            
+                            p.destroyEvents();
+                            p.events();
+            
+                            var caret = p.getCaret();
+                            p.val(p.getMasked());
+                            p.setCaret(caret + p.getMCharsBeforeCount(caret, true));
+            
+                        } else {
+                            p.events();
+                            p.val(p.getMasked());
+                        }
+                    };
+            
+                    jMask.init(!el.is('input'));
+                };
+            
+                j$.maskWatchers = {};
+                var HTMLAttributes = function () {
+                    var input = j$(this),
+                        options = {},
+                        prefix = 'data-mask-',
+                        mask = input.attr('data-mask');
+            
+                    if (input.attr(prefix + 'reverse')) {
+                        options.reverse = true;
+                    }
+            
+                    if (input.attr(prefix + 'clearifnotmatch')) {
+                        options.clearIfNotMatch = true;
+                    }
+            
+                    if (input.attr(prefix + 'selectonfocus') === 'true') {
+                       options.selectOnFocus = true;
+                    }
+            
+                    if (notSameMaskObject(input, mask, options)) {
+                        return input.data('mask', new Mask(this, mask, options));
+                    }
+                },
+                notSameMaskObject = function(field, mask, options) {
+                    options = options || {};
+                    var maskObject = j$(field).data('mask'),
+                        stringify = JSON.stringify,
+                        value = j$(field).val() || j$(field).text();
+                    try {
+                        if (typeof mask === 'function') {
+                            mask = mask(value);
+                        }
+                        return typeof maskObject !== 'object' || stringify(maskObject.options) !== stringify(options) || maskObject.mask !== mask;
+                    } catch (e) {}
+                },
+                eventSupported = function(eventName) {
+                    var el = document.createElement('div'), isSupported;
+            
+                    eventName = 'on' + eventName;
+                    isSupported = (eventName in el);
+            
+                    if ( !isSupported ) {
+                        el.setAttribute(eventName, 'return;');
+                        isSupported = typeof el[eventName] === 'function';
+                    }
+                    el = null;
+            
+                    return isSupported;
+                };
+            
+                j$.fn.mask = function(mask, options) {
+                    options = options || {};
+                    var selector = this.selector,
+                        globals = j$.jMaskGlobals,
+                        interval = globals.watchInterval,
+                        watchInputs = options.watchInputs || globals.watchInputs,
+                        maskFunction = function() {
+                            if (notSameMaskObject(this, mask, options)) {
+                                return j$(this).data('mask', new Mask(this, mask, options));
+                            }
+                        };
+            
+                    j$(this).each(maskFunction);
+            
+                    if (selector && selector !== '' && watchInputs) {
+                        clearInterval(j$.maskWatchers[selector]);
+                        j$.maskWatchers[selector] = setInterval(function(){
+                            j$(document).find(selector).each(maskFunction);
+                        }, interval);
+                    }
+                    return this;
+                };
+            
+                j$.fn.masked = function(val) {
+                    return this.data('mask').getMaskedVal(val);
+                };
+            
+                j$.fn.unmask = function() {
+                    clearInterval(j$.maskWatchers[this.selector]);
+                    delete j$.maskWatchers[this.selector];
+                    return this.each(function() {
+                        var dataMask = j$(this).data('mask');
+                        if (dataMask) {
+                            dataMask.remove().removeData('mask');
+                        }
+                    });
+                };
+            
+                j$.fn.cleanVal = function() {
+                    return this.data('mask').getCleanVal();
+                };
+            
+                j$.applyDataMask = function(selector) {
+                    selector = selector || j$.jMaskGlobals.maskElements;
+                    var j$selector = (selector instanceof j$) ? selector : j$(selector);
+                    j$selector.filter(j$.jMaskGlobals.dataMaskAttr).each(HTMLAttributes);
+                };
+            
+                var globals = {
+                    maskElements: 'input,td,span,div',
+                    dataMaskAttr: '*[data-mask]',
+                    dataMask: true,
+                    watchInterval: 300,
+                    watchInputs: true,
+                    useInput: eventSupported('input'),
+                    watchDataMask: false,
+                    byPassKeys: [9, 16, 17, 18, 36, 37, 38, 39, 40, 91],
+                    translation: {
+                        '0': {pattern: /\d/},
+                        '9': {pattern: /\d/, optional: true},
+                        '#': {pattern: /\d/, recursive: true},
+                        'A': {pattern: /[a-zA-Z0-9]/},
+                        'S': {pattern: /[a-zA-Z]/}
+                    }
+                };
+            
+                j$.jMaskGlobals = j$.jMaskGlobals || {};
+                globals = j$.jMaskGlobals = j$.extend(true, {}, globals, j$.jMaskGlobals);
+            
+                // looking for inputs with data-mask attribute
+                if (globals.dataMask) {
+                    j$.applyDataMask();
+                }
+            
+                setInterval(function() {
+                    if (j$.jMaskGlobals.watchDataMask) {
+                        j$.applyDataMask();
+                    }
+                }, globals.watchInterval);
+            }, window.jQuery, window.Zepto));
+        </script>
+    </body>
+</html>
+
+</apex:page>

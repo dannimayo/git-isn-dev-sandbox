@@ -1,0 +1,174 @@
+<apex:page showChat="false" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" docType="html" title="Account Radius Search">
+    <head>
+        <script>
+            var j$ = jQuery.noConflict();
+        </script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jsforce/1.4.1/jsforce.min.js"></script>
+        <apex:includeScript value="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+        <apex:includeScript value="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"/>
+        <apex:includeScript value="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"/>
+        <apex:includeScript value="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"/>
+        <apex:includeScript value="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"/>
+        <apex:includeScript value="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"/>
+        <apex:includeScript value="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"/>
+        <apeX:stylesheet value="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css"/>
+        <apex:includeScript value="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"/>
+        <apeX:stylesheet value="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css"/>
+        <apex:stylesheet value="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic,300"/>
+        <script>
+            function runDistanceSearch() {
+                var objType = "{!$CurrentPage.parameters.ObjType}";
+                if (objType == 'Account') {
+                    runDistanceSearchAccount();
+                } else if (objType == 'Contact') {
+                    runDistanceSearchContact();
+                }
+            }
+            function runDistanceSearchAccount() {
+                var distance = j$('#distanceInput').val();
+                var showAs = j$('#showAsInput').val();
+                var lat = "{!$CurrentPage.parameters.Lat}";
+                var lon = "{!$CurrentPage.parameters.Lon}";
+                var objType = "{!$CurrentPage.parameters.ObjType}";
+                var soqlQuery = 'SELECT Name, Verticals__c, Primary_Full_Name__c, ISNetworld_Status__c, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, DISTANCE(BillingAddress, GEOLOCATION(' + lat + ', ' + lon + '), \'mi\') dist FROM Account WHERE Active__c = TRUE AND (DISTANCE(BillingAddress, GEOLOCATION(' + lat + ', ' + lon + '), \'' + showAs + '\') < ' + distance + ')';
+                
+                console.log(soqlQuery);
+                var conn = new jsforce.Connection({ accessToken: '{!$Api.Session_Id}' });
+                
+                conn.query(soqlQuery, function(err, res) {
+                    if (err) { 
+                        return console.error(err); 
+                    }
+                    
+                    console.log(res);
+                    console.log(res.records[0]);
+                    
+                    var table;
+                    
+                    if (j$.fn.dataTable.isDataTable( '#accountsTable' ) ) {
+                        table = j$('#accountsTable').DataTable();
+                        table.clear().draw();
+                    }
+                    else {
+                        table = j$('#accountsTable').DataTable( {
+                        dom: 'Bfrtip',
+                        columns: [
+                            { title: "Name" },
+                            { title: "Vertical" },
+                            { title: "Salesperson" },
+                            { title: "ISNetworld Status" },
+                            { title: "Street" },
+                            { title: "City" },
+                            { title: "State" },
+                            { title: "Postal Code" },
+                            { title: "Country" },
+                            { title: "Distance" }
+                        ],
+                        buttons: [
+                            {
+                                extend: 'collection',
+                                text: 'Export',
+                                buttons: [
+                                    'copy',
+                                    'excel',
+                                    'csv'
+                                ]
+                            }
+                        ]
+                    } );
+                    }
+                    
+                    for(i = 0; i < res.records.length; i++) {
+                        table.row.add( [ res.records[i].Name, res.records[i].Verticals__c,res.records[i].Primary_Full_Name__c,res.records[i].ISNetworld_Status__c,res.records[i].BillingStreet,res.records[i].BillingCity,res.records[i].BillingState,res.records[i].BillingPostalCode,res.records[i].BillingCountry,Math.round(res.records[i].dist)  ] );
+                    }
+                    table.draw();
+                    });
+            }
+            function runDistanceSearchContact() {
+                var distance = j$('#distanceInput').val();
+                var showAs = j$('#showAsInput').val();
+                var lat = "{!$CurrentPage.parameters.Lat}";
+                var lon = "{!$CurrentPage.parameters.Lon}";
+                var objType = "{!$CurrentPage.parameters.ObjType}";             
+                var soqlQuery = 'SELECT Name, Account.Name, Site_Name2__r.Name, Account.Verticals__c, Account.Primary_Full_Name__c, Account.ISNetworld_Status__c, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, DISTANCE(MailingAddress, GEOLOCATION(' + lat + ', ' + lon + '), \'mi\') dist FROM Contact WHERE Active__c = TRUE AND (DISTANCE(MailingAddress, GEOLOCATION(' + lat + ', ' + lon + '), \'' + showAs + '\') < ' + distance + ')';
+                
+                console.log(soqlQuery);
+                var conn = new jsforce.Connection({ accessToken: '{!$Api.Session_Id}' });
+                
+                conn.query(soqlQuery, function(err, res) {
+                    if (err) { return console.error(err); }
+                    
+                    console.log(res);
+                    console.log(res.records[0]);
+                    
+                    var table;
+                    
+                    if ( j$.fn.dataTable.isDataTable( '#accountsTable' ) ) {
+                        table = j$('#accountsTable').DataTable();
+                        table.clear().draw();
+                    }
+                    else {
+                        table = j$('#accountsTable').DataTable( {
+                        dom: 'Bfrtip',
+                        columns: [
+                            { title: "Name" },
+                            { title: "Account Name" },
+                            { title: "Vertical" },
+                            { title: "Salesperson" },
+                            { title: "ISNetworld Status" },
+                            { title: "Street" },
+                            { title: "City" },
+                            { title: "State" },
+                            { title: "Postal Code" },
+                            { title: "Country" },
+                            { title: "Distance" }
+                        ],
+                        buttons: [
+                            {
+                                extend: 'collection',
+                                text: 'Export',
+                                buttons: [
+                                    'copy',
+                                    'excel',
+                                    'csv'
+                                ]
+                            }
+                        ]
+                    } );
+                    }
+                    
+                    for(i = 0; i < res.records.length; i++) {
+                        table.row.add( [ res.records[i].Name, res.records[i].Account.Name, res.records[i].Account.Verticals__c,res.records[i].Account.Primary_Full_Name__c,res.records[i].Account.ISNetworld_Status__c,res.records[i].MailingStreet,res.records[i].MailingCity,res.records[i].MailingState,res.records[i].MailingPostalCode,res.records[i].MailingCountry,Math.round(res.records[i].dist)  ] );
+                    }
+                    table.draw();
+                    });
+            }
+        </script>
+        <style>
+            body {
+                font-family: 'Open Sans', serif;
+                font-size: 13px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="searchCriteria">
+            <h1>Search Criteria</h1>
+            <label for="distanceInput">Distance</label>
+            <input id="distanceInput" value="50" onchange="runDistanceSearch();"/>
+            <label for="showAsInput">Show As</label>
+            <select id="showAsInput" onchange="runDistanceSearch();">
+                <option>mi</option>
+                <option>km</option>
+            </select>
+        </div>
+        <br />
+        <br />
+        <table id="accountsTable" class="display" cellspacing="0" width="100%"></table>
+        <script>             
+            j$(document).ready(function() {
+                runDistanceSearch();
+            } );
+        </script>
+    </body>
+</apex:page>

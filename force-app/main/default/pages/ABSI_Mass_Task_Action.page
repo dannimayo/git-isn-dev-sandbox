@@ -1,0 +1,111 @@
+<!--/******************************************************
+ * Description      : Visual Force Page for Mass Task Action
+ * @author          : Malaka Silva
+ * @since           : May 24, 2010  
+ * Copyright 2010 ABSI. All rights reserved. 
+ ******************************************************/-->
+<apex:page id="pg_mass_task" controller="ABSI_MassTaskController" showHeader="true" sidebar="true"  tabStyle="Task">
+
+    <apex:sectionHeader id="section_header" title="Task" subtitle="New Task"/>
+
+    <apex:form id="frmSubmitMassTask">
+            
+        <apex:messages />
+        
+        <apex:pageBlock title="New Task" mode="Edit" id="field_section" rendered="{!showPage}">      
+     
+            <apex:pageBlockSection title="Task Information" id="section01" columns="2">
+                <apex:inputField value="{!task.ownerid}" id="owner" rendered="{!NOT(assignToOwner)}"/> 
+                <apex:pageblockSectionItem rendered="{!assignToOwner}">
+                    <apex:outputLabel value="Assigned To"/>
+                    <apex:inputtext disabled="true"/>
+                </apex:pageblockSectionItem>
+                <apex:pageblockSectionItem />
+                <apex:inputField id="notesEB" value="{!task.Notes_Entered_By_del__c}"/>                 
+                <apex:pageblockSectionItem >
+                    <apex:outputLabel value="Related To:" />
+                    <apex:outputPanel >
+                        <div id='spanDisplayLabel' style='width:250px; height:30px; overflow-y:scroll;'>
+                            <apex:dataTable value="{!tableDisplayNames}" var="tableDisplayName" >
+                                <apex:column value="{!tableDisplayName}"/>
+                            </apex:dataTable>                    
+                        </div>
+                    </apex:outputPanel>
+                </apex:pageblocksectionItem>                
+                <apex:inputField id="activityType" value="{!task.Activity_Type__c}" required="true" />  
+                <apex:pageBlockSectionItem />  
+                <apex:inputField id="status" value="{!task.status}" required="true"  />  
+                <apex:pageBlockSectionItem />  
+                <apex:inputField id="subject" value="{!task.subject}" required="true" />  
+                <apex:pageBlockSectionItem />             
+                <apex:inputField id="activityDate" value="{!task.activityDate}" required="true"/>
+                <apex:pageBlockSectionItem />
+                <apex:inputField id="priority" value="{!task.priority}" />    
+                <apex:pageBlockSectionItem />
+                <apex:inputField id="project" value="{!task.Project__c}" /> 
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="Additional Information" columns="1" id="section02">
+                <apex:inputField style="width:80%;height:100px;" value="{!task.Short_Description__c}" />
+                <apex:inputField style="width:80%;height:100px;" value="{!task.description}" />
+            </apex:pageBlockSection>
+            
+            <apex:pageblockButtons id="blockButtons">
+                <apex:commandButton value="Save" action="{!save}" id="btnSave" />
+                <apex:commandButton value="Cancel" action="{!back}" immediate="true" id="btnCancel"/>
+            </apex:pageblockButtons>
+            
+        </apex:pageBlock>
+    </apex:form>
+    <script type="text/javascript">
+        function assignUser(){
+            var objCtr = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:owner');
+            objCtr.disabled = true;
+            objCtr = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:owner_lkwgt');
+            objCtr.disabled = true;            
+        }
+        
+        (function() {
+            var ownerName = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:owner');
+            var ownerId = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:owner_lkwgt');
+            var notesEnteredBy = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:notesEB');
+            var activityType = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:activityType');
+            var status = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:status');
+            var priority = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:priority');
+            var subject = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:subject');
+            var project = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:project');
+            var activityDate = document.getElementById('pg_mass_task:frmSubmitMassTask:field_section:section01:activityDate');
+            ownerName.value = "{!$User.FirstName} {!$User.LastName}";
+            ownerId.value = "{!$User.Id}";
+            notesEnteredBy.value = "{!$User.FirstName} {!$User.LastName}";
+            activityType.value = "03 - Spoke with Contact/Lead";
+            status.value = "Not Started";
+            priority.value = "Normal";
+            subject.value = "Follow Up";
+            project.value = "DEAD Program";
+            activityDate.value = "10/11/2017";
+        })();
+        
+        function getFieldByID(strControlID){return document.getElementById(strControlID);}
+        
+        function adjustDisplayArea(){
+            try{
+                var objControlFake = getFieldByID('spanPlaceHolder') ;
+                if (objControlFake.offsetParent) {
+                    var objControl = getFieldByID('spanDisplayLabel') ;
+                    objControl.style.height = '90px';
+                    objControl.style.position = 'absolute';
+                    objControl.style.left = objControlFake.offsetLeft + 'px';
+                    objControl.style.top= objControlFake.offsetTop + 'px';
+                }  
+            }catch(e){}
+        }
+        adjustDisplayArea();
+        window.onresize = function(){
+            adjustDisplayArea();
+            setTimeout('adjustDisplayArea();',300);
+            setTimeout('adjustDisplayArea();',500);
+            setTimeout('adjustDisplayArea();',1000);
+        }        
+    </script>
+</apex:page>

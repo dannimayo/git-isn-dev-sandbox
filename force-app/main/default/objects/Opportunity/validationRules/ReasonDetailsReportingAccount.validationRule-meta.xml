@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ReasonDetailsReportingAccount</fullName>
+    <active>true</active>
+    <description>Reason Details and Account Reporting In are required if Reason for Not Subscribing is Reporting in Another Account</description>
+    <errorConditionFormula>ISPICKVAL( Reason_for_Not_Subscribing__c , &#39;Reporting in another account&#39;) &amp;&amp;
+OR(
+	ISBLANK( TEXT ( Reason_Details__c )) , 
+	ISBLANK( Account_Reporting_In__c )
+	)</errorConditionFormula>
+    <errorDisplayField>Reason_for_Not_Subscribing__c</errorDisplayField>
+    <errorMessage>Reason Details and Account Reporting In must be completed when Reason for Not Subscribing is Reporting in another account</errorMessage>
+</ValidationRule>

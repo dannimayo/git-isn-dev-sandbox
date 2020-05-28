@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RAVS_Plus_Participating_Hiring_Client__c</fullName>
+    <externalId>false</externalId>
+    <formula>RAVS_Plus_Record_Check__c &gt; 0</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>RAVS Plus Participating Hiring Client</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

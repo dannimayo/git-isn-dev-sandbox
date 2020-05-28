@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CPQ_OrderPending__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Order_Pending</description>
+    <externalId>false</externalId>
+    <label>Order Pending</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

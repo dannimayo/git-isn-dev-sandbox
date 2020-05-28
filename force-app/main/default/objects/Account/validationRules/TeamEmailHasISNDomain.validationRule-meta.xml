@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TeamEmailHasISNDomain</fullName>
+    <active>true</active>
+    <description>Validation to make sure the Vertical Team Email only contains isn.com as a domain</description>
+    <errorConditionFormula>Vertical_Team_Email__c &lt;&gt; null &amp;&amp; NOT(CONTAINS(LOWER(Vertical_Team_Email__c),&#39;@isn.com&#39;))</errorConditionFormula>
+    <errorDisplayField>Vertical_Team_Email__c</errorDisplayField>
+    <errorMessage>The Team Email can only contain emails with an isn.com domain.</errorMessage>
+</ValidationRule>

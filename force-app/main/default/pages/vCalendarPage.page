@@ -1,0 +1,15 @@
+<apex:page title="event.ics" contentType="text/calendar" cache="false">
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID::-//hacksw/handcal//NONSGML v1.0//EN
+BEGIN:VEVENT
+DTSTAMP;TZID=GMT:<apex:outputText value="{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE($CurrentPage.parameters.start,':',''),'-',''),' ','T')}"/>
+UID:<apex:outputText value="{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE($CurrentPage.parameters.start,':',''),'-',''),' ','')}"/>-1@salesforce.com
+DTSTART;TZID=GMT:<apex:outputText value="{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE($CurrentPage.parameters.start,':',''),'-',''),' ','T')}"/>
+DTEND;TZID=GMT:<apex:outputText value="{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE($CurrentPage.parameters.end,':',''),'-',''),' ','T')}"/>
+SUMMARY:<apex:outputText value="{!$CurrentPage.parameters.subject}"/>
+DESCRIPTION:<apex:outputText value="{!$CurrentPage.parameters.description}"/>
+LOCATION:<apex:outputText value="{!$CurrentPage.parameters.location}"/>
+END:VEVENT
+END:VCALENDAR
+</apex:page>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RequrieNotesOnNotViableUpdate</fullName>
+    <active>true</active>
+    <description>If account is Inactive, Not Viable or Lost to Competitor, require notes in the Account Description Field.</description>
+    <errorConditionFormula>AND(
+  OR(
+    ISCHANGED(Prospect_Status__c),
+    ISCHANGED(Active__c)
+  ),
+  OR(
+    TEXT(Prospect_Status__c)= &#39;Not Viable&#39;, 
+    TEXT(Prospect_Status__c)= &#39;Lost to Competitor&#39;,
+    Active__c = False
+  ), 
+  ISBLANK( Description  ),
+  NOT(ISCHANGED(ISNetworld_Status__c))
+)</errorConditionFormula>
+    <errorDisplayField>Description</errorDisplayField>
+    <errorMessage>Please enter notes in the Account Description field on reason for marking this account as Inactive, Not Viable or Lost to Competitor</errorMessage>
+</ValidationRule>

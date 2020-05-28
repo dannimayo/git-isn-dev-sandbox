@@ -1,0 +1,5 @@
+<apex:page standardController="Request__c" lightningStylesheets="true" showHeader="false" sidebar="false">
+
+    <a href="https://isn.lightning.force.com/setup/ui/recordtypeselect.jsp?sObjectName=Request__c&save_new_url=%2Fa1z%2Fe&navigationLocation=LIST_VIEW">New Request</a>
+
+</apex:page>

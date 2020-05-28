@@ -1,0 +1,529 @@
+<apex:page standardController="Task" extensions="ActivityConsoleController" showHeader="false" sidebar="false" docType="html-5.0" standardStylesheets="false">
+    <head>
+         
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+        <style>
+            body {
+            //background-color: #f1f1f1;
+            font-family: 'Open Sans', sans-serif !important;
+            color: #606060 !important;
+            }
+            a.isn {
+            color:#ff6d42;
+            }
+            body, input {
+            font-size: 1em;
+            color:#675C53 !important;
+            }
+            .dateOnlyInput input {
+            width: 8em !important;
+            }
+            .addMB {
+            margin-bottom: 1em !important;
+            }
+            .taskScroll {
+            position: relative;
+            overflow-y: scroll;
+            min-height: 600px;
+            max-height: 600px;
+            }
+            .timeline-activity {
+            margin-bottom: 25px;
+            margin-left: 40px;
+            position: relative;
+            }
+            .timeline-activity {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 10px;
+            position: relative;
+            }
+            
+            .timeline-activity:before {
+            background: #fff;
+            border-radius: 2px;
+            bottom: -30px;
+            box-shadow: 0 0 3px rgba(0,0,0,0.2);
+            content: "";
+            height: 100%;
+            left: -30px;
+            position: absolute;
+            width: 3px;
+            }
+            .timeline-activity:after {
+            background: #fff;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            content: "";
+            height: 15px;
+            left: -36px;
+            position: absolute;
+            top: 10px;
+            width: 15px;
+            }
+            .clearfix:before, .clearfix:after {
+            content: " ";
+            display: table;
+            }
+    
+            #style-3::-webkit-scrollbar-track
+            {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                background-color: #fff;
+            }
+            
+            #style-3::-webkit-scrollbar
+            {
+                width: 6px;
+                background-color: #fff;
+            }
+            
+            #style-3::-webkit-scrollbar-thumb
+            {
+                background-color: #675c53;
+            }    
+            label {
+                color: #988F86;
+                font-size: 0.9em;
+            }
+        </style>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+                ga('create', 'UA-93580826-1', 'auto');
+                var page = '{!$CurrentPage.Parameters.sdfcIFrameOrigin}';
+                var cleanPage = page.replace('https://isn.my.salesforce.com', '');
+                var cUserId = '{!$User.Id}';  
+                ga('send', {
+                    hitType: 'pageview',
+                    page: cleanPage,
+                    title: cleanPage,
+                    UserId: cUserId,
+            });             
+        </script>
+
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-dark bg-dark addMB"  style="background-color:#fff!important;color:#ff6d42;">
+            <span class="navbar-brand mb-0" style="color:#ff6d42;">
+                <h1><img src="{!URLFOR($Resource.ISNLogoTransparent)}" width="75" height="75" class="d-inline-block align-middle" alt=""/>Task Console</h1>
+            </span>
+            <nav class="nav-justified-end">
+                <button id="btn-about" data-toggle="modal" data-target=".bd-about-modal-lg" class="btn" style="background-color:#fff!important;border:0;color:#675c53;">About Console</button>
+                <a id="btn-close" href="/home/home.jsp" class="btn" style="background-color:#fff!important;border:0;color:#675c53;">Exit Console</a>
+            </nav>
+        </nav>
+        <div class="container-fluid" style="margin: 0 0 0 0">
+            <div class="row">
+                <div class="col-12 col-lg-4" style="background-color:white;margin:0 0 1em 0;padding:0 0 0.5em 0;">
+                    <nav class="navbar navbar-info bg-info text-light justify-content-between addMB"  style="background-color:#675c53 !important;">
+                        <a class="navbar-brand">My Tasks </a>
+                        <btn class="btn btn-outline-light" id="success-alert" style="display:none;border:0;font-weight:bold;">Success!</btn>
+                        <div class="btn-group" role="group">
+                            <button id="task-filter" type="button" class="btn dropdown-toggle" style="background-color:#675c53 !important;border:1px solid #675c53;color:#fff;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Filter
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a id="filterAll" data-keyword="All" class="filter-item dropdown-item" href="#">All</a>
+                                <a id="filterDeap" data-keyword="DEAP" class="filter-item dropdown-item" href="#">DEAP</a>
+                            </div>
+                        </div>     
+                    </nav>
+                    <div class="container taskScroll" id="style-3">
+                        <apex:repeat value="{!myTasks}" var="t">
+                            <div id="task-card-{!t.Id}" class="card mb-3" style="mb-3;background-color:#f1f1f1;border:1px solid #675c53;" data-searchText="{!t.Project__c}">
+                                <div class="card-header" whatId="{!t.WhatId}" whoId="{!t.WhoId}" href="#">
+                                    <h5 class="card-title">{!t.Subject}</h5>
+                                    <h6 class="card-subtitle text-muted" style="margin-bottom:0;">due <apex:outputtext value=" {!t.ActivityDate}" /></h6>
+                                    <p>Contact: <a class="isn" href="/{!t.WhoId}" target="_blank">{!t.Who.Name}</a>
+                                        <br/>Account: <a class="isn" href="/{!t.WhatId}" target="_blank">{!t.Account.Name}</a></p>
+                                </div>
+                                <apex:form >
+                                    <div id="{!t.Id}" class="card-parent-body" style="display:none;margin:1em;">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="$(this).next().attr('id');">Status</label>
+                                                <div class="form-group">
+                                                    <apex:inputField style="Status" styleClass="taskInput-{!t.Id} form-control" value="{!t.Status}"></apex:inputField>
+                                                </div>
+                                                <label for="$(this).next().attr('id');">Activity Type</label>
+                                                <div class="form-group">
+                                                    <apex:inputField style="Activity_Type__c" styleClass="taskInput-{!t.Id} form-control" value="{!t.Activity_Type__c}"></apex:inputField>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="$(this).next().attr('id');">Team</label>
+                                                <div class="form-group">
+                                                    <apex:inputField style="Team__c" styleClass="taskInput-{!t.Id} form-control" value="{!t.Team__c}"></apex:inputField>
+                                                </div>
+                                                <label for="$(this).next().attr('id');">Project</label>
+                                                <div class="form-group">
+                                                    <apex:inputField style="Project__c" styleClass="taskInput-{!t.Id} form-control" value="{!t.Project__c}"></apex:inputField>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="$(this).next().attr('id');">Short Description</label>
+                                                <div class="form-group">
+                                                    <apex:inputField style="Short_Description__c" styleClass="taskInput-{!t.Id} form-control" value="{!t.Short_Description__c}"></apex:inputField>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <apex:outputLink target="_blank" value="/{!t.id}" styleClass="card-link isn">Go to Task</apex:outputLink>
+                                        <a class="card-link" href="#" style="color:#aaa;" onclick="deleteTask($(this),'{!t.Id}');">Delete Task</a>
+                                        <div class="card-body text-right">
+                                            <a id="btn-save-{!t.Id}" href="#" class="btn btn-save" style="border:1px solid #7BBBB2;background-color:#7BBBB2;color:#fff;">Save</a>
+                                        </div>
+                                    </div>  
+                                </apex:form>
+                            </div>
+                        </apex:repeat>
+                    </div>  
+                </div>
+                <div class="col-12 col-lg-8" style="padding:0 0 0 0.5em;">
+                    <nav class="navbar navbar-info bg-info text-light justify-content-between" style="background-color:#675c53 !important;">
+                        <a class="navbar-brand">Related Contact</a>
+                        <button id="btn-relConActivityHistory" class="btn btn-light" data-toggle="modal" data-target=".bd-example-modal-lg" style="display:none;border:1px solid #fff;background-color:#675c53;color:#fff;">Recent Activities</button>
+                    </nav>
+                    <div class="col-12"  style="background-color:white;margin-bottom:1em;padding-top:1em;">
+                        <div class="row">
+                            <div class="col-12 col-md-3 col-sm-6">
+                                <label for="relConName">Name</label>
+                                <a id="relConId" apiName="Id" class="relCon" href="" target="_blank"><input id="relConName" apiName="Name" type="text" class="relCon form-control addMB" readonly="true"/></a>
+                                <label for="relConTitle">Title</label>
+                                <input id="relConTitle" apiName="Title" type="text" class="relCon form-control addMB" readonly="true"/>
+                                <label for="relConDepartment__c">Department</label>
+                                <input id="relConDepartment__c" apiName="Department__c" type="text" class="relCon form-control addMB" readonly="true"/>
+                            </div>
+                            <div class="col-12 col-md-3 col-sm-6">
+                                <label for="relConPhone">Direct</label>
+                                <input id="relConPhone" apiName="Phone" type="text" class="relCon form-control addMB" readonly="true"/>
+                                <label for="relConMobilePhone">Mobile</label>
+                                <input id="relConMobilePhone" apiName="MobilePhone" type="text" class="relCon form-control addMB" readonly="true"/>
+                                <label for="relConMain_Line__c">Main</label>
+                                <input id="relConMain_Line__c" apiName="Main_Line__c" type="text" class="relCon form-control addMB" readonly="true"/>
+                            </div>
+                            <div class="col-12 col-md-3 col-sm-6">
+                                <label for="relConMailingCountry">Country</label>
+                                <input id="relConMailingCountry" apiName="MailingCountry" type="text" class="relCon form-control addMB" readonly="true"/>
+                                <label for="relConMailingState">State</label>
+                                <input id="relConMailingState" apiName="MailingState" type="text" class="relCon form-control addMB" readonly="true"/>
+                                <label for="relConMailingCity">City</label>
+                                <input id="relConMailingCity" apiName="MailingCity" type="text" class="relCon form-control addMB" readonly="true"/>
+                            </div>
+                            <div class="col-12 col-md-3 col-sm-6">
+                                <label for="relConActive__c">Active</label>
+                                <input id="relConActive__c" apiName="Active__c" type="text" class="relCon form-control addMB" readonly="true"/>
+                                <label for="relConKey_Contact__c">Key Contact</label>
+                                <input id="relConKey_Contact__c" apiName="Key_Contact__c" type="text" class="relCon form-control addMB" readonly="true"/>
+                                <label for="relConLastActivityDate">Last Activity Date</label>
+                                <input id="relConLastActivityDate" apiName="LastActivityDate" type="text" class="relCon form-control addMB" readonly="true"/>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="navbar navbar-info bg-info text-light justify-content-between" style="background-color:#675c53 !important;">
+                        <a class="navbar-brand">Related Account</a>
+                        <button id="btn-relAccActivityHistory" class="btn btn-light" data-toggle="modal" data-target=".bd-example-modal-lg" style="display:none;border:1px solid #fff;background-color:#675c53;color:#fff;" >Recent Activities</button>
+                    </nav>
+                    <div class="col-12" style="background-color:white;padding-top:1em;">
+                        <div class="row">
+                            <div class="col-12 col-md-3 col-sm-6">
+                                <label for="relAccName">Account Name</label>
+                                <a id="relAccId" apiName="Id" class="relAcc" href="" target="_blank"><input id="relAccName" apiName="Name" type="text" class="relAcc form-control addMB" readonly="true"/></a>
+                                <label for="relAccISNetworld_Status__c">ISNetworld Status</label>
+                                <input id="relAccISNetworld_Status__c" apiName="ISNetworld_Status__c" type="text" class="relAcc form-control addMB" readonly="true"/>
+                                <label for="relAccProspect_Status__c">Selling Process</label>
+                                <input id="relAccProspect_Status__c" apiName="Prospect_Status__c" type="text" class="relAcc form-control addMB" readonly="true"/>
+                            </div>
+                            <div class="col-12 col-md-3 col-sm-6">
+                                <label for="relAccPrimary_Full_Name__c">Salesperson</label>
+                                <input id="relAccPrimary_Full_Name__c" apiName="Primary_Full_Name__c" type="text" class="relAcc form-control addMB" readonly="true"/>
+                                <label for="relAccVerticals__c">Verticals</label>
+                                <input id="relAccVerticals__c" apiName="Verticals__c" type="text" class="relAcc form-control addMB" readonly="true"/>
+                                <label for="relAccIndustry__c">Industry</label>
+                                <input id="relAccIndustry__c" apiName="Industry__c" type="text" class="relAcc form-control addMB" readonly="true"/>
+                            </div>
+                            <div class="col-12 col-md-3 col-sm-6">
+                                <label for="relAccLast_Main_Line__c">Main Line</label>
+                                <input id="relAccLast_Main_Line__c" apiName="Main_Line__c" type="text" class="relAcc form-control addMB" readonly="true"/>
+                                <label for="relAccLastAcitivityDate">Last Activity Date</label>
+                                <input id="relAccLastAcitivityDate" apiName="LastActivityDate" type="text" class="relAcc form-control addMB" readonly="true"/>
+                                <label for="relAccLast_Meeting_Date_Account__c">Last Meeting Date</label>
+                                <input id="relAccLast_Meeting_Date_Account__c" apiName="Last_Meeting_Date_Account__c" type="text" class="relAcc form-control addMB" readonly="true"/>
+                            </div>
+                            <div class="col-12 col-md-3 col-sm-6">
+                                <label for="relAccBillingCountry">Country</label>
+                                <input id="relAccBillingCountry" apiName="BillingCountry" type="text" class="relAcc form-control addMB" readonly="true"/>
+                                <label for="relAccBillingState">State</label>
+                                <input id="relAccBillingState" apiName="BillingState" type="text" class="relAcc form-control addMB" readonly="true"/>
+                                <label for="relAccBillingCity">City</label>
+                                <input id="relAccBillingCity" apiName="BillingCity" type="text" class="relAcc form-control addMB" readonly="true"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="relatedContactHistory" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom:0;background-color:#f1f1f1;">
+                                <ul class="nav nav-tabs" style="margin-bottom:0;">
+                                    <li class="nav-item">
+                                        <a id="contact-history-tab" class="nav-link active" data-toggle="tab"  href="#relConTimeline" role="tab"><h5>Contact History</h5></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="account-history-tab" class="nav-link" data-toggle="tab" href="#relAccTimeline" role="tab"><h5>Account History</h5></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container taskScroll tab-content">
+                                    <div class="activityTimeline tab-pane active" id="relConTimeline" role="tabpanel">
+                                        
+                                    </div>
+                                    <div class="activityTimeline tab-pane" id="relAccTimeline" role="tabpanel">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade bd-about-modal-lg" tabindex="-1" role="dialog" aria-labelledby="aboutConsole" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom:0;background-color:#f1f1f1;">
+                                <h4 class="modal-title">About</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p class="lead">Use the Task Console to quickly work through open tasks by reducing the amount of clicks and pages to see relevant and recent information about the contact before calling.</p>
+                                <p><b>My Tasks</b> will populate with all open tasks assigned to you when first launched.</p>
+                                <p>Click on a task card under <b>My Tasks</b> to expand additional fields. Each card will show a handful of fields from the task.</p>
+                                <p>When a task card is selected, related contact and account fields will be displayed to the right (or below if on mobile).</p>
+                                <p>Use the <b>Recent Activities</b> button to view the 10 most recent activities for the contact and account.</p>
+                                <p>Once a task is completed, the task will be updated to today's date and the card removed from <b>My Tasks</b>.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="border:1px solid #7BBBB2;background-color:#7BBBB2;color:#fff;" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        
+        <script>
+            
+            $(function () {
+                $('#taskFilter').popover({
+                    container: 'body'
+                })
+            });
+        function collapseCards(element) {
+            $('.card-header').removeClass('active');
+            $('.card-parent-body').css({ "display": 'none'});
+            $('.relAcc, .relCon').each(function(){
+                $(this).val('');
+            });
+            $('a.relAcc, a.relCon').each(function(){
+                $(this).attr('href','');
+            });
+            $('#btn-relConActivityHistory').css("display",'none');
+            $('#btn-relAccActivityHistory').css("display",'none');
+            $("#relConTimeline").empty();
+            $("#relAccTimeline").empty();
+        }
+        
+        $('.filter-item').click(function() {
+            var theContainer = $(this).parent().parent().parent().next();
+            var searchText = $(this).data('keyword');
+            console.log(theContainer);
+            console.log(searchText);
+            
+            if (searchText == 'All') {
+                $(theContainer).children().show();
+            } else {
+                $(theContainer).children().hide().filter('[data-searchText="'+ searchText +'"]').show();
+            }
+        });
+        
+        $('.card-header').click(function() {
+            if($(this).hasClass('active')) {
+                collapseCards($(this));
+                $('.relAcc, .relCon').each(function(){
+                    $(this).val('');
+                });
+            } else {
+                $('.card-header').removeClass('active');
+                $('.card-parent-body').css({ "display": 'none'});
+                $(this).addClass('active');
+                $(this).next().children('.card-parent-body').css({ "display": 'inline-block'});
+                
+                var container = $(this).parent().parent(),
+                    scrollTo = $(this);
+                
+                container.scrollTop(
+                    scrollTo.offset().top - container.offset().top + container.scrollTop() - 10
+                );
+                
+                var relatedAccountId = $(this).attr('whatId');
+                
+                ActivityConsoleController.relatedAccount(
+                    relatedAccountId,
+                    function( result, event ) {
+                        $('.relAcc').each(function(){
+                            var apiName = $(this).attr('apiName');
+                            if (apiName.indexOf('Date') !== -1) {
+                                var formattedDate = new Date(result[apiName]);
+                                var dd = (formattedDate.getDate() < 10 ? '0' : '') + formattedDate.getDate();
+                                var MM = ((formattedDate.getMonth() + 1) < 10 ? '0' : '') + (formattedDate.getMonth() + 1);
+                                var yyyy = formattedDate.getFullYear();
+                                $(this).val(yyyy + "-" + MM + "-" + dd);
+                            } else if (apiName.indexOf('Id') !== -1){
+                                $(this).attr('href','/' + result[apiName]);
+                            } else {
+                                $(this).val(result[apiName]);
+                            }
+                        });
+                        var activityHistory = result.ActivityHistories;
+                        var html = "";
+                        if (activityHistory != null && activityHistory != undefined) {
+                            for (var i=0;i<activityHistory.length;i++) {
+                                var taskDate = new Date(activityHistory[i].ActivityDate).toLocaleDateString('en-US');
+                                var taskNotes = "";
+                                if (activityHistory[i].Short_Description__c != null) {
+                                    taskNotes = activityHistory[i].Short_Description__c;
+                                } else if (activityHistory[i].Description != null ) {
+                                    activityHistory[i].Description;
+                                } else {
+                                    "";
+                                }
+                                html += "<div id='relConActivityHistory' class='card timeline-activity'><div class='card-body'><h5 class='card-title'>" + activityHistory[i].Subject + "</h5><h6 class='card-subtitle mb-2 text-muted'>with " + activityHistory[i].Who.Name + "</h6><h6 class='card-subtitle mb-2 text-muted'>" + activityHistory[i].Activity_Type__c + "</h6><h6 class='card-subtitle mb-2 text-muted'>by " + activityHistory[i].Owner.Name + " on " + taskDate + "</h6><p class='card-text'>Short Description: " + taskNotes + "</p></div></div>";
+                            }
+                        }
+                        $("#relAccTimeline").append(html);
+                    }
+                );
+                
+                var relatedContactId = $(this).attr('whoId');
+                
+                ActivityConsoleController.relatedContact(
+                    relatedContactId,
+                    function( result, event ) {
+                        $('#btn-relConActivityHistory').css("display",'block');
+                        $('#btn-relAccActivityHistory').css("display",'block');
+                        $('.relCon').each(function(){
+                            var apiName = $(this).attr('apiName');
+                            if (apiName.indexOf('Date') !== -1) {
+                                var formattedDate = new Date(result[apiName]);
+                                var dd = (formattedDate.getDate() < 10 ? '0' : '') + formattedDate.getDate();
+                                var MM = ((formattedDate.getMonth() + 1) < 10 ? '0' : '') + (formattedDate.getMonth() + 1);
+                                var yyyy = formattedDate.getFullYear();
+                                $(this).val(yyyy + "-" + MM + "-" + dd);
+                            } 
+                            else if (apiName.indexOf('Id') !== -1){
+                                $(this).attr('href','/' + result[apiName]);
+                            }
+                                else {
+                                    $(this).val(result[apiName]);
+                                }
+                        });
+                        var activityHistory = result.ActivityHistories; 
+                        var html = "";
+                        if (activityHistory != null && activityHistory != undefined) {
+                            for (var i=0;i<activityHistory.length;i++) {
+                                var taskDate = new Date(activityHistory[i].ActivityDate).toLocaleDateString('en-US');
+                                var taskNotes = "";
+                                if (activityHistory[i].Short_Description__c != null) {
+                                    taskNotes = activityHistory[i].Short_Description__c;
+                                } else if (activityHistory[i].Description != null ) {
+                                    activityHistory[i].Description;
+                                } else {
+                                    "";
+                                }
+                                html += "<div id='relConActivityHistory' class='card timeline-activity'><div class='card-body'><h5 class='card-title'>" + activityHistory[i].Subject + "</h5><h6 class='card-subtitle mb-2 text-muted'>" + activityHistory[i].Activity_Type__c + "</h6><h6 class='card-subtitle mb-2 text-muted'>by " + activityHistory[i].Owner.Name + " on " + taskDate + "</h6><p class='card-text'>Short Description: " + taskNotes + "</p></div></div>";
+                            }
+                        }
+                        $("#relConTimeline").append(html);
+                    }
+                );
+            }
+        });
+        
+        $('.btn-save').click(function() {
+            var parentId = $(this).parent().parent().attr('Id');
+            var taskType = '';
+            var taskStatus = '';
+            var taskTeam = '';
+            var taskShortDescription = '';
+            var taskProject = '';
+            $('.taskInput-' + parentId).each(function() {
+                if ($(this).attr('style') == "Activity_Type__c") { taskType = this.value; }
+                if ($(this).attr('style') == "Status") { taskStatus = this.value; }
+                if ($(this).attr('style') == "Team__c") { taskTeam = this.value; }
+                if ($(this).attr('style') == "Short_Description__c") { taskShortDescription = this.value; }
+                if ($(this).attr('style') == "Project__c") { taskProject = this.value; }
+            });
+            ActivityConsoleController.changeTask(
+                parentId,
+                taskType,
+                taskStatus,
+                taskTeam,
+                taskShortDescription,
+                taskProject,
+                function( result, event ) {
+                    if (event.status) {
+                        $('#success-alert').show();
+                        setTimeout(function() {
+                            $('#success-alert').hide();
+                        }, 2000); 
+                        if (result.status == 'Completed') {
+                            collapseCards($(this).parent().parent().parent().prev());
+                            $('#task-card-' + parentId).remove();
+                        }
+                    }
+                }
+            );
+        });
+        
+        function deleteTask(elem,taskId) {
+            var parentId = elem.parent().attr('Id');
+            console.log(parentId);
+            ActivityConsoleController.deleteTask(
+                taskId,
+                function( result, event ) {
+                    if (event.status) {
+                        $('#success-alert').show();
+                        setTimeout(function() {
+                            $('#success-alert').hide();
+                        }, 2000);
+                        if (result.status == 'Deleted') {
+                            collapseCards(elem.parent().parent().prev());
+                            $('#task-card-' + parentId).remove();
+                        }
+                    }
+                }
+            );
+        }
+        </script>
+        
+    </body>
+    
+</apex:page>

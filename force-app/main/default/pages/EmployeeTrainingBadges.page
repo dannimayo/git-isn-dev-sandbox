@@ -1,0 +1,261 @@
+<apex:page title="Employee Training and Badges" controller="employeeTrainingBadgingPage" showChat="false">
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+            .isn-body {
+                font-family: 'Open Sans';
+                font-size: 1.1em;
+                height: 100%;
+                overflow:hidden;
+            }
+            .isn-container {
+                width: 100%;
+                margin: 5px;
+                margin-right: 5px;
+                padding: 10px;
+                display: block;
+                overflow: hidden;
+            }
+            .isn-sub-container::-webkit-scrollbar {
+                display: none;
+            }
+            .isn-sub-container {
+                width: 95%;
+                margin: 5px;
+                margin-right: 5px;
+                display: block;
+                overflow-y: auto;
+                max-height: 350px;
+                padding-right: 0px;
+                background-color: rgb(220,215,210);
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                -khtml-border-radius: 10px;
+            }
+            .isn-header {
+                display: inline-block;
+                font-weight: bold;
+                font-size: 1.2em;
+                color: white;
+                margin-left: 5px;
+                margin-right: 5px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                padding: 10px;
+                width: 95%;
+                border: 2px solid rgb(103,92,83);
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                -khtml-border-radius: 10px;
+                background-color: rgb(103,92,83);
+            }
+            .isn-badge {
+                display: inline-block;
+                float: left;
+                margin: 5px;
+                padding: 5px;
+                width: 350px;
+                border: 2px solid rgb(123,187,178);
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                -khtml-border-radius: 10px;
+                background-color: white;
+            }
+            .isn-badge-image {
+                display: inline-block;
+                text-align: center;
+                vertical-align: middle;
+                padding: 1px;
+            }
+            .isn-badge-detail {
+                display: inline-block;
+                font-size: 0.95em;
+                text-align: left;
+                vertical-align: middle;
+                color: rgb(103,92,83);
+                padding: 1px;
+            }
+            .isn-training {
+                display: inline-block;
+                float: left;
+                margin-left: 5px;
+                margin-right: 5px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                padding: 5px;
+                width: 45%;
+                min-width: 300px;
+                border: 2px solid rgb(103,92,83);
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                -khtml-border-radius: 10px;
+                background-color: white;
+            }
+            .isn-training-detail {
+                display: in-line-block;
+                text-align: left;
+                vertical-align: middle;
+                color: rgb(103,92,83);
+            }
+            .isn-training-complete {
+                border: 2px solid rgb(123,187,178);
+            }
+            .isn-training-trainingrecommended {
+                border: 2px solid rgb(255,109,66);
+            }
+            .isn-textinput {
+                transition: all 0.1s;
+                margin-top: 0px;
+                margin-bottom: 10px;
+                margin-left: 5px;
+                margin-right: 5px;
+                border-radius: 5px;
+                outline: 0px;
+                display: block;
+                padding: 10px;
+                width: 94%;
+                min-width: 300px;
+                border: 2px solid rgb(123,187,178);
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                -khtml-border-radius: 10px;
+                background-color: white;
+            } .isn-textinput:focus {
+                border: 2px solid rgb(146,212,0);
+            }
+            .isn-selectinput {
+                transition: all 0.1s;
+                margin-top: 0px;
+                margin-bottom: 10px;
+                margin-left: 5px;
+                margin-right: 5px;
+                border-radius: 5px;
+                outline: 0px;
+                display: block;
+                padding: 10px;
+                width: 98%;
+                min-width: 300px;
+                border: 2px solid rgb(123,187,178);
+                -moz-border-radius: 10px;
+                -webkit-border-radius: 10px;
+                border-radius: 10px;
+                -khtml-border-radius: 10px;
+                background-color: white;
+            } .isn-selectinput:focus {
+                border: 2px solid rgb(146,212,0);
+            }
+            .isn-search-container {
+                width: 44%;
+                float: left;
+            }
+            a.isn-link {
+                color: rgb(103,92,83);
+                text-decoration: none;
+            }
+            a.isn-link:hover {
+                text-decoration: none;
+            }
+            .scrollable {
+                overflow: auto;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    </head>
+    <div class="isn-body">
+        <div class="isn-container">
+            <apex:form id="theForm">
+                <script>
+                    function doSearch() {
+                        userDefinedSearch(
+                            document.getElementById("namesearch").options[document.getElementById("namesearch").selectedIndex].value,
+                            document.getElementById("badgesearch").options[document.getElementById("badgesearch").selectedIndex].value,
+                            document.getElementById("datesearch").options[document.getElementById("datesearch").selectedIndex].value,
+                            document.getElementById("classsearch").options[document.getElementById("classsearch").selectedIndex].value
+                        ); console.log(document.getElementById("namesearch").value);
+                    }
+                </script>
+                <apex:actionFunction name="userDefinedSearch" action="{!userDefinedSearch}" rerender="results">
+                    <apex:param name="nameFilter" value="" />
+                    <apex:param name="badgeTrackFilter" value="" />
+                    <apex:param name="dateFilter" value="" />
+                    <apex:param name="classFilter" value="" />
+                </apex:actionFunction>
+                <div class="isn-header">Training and Badge Information for</div>
+                <div class="isn-search-container">
+                    <select id="namesearch" class="isn-selectinput" style="display:{!if(showNameSearchField, 'inherit', 'none')};" onchange="doSearch();">
+                        <option selected="selected" value=""></option>
+                        <apex:repeat value="{!userOptions}" var="u">
+                            <option value="{!u}">{!u}</option>
+                        </apex:repeat>
+                    </select>
+                </div>
+                <div class="isn-search-container">
+                    <select id="classsearch" class="isn-selectinput" onchange="doSearch();">
+                        <option selected="selected" value="All">All Classes</option>
+                        <apex:repeat value="{!classOptions}" var="c">
+                            <option value="{!c}">{!c}</option>
+                        </apex:repeat>
+                    </select>
+                </div>
+                <div class="isn-search-container">
+                    <select id="badgesearch" class="isn-selectinput" onchange="doSearch();">
+                        <option selected="selected" value="All">All Badge Tracks</option>
+                        <apex:repeat value="{!badgeTrackOptions}" var="bt">
+                            <option value="{!bt}">{!bt}</option>
+                        </apex:repeat>
+                    </select>
+                </div>
+                <div class="isn-search-container">
+                    <select id="datesearch" class="isn-selectinput" onchange="doSearch();">
+                        <option selected="selected" value="All">All Time</option>
+                        <option value="This_Year">This Year</option>
+                        <option value="Last_Year">Last Year</option>
+                        <option value="This_Quarter">This Quarter</option>
+                        <option value="Last_Quarter">Last Quarter</option>
+                    </select>
+                </div>
+            </apex:form>
+        </div>
+        <apex:outputPanel id="results">
+            <div class="isn-container">
+                <div class="isn-header">Class Enrollments</div>
+                <div class="isn-sub-container">
+                    <apex:repeat value="{!currentEnrollments}" var="e">
+                        <a class="isn-link" href="/{!e.Id}">
+                            <span class="isn-training {!IF(OR(e.Status__c=='Completed',e.Status__c=='Passed'),'isn-training-complete',IF(e.Status__c=='Training Recommended','isn-training-trainingrecommended',''))}">
+                                <span class="isn-training-detail">
+                                    <b>Class: {!e.Course__r.Course__r.Name}</b><br />
+                                    Date: {!Month(e.Class_Date__c)}/{!Day(e.Class_Date__c)}/{!Year(e.Class_Date__c)}&nbsp;&nbsp;&nbsp;&nbsp;
+                                    Status: {!e.Status__c}
+                                </span>
+                            </span>
+                        </a>
+                    </apex:repeat>
+                </div>
+            </div>
+            <div class="isn-container">
+                <div class="isn-header">Badges</div>
+                <div class="isn-sub-container">
+                    <apex:repeat value="{!currentBadges}" var="b">
+                        <a class="isn-link" href="/{!b.Id}">
+                            <span class="isn-badge">
+                                <span class="isn-badge-image"><img src="/resource/BadgeImages/{!SUBSTITUTE(SUBSTITUTE(b.BadgeName__c,' ',''),"'",'')}.png" alt="{!b.BadgeName__c}" width="75" height="75"/></span>
+                                <span class="isn-badge-detail">
+                                    Track: {!b.Badge_Track__r.Name}<br />
+                                    Badge: {!b.BadgeName__c}<br />
+                                    Awarded: {!Month(b.Date_Awarded__c)}/{!Day(b.Date_Awarded__c)}/{!Year(b.Date_Awarded__c)}<br />
+                                    <apex:outputText value="{!IF(OR(b.Badge_Track__r.Name == 'Healthy Account',b.Badge_Track__r.Name == 'Account Metrics Assessment'),'Account: ' & b.Related_Account__r.Name,IF(OR(b.Badge_Track__r.Name == 'Functionality',b.Badge_Track__r.Name == 'Competency'),'Class: ' & b.Completed_Class__r.Course__r.Name,''))}" rendered="{!IF(OR(b.Badge_Track__r.Name == 'Healthy Account',b.Badge_Track__r.Name == 'Account Metrics Assessment'),TRUE,IF(OR(b.Badge_Track__r.Name == 'Functionality',b.Badge_Track__r.Name == 'Competency'),TRUE,FALSE))}"/>
+                                </span>
+                            </span>
+                        </a>
+                    </apex:repeat>
+                </div>
+            </div>
+        </apex:outputPanel>
+    </div>
+</apex:page>

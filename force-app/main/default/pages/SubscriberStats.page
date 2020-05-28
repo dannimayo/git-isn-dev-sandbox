@@ -1,0 +1,110 @@
+<apex:page StandardController="Account" showHeader="false" showChat="false" sidebar="false" docType="html-5.0" >
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS103, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <apex:outputText value="{!Account.Days_to_Expire__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Renewal_Date__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Net_New_Contractors__c}" rendered="false"/>
+    <apex:outputText value="{!Account.New_Contractors__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Expired_Contractors__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Total_Contractors_on_List__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Percent_Expired_Contractors__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Pending_Items_Percent__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Total_Pending_TDL_Items__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Date_of_Last_Metrics_Meeting__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Annual_Mgmt_Meeting_Held__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Number_of_References__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Contacts_Sharing_Info_with_CEs__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Total_Vendor_List_Records__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Subscribed_Vendor_List_Records__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Subscription_Compliance_Calculated__c}" rendered="false"/>
+    <apex:outputText value="{!Account.ISN_Company_Record__r.IsTestAccount__c}" rendered="false"/>
+    <style>
+        td.slds-item {
+            padding: 5px;
+            width: 20%;
+        }
+    </style>
+        <div class="slds">
+            <table class="slds-has-dividers--around-space" width="100%">
+                <tr>
+                    <td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate" title="Renewal Date">Renewal Date <img id="renewalCheck" style="visibility:{!IF(Account.Renewal_Date__c != null,if(Account.Days_to_Expire__c <= 7,'visible','hidden'),'visible')}" src="{!$Resource.isnWarningImg}" alt=""/></h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-body--small">
+                                    <apex:outputtext value="{0, date, medium}">
+                                        <apex:param value="{!Account.Renewal_Date__c}"></apex:param>
+                                    </apex:outputtext>
+                                </p>
+                                <p class="slds-truncate">Days to Renewal</p>
+                                <p class="slds-truncate">{!Round(Account.Days_to_Expire__c,0)}</p>
+                            </div>
+                        </div>
+                    </td> 
+                    <td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate" title="Metrics Meeting">Last Metrics Mtg <img id="netNewCheck" style="visibility:{!IF(ISBLANK(Account.Date_of_Last_Metrics_Meeting__c),'visible','hidden')}" src="{!$Resource.isnWarningImg}" alt=""/></h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-body--small">
+                                    <apex:outputtext value="{0, date, medium}">
+                                        <apex:param value="{!Account.Date_of_Last_Metrics_Meeting__c}"></apex:param>
+                                    </apex:outputtext><img id="MetricsMeeting" style="visibility:{!IF(ISBLANK(Account.Date_of_Last_Metrics_Meeting__c),'visible','hidden')}" src="" alt=""/>
+                                    <apex:outputtext value="{!IF(ISBLANK(Account.Date_of_Last_Metrics_Meeting__c),'n/a','')}"/>
+                                </p>
+                                <p class="slds-truncate">Last Mtg w/ Director+</p>
+                                <p class="slds-truncate">
+                                    <apex:outputtext value="{0, date, medium}">
+                                        <apex:param value="{!Account.Annual_Mgmt_Meeting_Held__c}"></apex:param>
+                                    </apex:outputtext>
+                                    <apex:outputtext value="{!IF(ISBLANK(Account.Annual_Mgmt_Meeting_Held__c),'n/a','')}"/>
+                                </p>
+                            </div>
+                        </div>
+                    </td> 
+                    <td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate" title="Net New">YTD Net New CEs <img id="netNewCheck" style="visibility:{!IF(Account.Net_New_Contractors__c != null, IF (Account.Net_New_Contractors__c < 0,'visible','hidden'),'hidden')}" src="{!$Resource.isnWarningImg}" alt=""/></h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-body--small">{!Round(Account.Net_New_Contractors__c,0)}</p>
+                                <p class="slds-truncate">Total Expired CEs <img id="netNewCheck" style="visibility:{!IF(Account.Expired_Contractors__c != null, IF(Account.Expired_Contractors__c > 0,'visible','hidden'),'hidden')}" src="{!$Resource.isnWarningImg}" alt=""/></p>
+                                <p class="slds-truncate">{!Round(Account.Expired_Contractors__c,0)}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate" title="Subscription Compliance">Sub Compliance % <img id="netNewCheck" style="visibility:{!IF(Account.Subscription_Compliance_Calculated__c != null, IF(Account.Subscription_Compliance_Calculated__c < 90,'visible','hidden'),'hidden')}" src="{!$Resource.isnWarningImg}" alt=""/></h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-body--small">{!If(ISBLANK(Round(Account.Total_Vendor_list_Records__c,2)),0,Round(Account.Subscription_Compliance_Calculated__c,2))}%</p>
+                                <p class="slds-truncate">= Subscribed / Total CEs</p>
+                                <p class="slds-truncate">= {!Round(Account.Subscribed_Vendor_List_Records__c,0)} / {!Round(Account.Total_Vendor_List_Records__c,0)}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate" title="Pending Items">YTD Pending TDL Items % <img id="netNewCheck" style="visibility:{!IF(Account.Pending_Items_Percent__c > 4,'visible','hidden')}" src="{!$Resource.isnWarningImg}" alt=""/></h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-body--small">{!Round(Account.Pending_Items_Percent__c,2)}%</p>
+                                <p class="slds-truncate">= Pending Items / Total CEs</p>
+                                <p class="slds-truncate">= {!Round(Account.Total_Pending_TDL_Items__c,0)} / {!Round(Account.Total_Contractors_on_List__c,0)}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <!--<td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate" title="Contacts">Contact References</h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-body--small">{!Round(IF(Account.Number_of_References__c==null,0,Account.Number_of_References__c),0)}</p>
+                                <p class="slds-truncate">Contacts Sharing Info w/ CEs</p>
+                                <p class="slds-truncate">{!Round(IF(Account.Contacts_Sharing_Info_with_CEs__c==null,0,Account.Contacts_Sharing_Info_with_CEs__c),0)}</p>
+                            </div>
+                        </div>
+                    </td>-->
+                </tr>
+            </table>
+            <p class="slds-truncate" style="visibility:{!IF(Account.ISN_Company_Record__r.IsTestAccount__c == TRUE,'visible','hidden')}"><img id="isTestAccount" style="visibility:{!IF(Account.ISN_Company_Record__r.IsTestAccount__c == TRUE,'visible','hidden')}" src="{!$Resource.isnWarningImg}" alt=""/> Account Marked as Test in ISNetworld (*updates 8am each day)</p>
+        </div>
+    </html>
+</apex:page>

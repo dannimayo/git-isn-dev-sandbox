@@ -1,0 +1,195 @@
+<apex:page standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" showHeader="false" sidebar="false" lightningStyleSheets="true" >
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+            <style>
+                @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+                body {
+                font-family: 'Open Sans';
+                }
+            </style>
+            <title>Certified User Recertification | ISN</title>
+        </head>
+        <body class="bg-light">
+            <div class="container" id="formContainer">
+                <div class="py-5 text-center">
+                    <a href="https://www.isnetworld.com" target="_blank" style="color:#ff6d42;display:inline-block !important;">
+                        <img class="d-block mx-auto mb-4" src="https://www.isnetworld.com/ImagesPublic/isn-logo-login.png" alt="" width="72" />
+                    </a>
+                    
+                    <h2>Certified User Recertification</h2>
+                    <p class="lead">Please complete the information below.</p>
+                </div>
+              <flow:interview name="CUP_Recertification" buttonLocation="bottom" buttonStyle="color:#ffffff; background-color:#ff6d42; border:1px solid;"/>  
+            </div>
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+                <p class="mb-1">© 2019 ISN Software Corporation</p>
+                <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href="https://www.isnetworld.com/privacy-policy" target="_blank" class="text-muted">Privacy</a>
+                    </li>
+                </ul>
+            </footer>
+            
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"/>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"/>
+                    <script>
+                    
+                    $("#phone").keypress(function (e) {
+                    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                        return false;
+                    }
+                    var curchr = this.value.length;
+                    var curval = $(this).val();
+                    if (curchr == 3) {
+                        $(this).val("(" + curval + ") ");
+                    } else if (curchr == 9) {
+                        $(this).val(curval + "-");
+                    }
+                    $(this).attr('maxlength', '14');
+                    console.log($("#phone").val());
+                });
+            
+            var requiredFieldsMissing;
+            
+            $("#dietaryRestriction").change(function(){ 
+                var value = $(this).val();
+                if (value.includes("Yes")) {
+                    $("#dietaryRestrictionNotes").prop("disabled",false);
+                } else {
+                    $("#dietaryRestrictionNotes").prop("disabled",true);
+                }
+            });
+            
+            $("#sessions").change(function(){ 
+                var value = $(this).val();
+                if (value.includes("Other")) {
+                    $("#sessionsOther").prop("disabled",false);
+                } else {
+                    $("#sessionsOther").prop("disabled",true);
+                }
+            });
+            
+            $(".validate").on("blur keyup change", function(){
+                var count = 0;
+                
+                $("#requiredFieldsPending1").empty();
+                $(".validate").each(function(){
+                    if ($(this).val() == null || $(this).val() == "") {
+                        count++;
+                        
+                        $("#requiredFieldsPending1").append($("label[for='"+this.id+"']").text() + "<br />");
+                    }
+                });
+                if (count == 0) {
+                    $("#requiredFieldsPending").hide();
+                    $("#requiredFieldsPending1").hide();
+                    $("#surveySubmit").prop("disabled",false);
+                }
+            });
+            
+            function isEmail(email) {
+                var emailValue = document.getElementById(email).value;
+                var regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/;
+                console.log(emailValue);
+                console.log(regex.test(emailValue));
+                if (!regex.test(emailValue)) { 
+                    document.getElementById('emailfail').style.display = 'inline-block';
+                    document.getElementById(email).focus(); 
+                } else {
+                    document.getElementById('emailfail').style.display = 'none';
+                }  
+            }
+            
+            function isZip(zip) {
+                var zipValue = document.getElementById(zip).value;
+                var regex = /(\d{5}([\-]\d{4})?)/;
+                console.log(zipValue);
+                console.log(regex.test(zipValue));
+                if (!regex.test(zipValue)) { 
+                    document.getElementById('zipfail').style.display = 'inline-block';
+                    document.getElementById(zip).focus(); 
+                } else {
+                    document.getElementById('zipfail').style.display = 'none';
+                }  
+            }
+
+            
+            function trimStr(str) {
+                var trimmedStr = str.toString();
+                console.log(trimmedStr);
+                trimmedStr = trimmedStr.replace(/,/g,";");
+                console.log(trimmedStr);
+                return trimmedStr;
+            }
+            
+            var surveyResponseId;
+            
+            function question(){
+              this.Question_Number__c = null; 
+              this.Question__c = null;
+              this.Response__c = null;
+          }
+            
+            $("#surveySubmit").click(function() {
+                var surveyId = 'a2H34000000bwKE'; //"{!$CurrentPage.Parameters.surveyId}"; 
+                var c_email = $("#email").val();
+                var objList = [];
+                var reponseItems;
+                
+                $(".sri").each(function(){
+                    var qN = $(this).data("q-n");
+                    var qT = $(this).data("q-t");
+                    var qR = $(this).val();
+                    
+                    var q = new question();
+                    q.Question_Number__c = qN;
+                    q.Question__c = qT;
+                    q.Response__c = qR.toString();
+
+                    objList.push(q);
+                    responseItems = JSON.stringify(objList);
+                });
+                
+                console.log(responseItems);
+                              
+                Survey_ControllerExtension.createSurveyResponse( 
+                    surveyId,
+                    c_email,
+                    objList,
+                    function(results, event) {
+                        console.log(results);
+                        surveyResponseId = results.Id;
+                    }
+                );
+                setTimeout('showThankYou()',500);
+            });
+            
+            function showThankYou() {
+                //location = "http://info.isnetworld.com/CLMAReportRequestSubmitted?pi_email=" + $("#email").val();
+                $("#formContainer").hide();
+                $("#thankYouContainer").show();
+            }
+            
+            </script>
+            <script type="text/javascript">
+                piAId = '303841';
+                piCId = '9268';
+                piHostname = 'pi.pardot.com';
+                
+                (function() {
+                    function async_load(){
+                        var s = document.createElement('script'); s.type = 'text/javascript';
+                        s.src = ('https:' == document.location.protocol ? 'https://pi' : 'http://cdn') + '.pardot.com/pd.js';
+                        var c = document.getElementsByTagName('script')[0]; c.parentNode.insertBefore(s, c);
+                    }
+                    if(window.attachEvent) { window.attachEvent('onload', async_load); }
+                    else { window.addEventListener('load', async_load, false); }
+                })();
+            </script>
+        </body>
+    </html>
+</apex:page>

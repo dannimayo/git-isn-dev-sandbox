@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Info_Source_Last_Update__c</fullName>
+    <description>Date of most recent update to Account Information Source.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Date of most recent update to Account Information Source.</inlineHelpText>
+    <label>Account Info Source Last Update</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prospect_Pipeline__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Prospect_Status__c,
+	&#39;Subscriber&#39;,&#39;Won&#39;,
+	&#39;6 - Contract Review/ Invoiced&#39;,&#39;Committed&#39;,
+	&#39;5 - Closing in on Commitment&#39;,&#39;Committed&#39;,
+	&#39;4 - Formal Evaluation&#39;,null,
+	&#39;3 - Key Contacts Engaged&#39;,null,
+	&#39;Lost to Competitor&#39;,&#39;Lost&#39;,
+	&#39;Omitted&#39;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Prospect Pipeline</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

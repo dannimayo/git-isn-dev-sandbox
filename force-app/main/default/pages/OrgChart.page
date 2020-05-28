@@ -1,0 +1,49 @@
+<apex:page showHeader="false" sidebar="false" >
+    <style>
+        .connectorText {
+            font-size: 1em !important;
+        }
+        .nodeListSecond  {
+            font-size: 1em !important;
+        }
+        .slds-input {
+            width: 25% !important;
+        }
+    </style>
+
+    <apex:slds />
+    <apex:includeLightning />
+    
+    
+    
+    <div class="slds-scope">
+        <div class="slds-page-header slds-m-bottom_medium">
+            <div class="slds-media">
+                <div class="slds-media__body">
+                    <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Org Chart">Org Chart</h1>
+                </div>
+            </div>
+        </div>
+    
+        <div class="slds-grid">
+            <div class="slds-col">
+                <div id="lightning" />
+            </div>
+        </div> 
+    </div>
+
+    <script>
+        $Lightning.use("c:Org_Chart", function() {
+          $Lightning.createComponent("kkltng:OrgHierarchy",
+          {fetchFullData : true,
+           noOfParents : "10",
+           nodeType : "image"
+           },
+          "lightning",
+          function(cmp) {
+            // do some stuff
+          });
+        });
+    </script>
+    
+</apex:page>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ISN_on_Website_Intranet__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR( ISN_on_Company_Intranet__c , Has_ISN_on_Website__c ),TRUE,FALSE)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>ISN on Website / Intranet</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

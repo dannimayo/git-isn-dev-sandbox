@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Prospects_Excludes_Not_Viable</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Top_Prospect__c</columns>
+    <columns>Industry__c</columns>
+    <columns>Prospect_Status__c</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>CompetitorAccount__c</columns>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>ACCOUNT.RATING</columns>
+    <columns>Last_Meeting_Date_Account__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>ISNetworld_Status__c</field>
+        <operation>equals</operation>
+        <value>Prospect</value>
+    </filters>
+    <filters>
+        <field>Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Prospect_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Not Viable</value>
+    </filters>
+    <label>*My Prospects - Excludes Not Viable</label>
+</ListView>

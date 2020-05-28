@@ -1,0 +1,105 @@
+<apex:page StandardController="Account" showHeader="false" showChat="false" sidebar="false" docType="html-5.0">
+    <apex:stylesheet value="{!URLFOR($Resource.SLDS103, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <apex:outputText value="{!Account.Last_Meeting_Date_Account__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Last_Meeting_Type_Account__c}" rendered="false"/>
+    <apex:outputText value="{!Account.LastActivityDate}" rendered="false"/>
+    <apex:outputText value="{!Account.Last_Activity_Type__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Open_Additional_Functionality__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Potential_Net_New__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Potential_Number_of_Contractors__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Date_of_Last_Contractor_List__c}" rendered="false"/>
+    <apex:outputText value="{!Account.Contractor_Overlap_Complete__c}" rendered="false"/>
+    
+        <div class="slds">
+            <table class="slds-has-dividers--around-space" width="100%">
+                <tr>
+                    <td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate">Last Activity Date</h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-heading--medium">
+                                    <apex:outputPanel rendered="{!if(Account.LastActivityDate!=null,true,false)}">
+                                        <apex:outputtext value="{0, date, medium}">
+                                            <apex:param value="{!Account.LastActivityDate}"></apex:param>
+                                        </apex:outputtext>
+                                    </apex:outputPanel>     
+                                    <apex:outputPanel rendered="{!if(Account.LastActivityDate!=null,false,true)}">
+                                        No Meetings
+                                    </apex:outputPanel>                                
+                                </p>
+                                <p class="slds-truncate">Last Activity Type</p>
+                                <p class="slds-truncate">{!Account.Last_Activity_Type__c}</p>
+                            </div>
+                        </div>
+                    </td> 
+                    <td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate">Last Meeting Date</h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-heading--medium">
+                                    <apex:outputPanel rendered="{!if(Account.Last_Meeting_Date_Account__c!=null,true,false)}">
+                                        <apex:outputtext value="{0, date, medium}">
+                                            <apex:param value="{!Account.Last_Meeting_Date_Account__c}"></apex:param>
+                                        </apex:outputtext>
+                                    </apex:outputPanel>     
+                                    <apex:outputPanel rendered="{!if(Account.Last_Meeting_Date_Account__c!=null,false,true)}">
+                                        No Meetings
+                                    </apex:outputPanel>                                
+                                </p>
+                                <p class="slds-truncate">Last Meeting Type</p>
+                                <p class="slds-truncate">{!Account.Last_Meeting_Type_Account__c}</p>
+                            </div>
+                        </div>
+                    </td> 
+                    <td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate">Open Opportunities</h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-heading--medium">
+                                    <apex:outputText value="{!round(Account.Open_Additional_Functionality__c,0)}" />                                                             
+                                </p>
+                                <p class="slds-truncate">Potential Net New</p>
+                                <p class="slds-truncate">
+                                    <apex:outputPanel rendered="{!if(Account.Estimated_Implementation_Date__c!=null,true,false)}">
+                                        {!Round(Account.Potential_Net_New__c,0)} out of {!Round(Account.Potential_Number_of_Contractors__c,0)} Contractors
+                                    </apex:outputPanel>     
+                                    <apex:outputPanel rendered="{!if(Account.Estimated_Implementation_Date__c!=null,false,true)}">
+                                        Unknown
+                                    </apex:outputPanel> 
+                                </p>
+                            </div>
+                        </div>
+                    </td> 
+                    <td class="slds-item">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-truncate">Received Contractor List</h3>
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-text-heading--medium">
+                                    <apex:outputPanel rendered="{!if(Account.Contractor_Overlap_Complete__c!=null,true,false)}">
+                                        Yes
+                                    </apex:outputPanel>     
+                                    <apex:outputPanel rendered="{!if(Account.Date_of_Last_Contractor_List__c!=null,false,true)}">
+                                        No
+                                    </apex:outputPanel>                                
+                                </p>
+                                <p class="slds-truncate">Date of Last Overlap</p>
+                                <p class="slds-truncate">
+                                    <apex:outputPanel rendered="{!if(Account.Date_of_Last_Contractor_List__c!=null,true,false)}">
+                                        <apex:outputtext value="{0, date, medium}">
+                                            <apex:param value="{!Account.Date_of_Last_Contractor_List__c}"></apex:param>
+                                        </apex:outputtext>
+                                    </apex:outputPanel>     
+                                    <apex:outputPanel rendered="{!if(Account.Date_of_Last_Contractor_List__c!=null,false,true)}">
+                                        n/a
+                                    </apex:outputPanel>   
+                                </p>
+                            </div>
+                        </div>
+                    </td> 
+                </tr>
+            </table>
+        </div>
+    </html>
+</apex:page>

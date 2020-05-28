@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contractor_Subscription</fullName>
+    <active>true</active>
+    <businessProcess>Contractor Subscription</businessProcess>
+    <label>Contractor Subscription</label>
+    <picklistValues>
+        <picklist>Attempt__c</picklist>
+        <values>
+            <fullName>0</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Billing_Account_Type__c</picklist>
+        <values>
+            <fullName>Contractor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contractor Operator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hiring Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hiring Client Employer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Billing_Tier__c</picklist>
+        <values>
+            <fullName>Heirarchy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier 9</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Budget_Approval__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>EBI_Identified__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ForecastCategoryName</picklist>
+        <values>
+            <fullName>Best Case</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Commit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Omitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipeline</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Industry__c</picklist>
+        <values>
+            <fullName>Aerospace %26 Defense</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Agriculture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Airlines</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>All ISN Industries</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Aluminum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Appliances</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Asphalt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Automotive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beef</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beverage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Brick</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Building Products</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Carriers%2FTransportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cement %26 Aggregates</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chemical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Co-Op - Not for Profit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Co-Op - Touchstone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cold Storage %2F Logistics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consumer Products</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dairy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Downstream</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Electric Transmission %26 Distribution</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Energy Storage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engineering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entertainment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environmental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ethanol%2FRenewable Fuels</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Facilities Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fibers%2FNon-wovens</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Flooring</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Food</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Food %26 Beverage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Food%26Ag</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fragrances</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>General Contractor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Glass</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Healthcare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hospitals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industrial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Insulation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lubricants</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lumber</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufacturing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medical Devices</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Midstream</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mining</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Natural Gas Distribution</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Renewable - Coal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Renewable - Natural Gas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Renewable - Nuclear</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Renewable - Oil</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Offshore</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Onshore</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Packaging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paints%2FCoatings</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paper %26 Corrugated Products</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pharma</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipelines</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Plastics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pork</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Poultry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Power Generation - Non-Renewable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Power Generation - Renewable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Private Equity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Protein</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector  - Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector  - Federal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector  - Municipalities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector  - State%2FProvince</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector  - Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector - County</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector - Hospitals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Railroads %26 Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refining</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewable - Biomass</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewable - Geothermal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewable - Hydro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewable - Solar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewable - Wind</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewables</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewables - Thermal industry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retail%2F Grocery%2F Distribution</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Roofing%2FShingles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SFAdmin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Seafood</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Semiconductor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Siding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steel %26 Metals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steel %26 Metals - Cable %26 Wire</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steel %26 Metals - Extrusions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steel %26 Metals - Fabrication %26 Processing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steel %26 Metals - Mill</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steel %26 Metals - Pipe %26 Tube</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steel %26 Metals - Precious Metals%2FSpecialty Alloys</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steel %26 Metals - Recycling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Terminals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wood Products %26 Forestry</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>LeadSource</picklist>
+        <values>
+            <fullName>ISNetworld Website</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral - Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral - Contractor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referral - Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lost_Dead_Reason__c</picklist>
+        <values>
+            <fullName>Aged 90 Days</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hiring Client Non-Responsive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Required</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason_Details__c</picklist>
+        <values>
+            <fullName>Annual price adjustment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hierarchy dissolution</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Limited%2Fno work with client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merger%2Facquisition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parent company account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reinstatement fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tier increase</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason_Justification_Metrics__c</picklist>
+        <values>
+            <fullName>4th Quartile Client Benchmarking Report</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citation%2FViolation Recorded</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fatality%2C SIF%2C or Other Incident</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ISN Recommendation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Known Champion Contact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>M%26A Activity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Roundtable%2FWorkshop Attendee</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason_for_Not_Subscribing__c</picklist>
+        <values>
+            <fullName>Client not enforcing requirement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contractor is out of business</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contractor is unresponsive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No cost justification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not required per contract%2Fscope of work</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending contract with Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reporting in another account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Requirements too strenuous</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Reason_for_Tier_Change__c</picklist>
+        <values>
+            <fullName>Hierarchy Setup</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Included Subcontractors in Employee Count</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lapsed Account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reported Current Employee Count</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reported Estimated Employee Count</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reported Exposure Hours</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reported Seasonal Employee Count</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Sub_Stage__c</picklist>
+        <values>
+            <fullName>Pending CE Feedback</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Pending Client Feedback</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Relay Client Feedback</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sub Follow Up Complete</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subscription_Region__c</picklist>
+        <values>
+            <fullName>APAC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Americas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EMEA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Global</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LatAm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>US%2FCAN</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Contractor Subscription</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Verticals__c</picklist>
+        <values>
+            <fullName>Aerospace %26 Defense</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>All ISN Verticals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Australia %26 New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beverages %26 Dairy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Building Products</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chemicals North</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chemicals South</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Downstream</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EMEA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Eastern Canada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ISN Professional Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LCO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Latin America</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Midstream</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mining</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Offshore</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Onshore East</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Onshore West</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paper %26 Packaging</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pharma %26 Facilities Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pipelines Cross Borders</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>R%26D</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RAVS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SFAdmin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Steel %26 Metals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utilities%2C Power Gen %26 Public Sector East</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utilities%2C Power Gen %26 Public Sector West</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Western Canada C%2FOs%2C Utilities %26 Public Sector</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Western Canada Mining %2F Oil %26 Gas</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

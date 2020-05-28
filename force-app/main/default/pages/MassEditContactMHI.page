@@ -1,0 +1,55 @@
+<apex:page standardController="Contact" recordSetVar="unused" sidebar="false">
+
+
+    <apex:form >
+
+        <apex:pageBlock >
+
+            <apex:pageMessages />
+            
+            <apex:pageBlock >
+                Note: All modifications made on the page will be lost if Cancel button is clicked without clicking the Save button first. 
+            </apex:pageBlock>
+
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockTable value="{!selected}" var="a" id="table">
+
+                <apex:column headerValue="Name">
+                    <apex:outputField value="{!a.Name}"/>
+                </apex:column>
+                <apex:column headerValue="Account Name">
+                    <apex:outputField value="{!a.Account.Name}"/>
+                </apex:column>
+                <apex:column headerValue="Account ISN Status">
+                    <apex:outputField value="{!a.Account_ISN_Status__c}"/>
+                </apex:column>
+                <apex:column headerValue="Account Selling Process">
+                    <apex:outputField value="{!a.Account_Prospect_Status__c}"/>
+                </apex:column>
+                <apex:column headerValue="Type of Buying Influence">
+                    <apex:inputField value="{!a.Type_of_Buying_Influence__c}"/>
+                </apex:column>
+                <apex:column headerValue="Mode">
+                    <apex:inputField value="{!a.Mode__c}"/>
+                </apex:column>
+                <apex:column headerValue="Buying Influence Concept">
+                    <apex:inputField value="{!a.Buying_Influence_Concept__c}"/>
+                </apex:column>
+                <apex:column headerValue="Red Flags">
+                    <apex:outputField value="{!a.Buyer_Information_Red_Flags__c}"/>
+                </apex:column>
+                <apex:column headerValue="Contact Owner">
+                    <apex:outputField value="{!a.Owner.Name}"/>
+                </apex:column>
+
+            </apex:pageBlockTable>
+
+        </apex:pageBlock>
+
+    </apex:form>
+
+</apex:page>

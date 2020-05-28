@@ -1,0 +1,20 @@
+<apex:page showChat="false" showHeader="false" sidebar="false"  standardController="Contact" extensions="ContactArchivedMassEmails">
+    
+    <apex:pageBlock title="Archived Mass Emails ({!archivedMassEmails.size})">
+    
+            <apex:pageBlockTable value="{!archivedMassEmails}" var="a" width="100%" rendered="{!IF(archivedMassEmails.size==0,false,true)}">
+            
+                <apex:column value="{!a.Subject__c}"/>
+                <apex:column value="{!a.Activity_Type__c}"/>
+                <apex:column value="{!a.What__c}"/>
+                <apex:column value="{!a.Site__c}"/>
+                <apex:column value="{!a.ActivityDate__c}"/>
+                <apex:column value="{!a.Owner__c}"/>
+            
+            </apex:pageBlockTable>
+        
+            <apex:outputText value="No Archived Mass Emails to display." rendered="{!IF(archivedMassEmails.size==0,true,false)}" />
+    
+    </apex:pageBlock>
+    
+</apex:page>

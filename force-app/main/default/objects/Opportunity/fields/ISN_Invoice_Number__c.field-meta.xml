@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ISN_Invoice_Number__c</fullName>
+    <defaultValue>&#39;No Quote/Invoice created yet.&#39;</defaultValue>
+    <description>This field is populated with an invoice number after the quote (open invoice) is created. This field will always contain the primary quote&#39;s invoice number. Thus, if a new quote is created and is primary, the old text value will be replaced with the newest Primary Quote&#39;s Invoice Number value.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is populated with an invoice number after the quote (open invoice) is created. This field holds the primary quote&#39;s Invoice Number.</inlineHelpText>
+    <label>ISN Invoice Number</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

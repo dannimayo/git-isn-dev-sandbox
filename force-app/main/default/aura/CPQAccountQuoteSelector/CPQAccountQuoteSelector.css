@@ -1,0 +1,35 @@
+.THIS {
+    margin: 0 0 10px 0;
+    max-height: 400px;
+}
+
+.THIS#categoryId, .THIS#index {
+    display: none;
+}
+
+.THIS input {
+    border-radius: 0;
+}
+
+.THIS.breadcrumbs {
+    margin-bottom: 20px;
+}
+.THIS.breadcrumb {
+    display: inline-block;
+}
+
+.THIS .searchbutton {
+    position: absolute;
+    z-index: 1;
+    background-color: transparent;
+    top: 20px;
+    height: 30px;
+    border: 0;
+    right: 2px;
+    width: 40px;
+    border-left: 1px solid #7f7f7f;
+}
+
+.THIS .selectedProduct {
+    background-color: #f7f7f7;
+}

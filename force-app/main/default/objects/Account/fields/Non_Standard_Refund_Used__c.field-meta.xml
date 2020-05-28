@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Standard_Refund_Used__c</fullName>
+    <description>Request R00605</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the date the Hiring Client used the one-time Non-Standard Refund for contractor. Process is documented in Jive and refund requires management sign-off.</inlineHelpText>
+    <label>Non-Standard Refund Used</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

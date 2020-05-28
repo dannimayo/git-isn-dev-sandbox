@@ -1,0 +1,7 @@
+<apex:page standardController="Contact" showChat="false" showHeader="false" sidebar="false" lightningStylesheets="true">
+    <apex:slds />
+    <div style="text-align:right">
+        <a class="slds-button slds-button_neutral" href="https://isn.lightning.force.com/lightning/r/{!Contact.Id}/related/OpenActivities/view">Open Activities</a>
+        <a class="slds-button slds-button_neutral" href="https://isn.lightning.force.com/lightning/r/{!Contact.Id}/related/ActivityHistories/view">Activity History</a>
+    </div>
+</apex:page>

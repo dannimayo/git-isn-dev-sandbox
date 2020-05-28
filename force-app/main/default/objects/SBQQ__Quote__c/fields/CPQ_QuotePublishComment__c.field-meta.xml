@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CPQ_QuotePublishComment__c</fullName>
+    <description>Used by aMind Self-Service Accelerator code base to store an additional message to send to the channel user when the quote is published to the self-service channel.</description>
+    <externalId>false</externalId>
+    <label>Publish Comment</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

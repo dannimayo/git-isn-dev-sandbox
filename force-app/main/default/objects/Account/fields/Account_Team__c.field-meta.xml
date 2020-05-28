@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Team__c</fullName>
+    <externalId>false</externalId>
+    <formula>&#39;Primary: &#39; &amp; Primary_Full_Name__c &amp; 
+IF(ISBLANK(Account_Secondary__c), &#39;&#39; , &#39; | &#39; &amp; &#39;Secondary: &#39; &amp; Secondary_Full_Name__c) &amp;
+IF(ISBLANK(Account_Tertiary__c), &#39;&#39; ,  &#39; | &#39; &amp; &#39;Tertiary: &#39; &amp; Tertiary_Full_Name__c) &amp; 
+IF(ISBLANK(Account_Quaternary__c), &#39;&#39; ,  &#39; | &#39; &amp; &#39;Quaternary: &#39; &amp; Quaternary_Full_Name__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Account Managers</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

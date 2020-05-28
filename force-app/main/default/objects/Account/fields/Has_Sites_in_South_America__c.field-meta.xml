@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Has_Sites_in_South_America__c</fullName>
+    <externalId>false</externalId>
+    <formula>Includes(Has_International_Sites__c,&#39;South America&#39;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Has Sites in South America</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>
