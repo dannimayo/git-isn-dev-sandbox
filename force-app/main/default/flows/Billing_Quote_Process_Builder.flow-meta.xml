@@ -563,6 +563,233 @@
     </actionCalls>
     <actionCalls>
         <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>Process Pegaso Integration</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_18_A1</name>
+        <label>Create Invoice(Pegaso)</label>
+        <locationX>1800</locationX>
+        <locationY>200</locationY>
+        <actionName>CPQPgsWebService</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_18_A2</targetReference>
+        </connector>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>accountId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>accountId</name>
+            <value>
+                <elementReference>myVariable_current.SBQQ__Account__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>quoteId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>quoteId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>opptyId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>opptyId</name>
+            <value>
+                <elementReference>myVariable_current.SBQQ__Opportunity2__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>transactionId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>transactionId</name>
+            <value>
+                <elementReference>myVariable_current.ISN_Invoice_Number__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>operation</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>1.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>operation</name>
+            <value>
+                <stringValue>Create Invoice From Quote</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
             <name>emailAlertSelection</name>
             <value>
                 <stringValue>Pegaso_Tax_Validation_Failure_Email_Alert</stringValue>
@@ -720,6 +947,9 @@
         <label>myDecision15</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision17</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_16</name>
@@ -735,6 +965,244 @@
                 <targetReference>myRule_16_A1</targetReference>
             </connector>
             <label>Is Presented &amp; Pegaso Validation Failed?</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>7.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision17</name>
+        <label>myDecision17</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_18</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.SBQQ__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Presented</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Is_Tax_Calculated__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.SBQQ__Uncalculated__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.SBQQ__BillingCountry__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Mexico</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.SBQQ__Opportunity2__r.Pgs_Tax_Validate_Success__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Pegaso_Integration_Status__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.SBQQ__Primary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_18_A1</targetReference>
+            </connector>
+            <label>Create Invoice in Pegaso?</label>
         </rules>
     </decisions>
     <decisions>
@@ -984,18 +1452,18 @@
             <value>
                 <stringValue>IF(
 	AND(
-		[SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c, [SBQQ__Quote__c].Opportunity_Subscription_Type__c =&apos;Contractor Subscription&apos;), $Setup.CPQ_Quote_Settings__c.Contractor_Renewal_Temp_Id__c,
+		[SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c, [SBQQ__Quote__c].Opportunity_Subscription_Type__c =&#39;Contractor Subscription&#39;), $Setup.CPQ_Quote_Settings__c.Contractor_Renewal_Temp_Id__c,
 	IF(
 		NOT([SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c), $Setup.CPQ_Quote_Settings__c.New_Sales_Temp_Id__c, $Setup.CPQ_Quote_Settings__c.Renewal_Temp_Id__c
 	)
 )</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_9098846389</name>
+        <name>formula_2_myRule_1_A1_4809363475</name>
         <dataType>String</dataType>
         <expression>IF(
 	AND(
-		{!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c}, {!myVariable_current.Opportunity_Subscription_Type__c} =&apos;Contractor Subscription&apos;), {!$Setup.CPQ_Quote_Settings__c.Contractor_Renewal_Temp_Id__c},
+		{!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c}, {!myVariable_current.Opportunity_Subscription_Type__c} =&#39;Contractor Subscription&#39;), {!$Setup.CPQ_Quote_Settings__c.Contractor_Renewal_Temp_Id__c},
 	IF(
 		NOT({!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c}), {!$Setup.CPQ_Quote_Settings__c.New_Sales_Temp_Id__c}, {!$Setup.CPQ_Quote_Settings__c.Renewal_Temp_Id__c}
 	)
@@ -1008,7 +1476,7 @@
                 <stringValue>[SBQQ__Quote__c].SBQQ__Opportunity2__c.Subscription_End_Date__c + 1</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_8_myRule_7_A2_2855596646</name>
+        <name>formula_8_myRule_7_A2_6612911312</name>
         <dataType>Date</dataType>
         <expression>{!myVariable_current.SBQQ__Opportunity2__r.Subscription_End_Date__c} + 1</expression>
     </formulas>
@@ -1029,7 +1497,7 @@
             <value>
                 <stringValue>AND(
 [SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c,
-ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &apos;Draft&apos;),
+ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &#39;Draft&#39;),
 [SBQQ__Quote__c].SBQQ__Primary__c,
 ISCHANGED([SBQQ__Quote__c].SBQQ__LastCalculatedOn__c),
 ISNULL(PRIORVALUE([SBQQ__Quote__c].SBQQ__LastCalculatedOn__c)),
@@ -1042,7 +1510,7 @@ NOT(ISNEW()),
         <dataType>Boolean</dataType>
         <expression>AND(
 {!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c},
-ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &apos;Draft&apos;),
+ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &#39;Draft&#39;),
 {!myVariable_current.SBQQ__Primary__c},
 ISCHANGED({!myVariable_current.SBQQ__LastCalculatedOn__c}),
 ISNULL(PRIORVALUE({!myVariable_current.SBQQ__LastCalculatedOn__c})),
@@ -1056,7 +1524,7 @@ NOT(ISNEW()),
             <value>
                 <stringValue>AND(
 [SBQQ__Quote__c].SBQQ__Primary__c,
-ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &apos;Draft&apos;),
+ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &#39;Draft&#39;),
 ISCHANGED([SBQQ__Quote__c].Is_Tax_Calculated__c),
 [SBQQ__Quote__c].Is_Tax_Calculated__c,
 ![SBQQ__Quote__c].SBQQ__Uncalculated__c
@@ -1067,7 +1535,7 @@ ISCHANGED([SBQQ__Quote__c].Is_Tax_Calculated__c),
         <dataType>Boolean</dataType>
         <expression>AND(
 {!myVariable_current.SBQQ__Primary__c},
-ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &apos;Draft&apos;),
+ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &#39;Draft&#39;),
 ISCHANGED({!myVariable_current.Is_Tax_Calculated__c}),
 {!myVariable_current.Is_Tax_Calculated__c},
 !{!myVariable_current.SBQQ__Uncalculated__c}
@@ -1081,12 +1549,12 @@ ISCHANGED({!myVariable_current.Is_Tax_Calculated__c}),
 [SBQQ__Quote__c].Is_OOB_System_Created__c,
 [SBQQ__Quote__c].SBQQ__Primary__c,
 [SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c,
-ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &apos;Draft&apos;),
+ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &#39;Draft&#39;),
 ISCHANGED([SBQQ__Quote__c].Is_Tax_Calculated__c),
 [SBQQ__Quote__c].Is_Tax_Calculated__c,
 ![SBQQ__Quote__c].SBQQ__Uncalculated__c,
 $CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValidation__c,
-[SBQQ__Quote__c].SBQQ__Account__c.BillingCountry=&apos;Mexico&apos;
+[SBQQ__Quote__c].SBQQ__Account__c.BillingCountry=&#39;Mexico&#39;
 )</stringValue>
             </value>
         </processMetadataValues>
@@ -1096,12 +1564,12 @@ $CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValid
 {!myVariable_current.Is_OOB_System_Created__c},
 {!myVariable_current.SBQQ__Primary__c},
 {!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c},
-ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &apos;Draft&apos;),
+ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &#39;Draft&#39;),
 ISCHANGED({!myVariable_current.Is_Tax_Calculated__c}),
 {!myVariable_current.Is_Tax_Calculated__c},
 !{!myVariable_current.SBQQ__Uncalculated__c},
 {!$CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValidation__c},
-{!myVariable_current.SBQQ__Account__r.BillingCountry}=&apos;Mexico&apos;
+{!myVariable_current.SBQQ__Account__r.BillingCountry}=&#39;Mexico&#39;
 )</expression>
     </formulas>
     <formulas>
@@ -1109,22 +1577,22 @@ ISCHANGED({!myVariable_current.Is_Tax_Calculated__c}),
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-PRIORVALUE([SBQQ__Quote__c].SBQQ__Status__c)=&apos;In Error&apos;,
-ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &apos;Presented&apos;),
+PRIORVALUE([SBQQ__Quote__c].SBQQ__Status__c)=&#39;In Error&#39;,
+ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &#39;Presented&#39;),
 ![SBQQ__Quote__c].SBQQ__Opportunity2__c.Pgs_Tax_Validate_Success__c,
 $CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValidation__c,
-[SBQQ__Quote__c].SBQQ__Account__c.BillingCountry=&apos;Mexico&apos;
+[SBQQ__Quote__c].SBQQ__Account__c.BillingCountry=&#39;Mexico&#39;
 )</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_16</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-PRIORVALUE({!myVariable_current.SBQQ__Status__c})=&apos;In Error&apos;,
-ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &apos;Presented&apos;),
+PRIORVALUE({!myVariable_current.SBQQ__Status__c})=&#39;In Error&#39;,
+ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &#39;Presented&#39;),
 !{!myVariable_current.SBQQ__Opportunity2__r.Pgs_Tax_Validate_Success__c},
 {!$CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValidation__c},
-{!myVariable_current.SBQQ__Account__r.BillingCountry}=&apos;Mexico&apos;
+{!myVariable_current.SBQQ__Account__r.BillingCountry}=&#39;Mexico&#39;
 )</expression>
     </formulas>
     <formulas>
@@ -1146,7 +1614,7 @@ ISNEW(),
 {!myVariable_current.Is_OOB_System_Created__c}
 )</expression>
     </formulas>
-    <interviewLabel>Billing_Quote_Process_Builder-88_InterviewLabel</interviewLabel>
+    <interviewLabel>Billing_Quote_Process_Builder-93_InterviewLabel</interviewLabel>
     <label>Billing Quote Process Builder</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -1285,6 +1753,9 @@ ISNEW(),
         <label>Ensure Quote Status For Mexico</label>
         <locationX>1600</locationX>
         <locationY>200</locationY>
+        <connector>
+            <targetReference>myDecision17</targetReference>
+        </connector>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -1332,6 +1803,86 @@ ISNEW(),
             <field>SBQQ__Status__c</field>
             <value>
                 <stringValue>In Error</stringValue>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[SBQQ__Quote__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_18_A2</name>
+        <label>Set Pegaso Integration Status</label>
+        <locationX>1800</locationX>
+        <locationY>300</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Pegaso Integration Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue/>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Pegaso_Integration_Status__c</field>
+            <value>
+                <stringValue>In Progress</stringValue>
             </value>
         </inputAssignments>
         <object>SBQQ__Quote__c</object>
@@ -1414,7 +1965,7 @@ ISNEW(),
             </processMetadataValues>
             <field>SBQQ__DefaultTemplate__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_9098846389</elementReference>
+                <elementReference>formula_2_myRule_1_A1_4809363475</elementReference>
             </value>
         </inputAssignments>
         <object>SBQQ__Quote__c</object>
@@ -1580,7 +2131,7 @@ ISNEW(),
             </processMetadataValues>
             <field>SBQQ__StartDate__c</field>
             <value>
-                <elementReference>formula_8_myRule_7_A2_2855596646</elementReference>
+                <elementReference>formula_8_myRule_7_A2_6612911312</elementReference>
             </value>
         </inputAssignments>
         <object>SBQQ__Quote__c</object>

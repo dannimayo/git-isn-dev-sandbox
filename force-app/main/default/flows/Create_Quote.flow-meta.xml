@@ -3,13 +3,16 @@
     <actionCalls>
         <name>Load_Cart</name>
         <label>Load Cart</label>
-        <locationX>1479</locationX>
+        <locationX>1517</locationX>
         <locationY>210</locationY>
         <actionName>CPQLoadQuoteAPI</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Display_Product</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Oppty_Already_Invoiced</targetReference>
+        </faultConnector>
         <inputParameters>
             <name>quoteId</name>
             <value>
@@ -24,7 +27,7 @@
     <decisions>
         <name>IsMexicoPegasoTaxValidateEnabled2</name>
         <label>Is Mexico &amp; Pegaso Tax Validate Enabled?</label>
-        <locationX>416</locationX>
+        <locationX>758</locationX>
         <locationY>215</locationY>
         <defaultConnector>
             <targetReference>Lookup_Pricebook_Id</targetReference>
@@ -54,9 +57,34 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Oppty_StageName_Check</name>
+        <label>Oppty StageName Check</label>
+        <locationX>621</locationX>
+        <locationY>51</locationY>
+        <defaultConnector>
+            <targetReference>IsMexicoPegasoTaxValidateEnabled2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Stage Not Invoiced</defaultConnectorLabel>
+        <rules>
+            <name>Oppty_is_Invoiced</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Find_Opportunity.StageName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Get_Oppty_Invoiced_Stage.Invoiced_Opportunity_Stage__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Invoiced_Error</targetReference>
+            </connector>
+            <label>Oppty is Invoiced</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Price_Book_Found</name>
         <label>Price Book Found?</label>
-        <locationX>714</locationX>
+        <locationX>1058</locationX>
         <locationY>215</locationY>
         <defaultConnector>
             <targetReference>No_Pricebook_Found</targetReference>
@@ -86,9 +114,14 @@
         </rules>
     </decisions>
     <formulas>
+        <name>billingTier</name>
+        <dataType>String</dataType>
+        <expression>IF(ISPICKVAL({!Find_Opportunity.Invoice_Tier__c},&quot;&quot;),TEXT({!Find_Opportunity.Account.Billing_Tier__c}),TEXT({!Find_Opportunity.Invoice_Tier__c}))</expression>
+    </formulas>
+    <formulas>
         <name>currentQLDisplay</name>
         <dataType>String</dataType>
-        <expression>&apos;{&apos;&amp;{!currentLine.Id} &amp; &apos;, &apos; &amp;  {!currentLine.SBQQ__ProductName__c} &amp; &apos;, &apos; &amp;TEXT({!currentLine.SBQQ__NetTotal__c})&amp; &apos;} &apos;</expression>
+        <expression>&#39;{&#39;&amp;{!currentLine.Id} &amp; &#39;, &#39; &amp;  {!currentLine.SBQQ__ProductName__c} &amp; &#39;, &#39; &amp;TEXT({!currentLine.SBQQ__NetTotal__c})&amp; &#39;} &#39;</expression>
     </formulas>
     <formulas>
         <name>QuoteStartDate</name>
@@ -98,7 +131,7 @@
     <formulas>
         <name>quoteURL</name>
         <dataType>String</dataType>
-        <expression>SUBSTITUTE(LEFT({!$Api.Partner_Server_URL_340}, FIND( &apos;/services&apos;, {!$Api.Partner_Server_URL_340})),&apos;https://&apos;,&apos;&apos;) &amp; &apos;lightning/r/Quote/&apos; &amp; {!quoteId} &amp; &apos;/view&apos;</expression>
+        <expression>SUBSTITUTE(LEFT({!$Api.Partner_Server_URL_340}, FIND( &#39;/services&#39;, {!$Api.Partner_Server_URL_340})),&#39;https://&#39;,&#39;&#39;) &amp; &#39;lightning/r/Quote/&#39; &amp; {!quoteId} &amp; &#39;/view&#39;</expression>
     </formulas>
     <formulas>
         <name>Today_Plus_30</name>
@@ -123,12 +156,15 @@
     <recordCreates>
         <name>Create_Quote</name>
         <label>Create Quote</label>
-        <locationX>852</locationX>
+        <locationX>1223</locationX>
         <locationY>210</locationY>
         <assignRecordIdToReference>quoteId</assignRecordIdToReference>
         <connector>
-            <targetReference>Update_Oppty_Dates</targetReference>
+            <targetReference>Add_Products_Reprice_In_Async</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Oppty_Already_Invoiced</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>CurrencyIsoCode</field>
             <value>
@@ -192,15 +228,18 @@
         <object>SBQQ__Quote__c</object>
     </recordCreates>
     <recordLookups>
-        <description>&apos;CPQ System Settings&apos; Custom Metadata Type data</description>
+        <description>&#39;CPQ System Settings&#39; Custom Metadata Type data</description>
         <name>CMT_System_Settings</name>
         <label>Load System Settings</label>
-        <locationX>154</locationX>
-        <locationY>213</locationY>
+        <locationX>165</locationX>
+        <locationY>216</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Find_Opportunity</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Oppty_Already_Invoiced</targetReference>
+        </faultConnector>
         <filters>
             <field>DeveloperName</field>
             <operator>EqualTo</operator>
@@ -215,12 +254,15 @@
     <recordLookups>
         <name>Find_Opportunity</name>
         <label>Find Opportunity</label>
-        <locationX>279</locationX>
-        <locationY>213</locationY>
+        <locationX>349</locationX>
+        <locationY>214</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>IsMexicoPegasoTaxValidateEnabled2</targetReference>
+            <targetReference>Get_Oppty_Invoiced_Stage</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Oppty_Already_Invoiced</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -238,17 +280,22 @@
         <queriedFields>CurrencyIsoCode</queriedFields>
         <queriedFields>Billing_Country__c</queriedFields>
         <queriedFields>Tax_ID__c</queriedFields>
+        <queriedFields>Invoice_Tier__c</queriedFields>
+        <queriedFields>StageName</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
         <name>Get_Oppty_Invoiced_Stage</name>
         <label>Get Oppty Invoiced Stage</label>
-        <locationX>1644</locationX>
-        <locationY>363</locationY>
+        <locationX>510</locationX>
+        <locationY>217</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Update_Oppty_Stage</targetReference>
+            <targetReference>Oppty_StageName_Check</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Oppty_Already_Invoiced</targetReference>
+        </faultConnector>
         <filters>
             <field>Opportunity_Type__c</field>
             <operator>EqualTo</operator>
@@ -265,12 +312,15 @@
     <recordLookups>
         <name>Get_Quote_Name</name>
         <label>Get Quote Name</label>
-        <locationX>1335</locationX>
-        <locationY>364</locationY>
+        <locationX>1822</locationX>
+        <locationY>537</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Quote_Create_Success</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Error_Oppty_Already_Invoiced</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -289,43 +339,16 @@
         </outputAssignments>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Invoice_Tier_on_Oppty</name>
-        <label>Update Invoice Tier on Oppty</label>
-        <locationX>1142</locationX>
-        <locationY>210</locationY>
+        <name>Update_Oppty_Stage</name>
+        <label>Update Oppty Stage</label>
+        <locationX>1821</locationX>
+        <locationY>357</locationY>
         <connector>
-            <targetReference>Add_Products_Reprice_In_Async</targetReference>
+            <targetReference>Get_Quote_Name</targetReference>
         </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>Find_Opportunity.Id</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Invoice_Tier__c</field>
-            <operator>IsNull</operator>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Invoice_Tier__c</field>
-            <value>
-                <elementReference>Find_Opportunity.Account.Billing_Tier__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Opportunity</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Oppty_Dates</name>
-        <label>Update Oppty Dates</label>
-        <locationX>992</locationX>
-        <locationY>210</locationY>
-        <connector>
-            <targetReference>Update_Invoice_Tier_on_Oppty</targetReference>
-        </connector>
+        <faultConnector>
+            <targetReference>Error_Oppty_Already_Invoiced</targetReference>
+        </faultConnector>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -351,23 +374,12 @@
                 <elementReference>$Flow.CurrentDate</elementReference>
             </value>
         </inputAssignments>
-        <object>Opportunity</object>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_Oppty_Stage</name>
-        <label>Update Oppty Stage</label>
-        <locationX>1498</locationX>
-        <locationY>364</locationY>
-        <connector>
-            <targetReference>Get_Quote_Name</targetReference>
-        </connector>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
+        <inputAssignments>
+            <field>Invoice_Tier__c</field>
             <value>
-                <elementReference>Find_Opportunity.Id</elementReference>
+                <elementReference>billingTier</elementReference>
             </value>
-        </filters>
+        </inputAssignments>
         <inputAssignments>
             <field>StageName</field>
             <value>
@@ -379,13 +391,13 @@
     <screens>
         <name>Display_Product</name>
         <label>Display Product</label>
-        <locationX>1643</locationX>
+        <locationX>1821</locationX>
         <locationY>210</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <connector>
-            <targetReference>Get_Oppty_Invoiced_Stage</targetReference>
+            <targetReference>Update_Oppty_Stage</targetReference>
         </connector>
         <fields>
             <name>show_products</name>
@@ -415,9 +427,42 @@
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <description>Error when Opportunity that has already been invoiced.</description>
+        <name>Error_Oppty_Already_Invoiced</name>
+        <label>Fault Message Screen</label>
+        <locationX>346</locationX>
+        <locationY>583</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorMessage</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, &amp;quot;Fira Sans&amp;quot;, &amp;quot;Droid Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; color: rgb(23, 43, 77);&quot;&gt;There was an error processing your request, {!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Invoiced_Error</name>
+        <label>Invoiced Error</label>
+        <locationX>636</locationX>
+        <locationY>224</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorMessageINV</name>
+            <fieldText>&lt;p&gt;{!FlowFaultMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>No_Pricebook_Found</name>
         <label>No Pricebook Found</label>
-        <locationX>723</locationX>
+        <locationX>1067</locationX>
         <locationY>50</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -433,8 +478,8 @@
     <screens>
         <name>Pgs_Validate_Tax</name>
         <label>Pgs Validate Tax</label>
-        <locationX>509</locationX>
-        <locationY>75</locationY>
+        <locationX>854</locationX>
+        <locationY>54</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -477,8 +522,8 @@
     <screens>
         <name>Quote_Create_Success</name>
         <label>Quote Create Success</label>
-        <locationX>1000</locationX>
-        <locationY>364</locationY>
+        <locationX>1820</locationX>
+        <locationY>662</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -492,7 +537,7 @@
     </screens>
     <start>
         <locationX>50</locationX>
-        <locationY>213</locationY>
+        <locationY>216</locationY>
         <connector>
             <targetReference>CMT_System_Settings</targetReference>
         </connector>
@@ -501,7 +546,7 @@
     <subflows>
         <name>Add_Products_Reprice_In_Async</name>
         <label>Add Products THEN Reprice In Async</label>
-        <locationX>1315</locationX>
+        <locationX>1371</locationX>
         <locationY>210</locationY>
         <connector>
             <targetReference>Load_Cart</targetReference>
@@ -535,7 +580,7 @@
     <subflows>
         <name>Lookup_Pricebook_Id</name>
         <label>Lookup Pricebook Id</label>
-        <locationX>592</locationX>
+        <locationX>936</locationX>
         <locationY>213</locationY>
         <connector>
             <targetReference>Price_Book_Found</targetReference>
@@ -552,6 +597,10 @@
             <name>priceBookId</name>
         </outputAssignments>
     </subflows>
+    <textTemplates>
+        <name>FlowFaultMessage</name>
+        <text>&lt;p&gt;&lt;b style=&quot;color: rgb(23, 43, 77); font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, Oxygen, Ubuntu, &amp;quot;Fira Sans&amp;quot;, &amp;quot;Droid Sans&amp;quot;, &amp;quot;Helvetica Neue&amp;quot;, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Current Opportunity is already Invoiced.&lt;/b&gt;&lt;/p&gt;</text>
+    </textTemplates>
     <variables>
         <name>accountId</name>
         <dataType>String</dataType>
