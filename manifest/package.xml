@@ -7,7 +7,6 @@
 		<members>CPQCamt053XMLParserTest</members>
 		<members>CPQCamt054XMLParser</members>
 		<members>CPQCamt054XMLParserTest</members>
-		<members>CPQDataFactoryTest</members>
 		<members>CPQDepositAccessor</members>
 		<members>CPQDepositAccessorTest</members>
 		<members>CPQDepositXMLPayloadParser</members>
@@ -246,14 +245,12 @@
 		<members>CPQ_Country_to_Region_Mapping__mdt</members>
 		<members>Deposit__c</members>
 		<members>Payload__c</members>
-		<members>Payment__c</members>
 		<members>blng__Payment__c</members>
 		<members>blng__RefundLinePayment__c</members>
 		<members>blng__Refund__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>Billing_Quote_Process_Builder</members>
 		<members>Create_Quote</members>
 		<name>Flow</name>
 	</types>
