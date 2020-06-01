@@ -35,10 +35,6 @@
 		<name>CustomObject</name>
 	</types>
 	<types>
-		<members>Create_Quote</members>
-		<name>Flow</name>
-	</types>
-	<types>
 		<members>Refund_Reasons</members>
 		<members>Refund_Statuses</members>
 		<name>GlobalValueSet</name>
