@@ -790,7 +790,6 @@
     </actionCalls>
     <actionCalls>
         <processMetadataValues>
-<<<<<<< HEAD
             <name>emailAlertSelection</name>
             <value>
                 <stringValue>Pegaso_Create_Invoice_Failure_Email_Alert</stringValue>
@@ -811,8 +810,6 @@
     </actionCalls>
     <actionCalls>
         <processMetadataValues>
-=======
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
             <name>emailAlertSelection</name>
             <value>
                 <stringValue>Pegaso_Tax_Validation_Failure_Email_Alert</stringValue>
@@ -879,7 +876,6 @@
             <name>isChangedRule_5_myRule_4_SBQQ_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-<<<<<<< HEAD
                 <leftValueReference>myVariable_old</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
@@ -918,8 +914,6 @@
             <name>myRule_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-=======
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
                 <leftValueReference>formula_myRule_1</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
@@ -1036,12 +1030,9 @@
         <label>myDecision17</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
-<<<<<<< HEAD
         <defaultConnector>
             <targetReference>myDecision19</targetReference>
         </defaultConnector>
-=======
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_18</name>
@@ -1165,7 +1156,6 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.SBQQ__BillingCountry__c</leftValueReference>
-<<<<<<< HEAD
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Mexico</stringValue>
@@ -1259,14 +1249,11 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.SBQQ__Primary__c</leftValueReference>
-=======
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Mexico</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-<<<<<<< HEAD
             <connector>
                 <targetReference>myRule_18_A1</targetReference>
             </connector>
@@ -1288,8 +1275,6 @@
         <rules>
             <name>myRule_20</name>
             <conditionLogic>and</conditionLogic>
-=======
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -1300,21 +1285,13 @@
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-<<<<<<< HEAD
                         <stringValue>Picklist</stringValue>
-=======
-                        <stringValue>Boolean</stringValue>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
-<<<<<<< HEAD
                         <stringValue>String</stringValue>
-=======
-                        <stringValue>Boolean</stringValue>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -1323,11 +1300,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-<<<<<<< HEAD
                 <leftValueReference>isChangedRule_21_myRule_20_Pegaso_Integration_Status_c</leftValueReference>
-=======
-                <leftValueReference>myVariable_current.SBQQ__Opportunity2__r.Pgs_Tax_Validate_Success__c</leftValueReference>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -1337,11 +1310,7 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-<<<<<<< HEAD
                         <stringValue>Picklist</stringValue>
-=======
-                        <stringValue>Boolean</stringValue>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -1359,19 +1328,11 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-<<<<<<< HEAD
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.Pegaso_Integration_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
-=======
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Pegaso_Integration_Status__c</leftValueReference>
-                <operator>IsNull</operator>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
                 <rightValue>
                     <stringValue>Error</stringValue>
                 </rightValue>
@@ -1439,15 +1400,9 @@
                 </rightValue>
             </conditions>
             <connector>
-<<<<<<< HEAD
                 <targetReference>myRule_20_A1</targetReference>
             </connector>
             <label>Is Create Invoice Failed(Pegaso)?</label>
-=======
-                <targetReference>myRule_18_A1</targetReference>
-            </connector>
-            <label>Create Invoice in Pegaso?</label>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
         </rules>
     </decisions>
     <decisions>
@@ -1697,22 +1652,18 @@
             <value>
                 <stringValue>IF(
 	AND(
-		[SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c, [SBQQ__Quote__c].Opportunity_Subscription_Type__c =&#39;Contractor Subscription&#39;), $Setup.CPQ_Quote_Settings__c.Contractor_Renewal_Temp_Id__c,
+		[SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c, [SBQQ__Quote__c].Opportunity_Subscription_Type__c =&apos;Contractor Subscription&apos;), $Setup.CPQ_Quote_Settings__c.Contractor_Renewal_Temp_Id__c,
 	IF(
 		NOT([SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c), $Setup.CPQ_Quote_Settings__c.New_Sales_Temp_Id__c, $Setup.CPQ_Quote_Settings__c.Renewal_Temp_Id__c
 	)
 )</stringValue>
             </value>
         </processMetadataValues>
-<<<<<<< HEAD
         <name>formula_2_myRule_1_A1_7892767640</name>
-=======
-        <name>formula_2_myRule_1_A1_4809363475</name>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
         <dataType>String</dataType>
         <expression>IF(
 	AND(
-		{!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c}, {!myVariable_current.Opportunity_Subscription_Type__c} =&#39;Contractor Subscription&#39;), {!$Setup.CPQ_Quote_Settings__c.Contractor_Renewal_Temp_Id__c},
+		{!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c}, {!myVariable_current.Opportunity_Subscription_Type__c} =&apos;Contractor Subscription&apos;), {!$Setup.CPQ_Quote_Settings__c.Contractor_Renewal_Temp_Id__c},
 	IF(
 		NOT({!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c}), {!$Setup.CPQ_Quote_Settings__c.New_Sales_Temp_Id__c}, {!$Setup.CPQ_Quote_Settings__c.Renewal_Temp_Id__c}
 	)
@@ -1725,11 +1676,7 @@
                 <stringValue>[SBQQ__Quote__c].SBQQ__Opportunity2__c.Subscription_End_Date__c + 1</stringValue>
             </value>
         </processMetadataValues>
-<<<<<<< HEAD
         <name>formula_8_myRule_7_A2_5098764621</name>
-=======
-        <name>formula_8_myRule_7_A2_6612911312</name>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
         <dataType>Date</dataType>
         <expression>{!myVariable_current.SBQQ__Opportunity2__r.Subscription_End_Date__c} + 1</expression>
     </formulas>
@@ -1750,7 +1697,7 @@
             <value>
                 <stringValue>AND(
 [SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c,
-ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &#39;Draft&#39;),
+ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &apos;Draft&apos;),
 [SBQQ__Quote__c].SBQQ__Primary__c,
 ISCHANGED([SBQQ__Quote__c].SBQQ__LastCalculatedOn__c),
 ISNULL(PRIORVALUE([SBQQ__Quote__c].SBQQ__LastCalculatedOn__c)),
@@ -1763,7 +1710,7 @@ NOT(ISNEW()),
         <dataType>Boolean</dataType>
         <expression>AND(
 {!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c},
-ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &#39;Draft&#39;),
+ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &apos;Draft&apos;),
 {!myVariable_current.SBQQ__Primary__c},
 ISCHANGED({!myVariable_current.SBQQ__LastCalculatedOn__c}),
 ISNULL(PRIORVALUE({!myVariable_current.SBQQ__LastCalculatedOn__c})),
@@ -1777,7 +1724,7 @@ NOT(ISNEW()),
             <value>
                 <stringValue>AND(
 [SBQQ__Quote__c].SBQQ__Primary__c,
-ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &#39;Draft&#39;),
+ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &apos;Draft&apos;),
 ISCHANGED([SBQQ__Quote__c].Is_Tax_Calculated__c),
 [SBQQ__Quote__c].Is_Tax_Calculated__c,
 ![SBQQ__Quote__c].SBQQ__Uncalculated__c
@@ -1788,7 +1735,7 @@ ISCHANGED([SBQQ__Quote__c].Is_Tax_Calculated__c),
         <dataType>Boolean</dataType>
         <expression>AND(
 {!myVariable_current.SBQQ__Primary__c},
-ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &#39;Draft&#39;),
+ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &apos;Draft&apos;),
 ISCHANGED({!myVariable_current.Is_Tax_Calculated__c}),
 {!myVariable_current.Is_Tax_Calculated__c},
 !{!myVariable_current.SBQQ__Uncalculated__c}
@@ -1802,12 +1749,12 @@ ISCHANGED({!myVariable_current.Is_Tax_Calculated__c}),
 [SBQQ__Quote__c].Is_OOB_System_Created__c,
 [SBQQ__Quote__c].SBQQ__Primary__c,
 [SBQQ__Quote__c].SBQQ__Opportunity2__c.SBQQ__Renewal__c,
-ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &#39;Draft&#39;),
+ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &apos;Draft&apos;),
 ISCHANGED([SBQQ__Quote__c].Is_Tax_Calculated__c),
 [SBQQ__Quote__c].Is_Tax_Calculated__c,
 ![SBQQ__Quote__c].SBQQ__Uncalculated__c,
 $CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValidation__c,
-[SBQQ__Quote__c].SBQQ__Account__c.BillingCountry=&#39;Mexico&#39;
+[SBQQ__Quote__c].SBQQ__Account__c.BillingCountry=&apos;Mexico&apos;
 )</stringValue>
             </value>
         </processMetadataValues>
@@ -1817,12 +1764,12 @@ $CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValid
 {!myVariable_current.Is_OOB_System_Created__c},
 {!myVariable_current.SBQQ__Primary__c},
 {!myVariable_current.SBQQ__Opportunity2__r.SBQQ__Renewal__c},
-ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &#39;Draft&#39;),
+ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &apos;Draft&apos;),
 ISCHANGED({!myVariable_current.Is_Tax_Calculated__c}),
 {!myVariable_current.Is_Tax_Calculated__c},
 !{!myVariable_current.SBQQ__Uncalculated__c},
 {!$CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValidation__c},
-{!myVariable_current.SBQQ__Account__r.BillingCountry}=&#39;Mexico&#39;
+{!myVariable_current.SBQQ__Account__r.BillingCountry}=&apos;Mexico&apos;
 )</expression>
     </formulas>
     <formulas>
@@ -1830,22 +1777,22 @@ ISCHANGED({!myVariable_current.Is_Tax_Calculated__c}),
             <name>originalFormula</name>
             <value>
                 <stringValue>AND(
-PRIORVALUE([SBQQ__Quote__c].SBQQ__Status__c)=&#39;In Error&#39;,
-ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &#39;Presented&#39;),
+PRIORVALUE([SBQQ__Quote__c].SBQQ__Status__c)=&apos;In Error&apos;,
+ISPICKVAL([SBQQ__Quote__c].SBQQ__Status__c, &apos;Presented&apos;),
 ![SBQQ__Quote__c].SBQQ__Opportunity2__c.Pgs_Tax_Validate_Success__c,
 $CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValidation__c,
-[SBQQ__Quote__c].SBQQ__Account__c.BillingCountry=&#39;Mexico&#39;
+[SBQQ__Quote__c].SBQQ__Account__c.BillingCountry=&apos;Mexico&apos;
 )</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_16</name>
         <dataType>Boolean</dataType>
         <expression>AND(
-PRIORVALUE({!myVariable_current.SBQQ__Status__c})=&#39;In Error&#39;,
-ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &#39;Presented&#39;),
+PRIORVALUE({!myVariable_current.SBQQ__Status__c})=&apos;In Error&apos;,
+ISPICKVAL({!myVariable_current.SBQQ__Status__c}, &apos;Presented&apos;),
 !{!myVariable_current.SBQQ__Opportunity2__r.Pgs_Tax_Validate_Success__c},
 {!$CustomMetadata.CPQ_System_Setting__mdt.Pegaso_Validate_Tax.EnablePegasoTaxValidation__c},
-{!myVariable_current.SBQQ__Account__r.BillingCountry}=&#39;Mexico&#39;
+{!myVariable_current.SBQQ__Account__r.BillingCountry}=&apos;Mexico&apos;
 )</expression>
     </formulas>
     <formulas>
@@ -1867,11 +1814,7 @@ ISNEW(),
 {!myVariable_current.Is_OOB_System_Created__c}
 )</expression>
     </formulas>
-<<<<<<< HEAD
     <interviewLabel>Billing_Quote_Process_Builder-95_InterviewLabel</interviewLabel>
-=======
-    <interviewLabel>Billing_Quote_Process_Builder-93_InterviewLabel</interviewLabel>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
     <label>Billing Quote Process Builder</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -2093,12 +2036,9 @@ ISNEW(),
         <label>Set Pegaso Integration Status</label>
         <locationX>1800</locationX>
         <locationY>300</locationY>
-<<<<<<< HEAD
         <connector>
             <targetReference>myDecision19</targetReference>
         </connector>
-=======
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -2228,11 +2168,7 @@ ISNEW(),
             </processMetadataValues>
             <field>SBQQ__DefaultTemplate__c</field>
             <value>
-<<<<<<< HEAD
                 <elementReference>formula_2_myRule_1_A1_7892767640</elementReference>
-=======
-                <elementReference>formula_2_myRule_1_A1_4809363475</elementReference>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
             </value>
         </inputAssignments>
         <object>SBQQ__Quote__c</object>
@@ -2398,11 +2334,7 @@ ISNEW(),
             </processMetadataValues>
             <field>SBQQ__StartDate__c</field>
             <value>
-<<<<<<< HEAD
                 <elementReference>formula_8_myRule_7_A2_5098764621</elementReference>
-=======
-                <elementReference>formula_8_myRule_7_A2_6612911312</elementReference>
->>>>>>> ca937900848398920a348046dc5ea8dccef1a85f
             </value>
         </inputAssignments>
         <object>SBQQ__Quote__c</object>
