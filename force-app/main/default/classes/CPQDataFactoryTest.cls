@@ -274,4 +274,26 @@ public class CPQDataFactoryTest {
         Insert quote;
         return quote;
     }  
+    
+    public static SBQQ__QuoteLine__c createQuoteLine(ID productId, ID quoteId, ID pricebookEntryId){
+        SBQQ__QuoteLine__c ql = new SBQQ__QuoteLine__c();
+        ql.SBQQ__CustomerPrice__c = 3000;
+        ql.SBQQ__StartDate__c = System.today();
+        ql.SBQQ__Quote__c = quoteId;
+        ql.SBQQ__PricebookEntryId__c = pricebookEntryId;
+        ql.SBQQ__Product__c = productId;
+        ql.SBQQ__Quantity__c = 1;
+        ql.SBQQ__ChargeType__c = 'Recurring';
+        ql.SBQQ__PricingMethod__c = 'List';
+        ql.SBQQ__ListPrice__c = 3000;
+        ql.SBQQ__NetPrice__c = 3000;
+        ql.SBQQ__SubscriptionPricing__c = 'Fixed Price';
+        ql.SBQQ__SubscriptionTerm__c = 12;
+        ql.SBQQ__SubscriptionType__c = 'Renewable';
+        ql.SBQQ__ProductSubscriptionType__c = 'Renewable';
+        ql.SBQQ__DefaultSubscriptionTerm__c = 12;
+        ql.SBQQ__BillingType__c = 'Advance';
+        Insert ql;
+        return ql;
+    }
 }

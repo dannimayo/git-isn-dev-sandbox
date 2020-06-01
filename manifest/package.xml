@@ -31,6 +31,10 @@
 	<types>
 		<members>Deposit__c</members>
 		<members>Payload__c</members>
+		<members>Payment__c</members>
+		<members>blng__Payment__c</members>
+		<members>blng__RefundLinePayment__c</members>
+		<members>blng__Refund__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
