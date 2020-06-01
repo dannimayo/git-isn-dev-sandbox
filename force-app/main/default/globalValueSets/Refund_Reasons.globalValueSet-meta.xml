@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Subsidy</fullName>
+        <default>false</default>
+        <label>Subsidy</label>
+    </customValue>
+    <customValue>
+        <fullName>Partial Payment</fullName>
+        <default>false</default>
+        <label>Partial Payment</label>
+    </customValue>
+    <customValue>
+        <fullName>Overpayment</fullName>
+        <default>false</default>
+        <label>Overpayment</label>
+    </customValue>
+    <customValue>
+        <fullName>Exemption</fullName>
+        <default>false</default>
+        <label>Exemption</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <masterLabel>Refund Reasons</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
