@@ -5,6 +5,5 @@
 		}
 	],
 	"settings": {
-		"eslint.nodePath": "/Users/danielalvarez/.vscode/extensions/salesforce.salesforcedx-vscode-lwc-47.16.0/node_modules"
 	}
 }
