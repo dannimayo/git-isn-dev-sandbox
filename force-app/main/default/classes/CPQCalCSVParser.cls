@@ -19,12 +19,11 @@ public class CPQCalCSVParser
 
 
     public List<Deposit__c> parsePayloadCSVString(Payload__c payloadToParse){
-        //0
+        
         finalDepositList.clear();
 
         //1 split string by '\n'
         this.csv = payloadToParse.Payload__c.toLowerCase().split('\n');
-      
         //2 clear null rows & correspondence rows from csv
         for(Integer rowCount = 0; rowCount < csv.size() ; rowCount++){
             String rowString = csv.get(rowCount);
@@ -33,18 +32,15 @@ public class CPQCalCSVParser
                 rowCount--;
             } 
         }
-        
         //3 discard header columns (top 3 are header columns)
         for (integer removeCount = 0; removeCount < 3; removeCount++){
             csv.remove(0);
         }
-        
         //4 parse each individual row into a deposit
         for(String rowString: csv){
             Deposit__c d = convertCALrowToDeposit(rowString, payloadToParse.Name);
             finalDepositList.add(d);
         }
-
         //5 return deposit list to main class
         return finalDepositList.deepClone();
     }
