@@ -8,7 +8,7 @@ private class CPQDepositXMLPayloadParserTest {
 
         //test
         Test.startTest();
-        parser.parseXMLtoDeposits(allPayloadsToParse);
+        parser.parseToDeposits(allPayloadsToParse);
         List<Deposit__c> insertedDeposits = [SELECT Id FROM Deposit__c];
         Test.stopTest();
 
@@ -26,7 +26,7 @@ private class CPQDepositXMLPayloadParserTest {
 
         //test
         Test.startTest();
-        parser.parseXMLtoDeposits(allPayloadsToParse);
+        parser.parseToDeposits(allPayloadsToParse);
         List<Deposit__c> insertedDeposits = [SELECT Id FROM Deposit__c];
         Deposit__c d1 = insertedDeposits.get(0);
         Test.stopTest();
@@ -46,7 +46,7 @@ private class CPQDepositXMLPayloadParserTest {
 
         //test
         Test.startTest();
-        parser.parseXMLtoDeposits(allPayloadsToParse);
+        parser.parseToDeposits(allPayloadsToParse);
         List<Deposit__c> insertedDeposits = [SELECT Id FROM Deposit__c];
         Test.stopTest();
 

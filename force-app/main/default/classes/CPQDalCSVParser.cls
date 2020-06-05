@@ -1,5 +1,5 @@
-//refactor and create interface
-public class CPQDalCSVParser {
+public class CPQDalCSVParser
+                implements CPQICSVParser{
 
     @TestVisible private String delim = ',';
     @TestVisible private String[] csv;
@@ -18,7 +18,7 @@ public class CPQDalCSVParser {
     private static final Integer DAL_transSource = 11;
 
 
-    public List<Deposit__c> parseDalPatternCSVString(Payload__c payloadToParse){
+    public List<Deposit__c> parsePayloadCSVString(Payload__c payloadToParse){
         //0
         finalDepositList.clear();
 

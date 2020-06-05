@@ -1,5 +1,5 @@
 public interface CPQIDepositPayloadParser {
     
-    void parseXMLtoDeposits(List<Payload__c> allPayloadsToParse);
+    void parseToDeposits(List<Payload__c> allPayloadsToParse);
 
 }

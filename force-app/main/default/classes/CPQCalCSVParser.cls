@@ -1,5 +1,5 @@
-//refactor and create interface
-public class CPQCalCSVParser {
+public class CPQCalCSVParser 
+                    implements CPQICSVParser{
 
     @TestVisible private String delim = ',';
     @TestVisible private String[] csv;
@@ -18,7 +18,7 @@ public class CPQCalCSVParser {
     private static final Integer CAL_transSource = 11;
 
 
-    public List<Deposit__c> parseCALPatternCSVString(Payload__c payloadToParse){
+    public List<Deposit__c> parsePayloadCSVString(Payload__c payloadToParse){
         //0
         finalDepositList.clear();
 
@@ -73,19 +73,25 @@ public class CPQCalCSVParser {
             try{
                 importDate = importDate.replace('/', '-');
                 currDeposit.Import_Date__c = Date.valueOf(importDate);
-            }catch(Exception e){throw new CPQCALParsingInvalidDateException('The following import date string is invalid: ' + importDate + '\nCSV row substring is: ' + rowString); }
+            }catch(Exception e){
+                throw new CPQCALParsingInvalidDateException('The following import date string is invalid: ' + importDate + '\nCSV row substring is: ' + rowString); 
+            }
         }
         String amount = row.get(CAL_amountRow);
         try{
             Decimal amt = Decimal.valueOf(amount.removeStart('$'));
             currDeposit.Amount__c = amt;
-        }catch (Exception e){ throw new CPQCALParsingInvalidAmountException('The following amount string is invalid: ' + amount + '\nCSV row substring is: ' + rowString); }
+        }catch (Exception e){ 
+            throw new CPQCALParsingInvalidAmountException('The following amount string is invalid: ' + amount + '\nCSV row substring is: ' + rowString); 
+        }
         String postmarkDate = row.get(CAL_postmarkDateRow);
         if (String.isNotBlank(postmarkDate)){
             try{
                 postmarkDate = postmarkDate.replace('/', '-');
                 currDeposit.Postmark_Date__c = Date.valueOf(postmarkDate);
-            }catch(Exception e){ throw new CPQCALParsingInvalidDateException('The following postmark date string is invalid: ' + postmarkDate + '\nCSV row substring is: ' + rowString); }
+            }catch(Exception e){ 
+                throw new CPQCALParsingInvalidDateException('The following postmark date string is invalid: ' + postmarkDate + '\nCSV row substring is: ' + rowString); 
+            }
         }
         
         //DEPOSIT RECORD COMPLETE & SENT TO FINAL DEPOSIT LIST

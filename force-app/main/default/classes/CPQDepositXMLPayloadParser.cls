@@ -1,6 +1,5 @@
 public class CPQDepositXMLPayloadParser 
-                implements CPQIDepositPayloadParser
-                {
+                implements CPQIDepositPayloadParser {
     
     @TestVisible private CPQICamt052Parser camt052 = new CPQCamt052XMLParser();          
     @TestVisible private CPQICamt053Parser camt053 = new CPQCamt053XMLParser();
@@ -15,7 +14,7 @@ public class CPQDepositXMLPayloadParser
     @TestVisible private List<Deposit__c> finalDepositList = new List<Deposit__c>();  
 
 
-    public void parseXMLtoDeposits(List<Payload__c> allPayloadsToParse){
+    public void parseToDeposits(List<Payload__c> allPayloadsToParse){
 
         //clear cache
         NA_CAMT052_payloads.clear();
@@ -80,10 +79,10 @@ public class CPQDepositXMLPayloadParser
             for (Payload__c currPayload: payloadsToParse){
                 if (String.isNotBlank(currPayload.Payload__c)){
                     List<Deposit__c> NA_CAMT052_deposits = camt052.parsePatternCAMT052(currPayload);
-                        if(NA_CAMT052_deposits != null && !NA_CAMT052_deposits.isEmpty())
-                            finalDepositList.addAll(NA_CAMT052_deposits);
-                }else
-                    System.debug('Payload ' + currPayload.Name + ' had an empty Payload__c value');
+                    if(NA_CAMT052_deposits != null && !NA_CAMT052_deposits.isEmpty()){
+                        finalDepositList.addAll(NA_CAMT052_deposits);
+                    }
+                }
             }
         }else
             System.debug('No NA_CAMT052 xml payloads to parse');
@@ -95,10 +94,10 @@ public class CPQDepositXMLPayloadParser
             for (Payload__c currPayload: payloadsToParse){
                 if (String.isNotBlank(currPayload.Payload__c)){
                     List<Deposit__c> EMEA_CAMT052_deposits = camt052.parsePatternCAMT052(currPayload);
-                        if(EMEA_CAMT052_deposits != null && !EMEA_CAMT052_deposits.isEmpty())
-                            finalDepositList.addAll(EMEA_CAMT052_deposits);
-                }else
-                    System.debug('Payload ' + currPayload.Name + ' had an empty Payload__c value');
+                    if(EMEA_CAMT052_deposits != null && !EMEA_CAMT052_deposits.isEmpty()){
+                        finalDepositList.addAll(EMEA_CAMT052_deposits);
+                    }
+                } 
             }
         }else
             System.debug('No EMEA_CAMT052 xml payloads to parse');
@@ -110,10 +109,10 @@ public class CPQDepositXMLPayloadParser
             for (Payload__c currPayload: payloadsToParse){
                 if (String.isNotBlank(currPayload.Payload__c)){
                     List<Deposit__c> NA_CAMT053_deposits = camt053.parsePatternCAMT053(currPayload);
-                        if(NA_CAMT053_deposits != null && !NA_CAMT053_deposits.isEmpty())
-                            finalDepositList.addAll(NA_CAMT053_deposits);
-                }else
-                    System.debug('Payload ' + currPayload.Name + ' had an empty Payload__c value');
+                    if(NA_CAMT053_deposits != null && !NA_CAMT053_deposits.isEmpty()){
+                        finalDepositList.addAll(NA_CAMT053_deposits);
+                    }
+                }
             }
         }else
             System.debug('No NA_CAMT053 xml payloads to parse');
@@ -125,10 +124,10 @@ public class CPQDepositXMLPayloadParser
             for (Payload__c currPayload: payloadsToParse){
                 if (String.isNotBlank(currPayload.Payload__c)){
                     List<Deposit__c> EMEA_CAMT053_deposits = camt053.parsePatternCAMT053(currPayload);
-                        if(EMEA_CAMT053_deposits != null && !EMEA_CAMT053_deposits.isEmpty())
-                            finalDepositList.addAll(EMEA_CAMT053_deposits);
-                }else
-                    System.debug('Payload ' + currPayload.Name + ' had an empty Payload__c value');
+                    if(EMEA_CAMT053_deposits != null && !EMEA_CAMT053_deposits.isEmpty()){
+                        finalDepositList.addAll(EMEA_CAMT053_deposits);
+                    }
+                }
             }
         }else
             System.debug('No EMEA_CAMT053 xml payloads to parse');
@@ -140,10 +139,10 @@ public class CPQDepositXMLPayloadParser
             for (Payload__c currPayload: payloadsToParse){
                 if (String.isNotBlank(currPayload.Payload__c)){
                     List<Deposit__c> US_CAMT054_deposits = camt054.parsePatternCAMT054(currPayload);
-                        if(US_CAMT054_deposits != null && !US_CAMT054_deposits.isEmpty())
-                            finalDepositList.addAll(US_CAMT054_deposits);
-                } else
-                    System.debug('Payload ' + currPayload.Name + ' had an empty Payload__c value');
+                    if(US_CAMT054_deposits != null && !US_CAMT054_deposits.isEmpty()){
+                        finalDepositList.addAll(US_CAMT054_deposits);
+                    }
+                } 
             }
         }else
             System.debug('No US_CAMT054 xml payloads to parse');
@@ -155,10 +154,10 @@ public class CPQDepositXMLPayloadParser
             for (Payload__c currPayload: payloadsToParse){
                 if (String.isNotBlank(currPayload.Payload__c)){
                     List<Deposit__c> CAD_CAMT054_deposits = camt054.parsePatternCAMT054(currPayload);
-                        if(CAD_CAMT054_deposits != null && !CAD_CAMT054_deposits.isEmpty())
-                            finalDepositList.addAll(CAD_CAMT054_deposits);
-                } else
-                    System.debug('Payload ' + currPayload.Name + ' had an empty Payload__c value');
+                    if(CAD_CAMT054_deposits != null && !CAD_CAMT054_deposits.isEmpty()){
+                        finalDepositList.addAll(CAD_CAMT054_deposits);
+                    } 
+                }      
             }
         }else
             System.debug('No CAD_CAMT054 xml payloads to parse');

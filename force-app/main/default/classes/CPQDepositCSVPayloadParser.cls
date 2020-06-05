@@ -1,23 +1,28 @@
-public class CPQDepositCSVPayloadParser {
+public class CPQDepositCSVPayloadParser 
+                implements CPQIDepositPayloadParser {
 
     @TestVisible private List<Payload__c> CAL_payloads = new List<Payload__c>();  
     @TestVisible private List<Payload__c> DAL_payloads = new List<Payload__c>();
-
-    //@TestVisible CPQCalCSVParser CALparser = new CPQCalCSVParser();   
-    @TestVisible CPQDalCSVParser DALparser = new CPQDalCSVParser();
- 
     @TestVisible private List<Deposit__c> finalDepositList = new List<Deposit__c>(); 
+    @TestVisible CPQICSVParser CALparser = new CPQCalCSVParser();   
+    @TestVisible CPQICSVParser DALparser = new CPQDalCSVParser();
     
-    public void parseCSVtoDeposits(List<Payload__c> allPayloadsToParse){
 
+    public void parseToDeposits(List<Payload__c> allPayloadsToParse){
+
+        //clear cache
+        CAL_payloads.clear();
+        DAL_payloads.clear();
+        finalDepositList.clear();
+
+        //process
         splitPayloads(allPayloadsToParse); 
-        //parseAll_CAL(CAL_payloads);
+        parseAll_CAL(CAL_payloads);
         parseAll_DAL(DAL_payloads);
         
-
         //return all deposits to insert, til then.. insert list here
-        
-        //insert finalDepositList;
+        if(finalDepositList != null && !finalDepositList.isEmpty())
+        	insert finalDepositList;
         
         //mark all payloads as processed
     }
@@ -39,17 +44,34 @@ public class CPQDepositCSVPayloadParser {
     }
 
 
-    @TestVisible private void parseAll_DAL(List<Payload__c> payloadsToParse){ 
-        for (Payload__c currPayload: payloadsToParse){
-            if (String.isNotBlank(currPayload.Payload__c)){
-                List<Deposit__c> DAL_deposits = DALparser.parseDalPatternCSVString(currPayload);
-                    finalDepositList.addAll(DAL_deposits);
-            }
-        } 
+    @TestVisible private void parseAll_CAL(List<Payload__c> payloadsToParse){ 
+        if (payloadsToParse != null && !payloadsToParse.isEmpty()){
+            for (Payload__c currPayload: payloadsToParse){
+                if (String.isNotBlank(currPayload.Payload__c)){
+                    List<Deposit__c> CAL_deposits = CALparser.parsePayloadCSVString(currPayload);
+                    if (CAL_deposits != null && !CAL_deposits.isEmpty()){
+                        finalDepositList.addAll(CAL_deposits);
+                    }
+                }
+            } 
+        } else 
+            System.debug('No CAL format payloads to parse');
     }
 
 
-    
+    @TestVisible private void parseAll_DAL(List<Payload__c> payloadsToParse){ 
+        if (payloadsToParse != null && !payloadsToParse.isEmpty()){
+            for (Payload__c currPayload: payloadsToParse){
+                if (String.isNotBlank(currPayload.Payload__c)){
+                    List<Deposit__c> DAL_deposits = DALparser.parsePayloadCSVString(currPayload);
+                    if (DAL_deposits != null && !DAL_deposits.isEmpty()){
+                        finalDepositList.addAll(DAL_deposits);
+                    }
+                }
+            } 
+        } else 
+            System.debug('No DAL format payloads to parse');
+    }
     
 
 
