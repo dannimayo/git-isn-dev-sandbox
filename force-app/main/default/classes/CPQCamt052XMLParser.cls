@@ -19,6 +19,7 @@ public class CPQCamt052XMLParser
     public List<Deposit__c> parsePatternCAMT052(Payload__c payloadToParse){
  
         XmlStreamReader reader = new XmlStreamReader(payloadToParse.Payload__c);
+        CAMT052_deposits.clear();
         currDeposit.clear();
         currDeposit.Bank_Batch_Reference__c = payloadToParse.Name;
         currDeposit.Bank_Batch_Type__c = 'Transfer';

@@ -3,19 +3,21 @@ public class CPQDepositCSVPayloadParser {
     @TestVisible private List<Payload__c> CAL_payloads = new List<Payload__c>();  
     @TestVisible private List<Payload__c> DAL_payloads = new List<Payload__c>();
 
-    //CAL csv parser
-    //DAL csv parser
+    //@TestVisible CPQCalCSVParser CALparser = new CPQCalCSVParser();   
+    @TestVisible CPQDalCSVParser DALparser = new CPQDalCSVParser();
+ 
     @TestVisible private List<Deposit__c> finalDepositList = new List<Deposit__c>(); 
     
     public void parseCSVtoDeposits(List<Payload__c> allPayloadsToParse){
 
         splitPayloads(allPayloadsToParse); 
-        parseAll_CAL(CAL_payloads);
-        //parseAll_DAL(DAL_payloads);
+        //parseAll_CAL(CAL_payloads);
+        parseAll_DAL(DAL_payloads);
+        
 
         //return all deposits to insert, til then.. insert list here
         
-        insert finalDepositList;
+        //insert finalDepositList;
         
         //mark all payloads as processed
     }
@@ -37,11 +39,11 @@ public class CPQDepositCSVPayloadParser {
     }
 
 
-    @TestVisible private void parseAll_CAL(List<Payload__c> payloadsToParse){ 
+    @TestVisible private void parseAll_DAL(List<Payload__c> payloadsToParse){ 
         for (Payload__c currPayload: payloadsToParse){
             if (String.isNotBlank(currPayload.Payload__c)){
-                List<Deposit__c> CAL_deposits = parseCSV(currPayload);
-                    finalDepositList.addAll(CAL_deposits);
+                List<Deposit__c> DAL_deposits = DALparser.parseDalPatternCSVString(currPayload);
+                    finalDepositList.addAll(DAL_deposits);
             }
         } 
     }

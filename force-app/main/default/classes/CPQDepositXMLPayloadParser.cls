@@ -17,6 +17,16 @@ public class CPQDepositXMLPayloadParser
 
     public void parseXMLtoDeposits(List<Payload__c> allPayloadsToParse){
 
+        //clear cache
+        NA_CAMT052_payloads.clear();
+        NA_CAMT053_payloads.clear();
+        CAD_CAMT054_payloads.clear();
+        US_CAMT054_payloads.clear();
+        EMEA_CAMT052_payloads.clear();
+        EMEA_CAMT053_payloads.clear();
+        finalDepositList.clear();
+
+        //process
         splitPayloads(allPayloadsToParse); 
         parseAll_NA_CAMT052(NA_CAMT052_payloads);
         parseAll_EMEA_CAMT052(EMEA_CAMT052_payloads);
