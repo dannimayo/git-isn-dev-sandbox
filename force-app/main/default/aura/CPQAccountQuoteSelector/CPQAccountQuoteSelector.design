@@ -1,4 +1,0 @@
-<design:component>
-    <design:attribute name="accountId" label="Account ID" description="Salesforce ID of account to use." />	
-    <design:attribute name="selectedQuoteId" label="Selected Quote Id" description="ID of the selected quote." />
-</design:component>

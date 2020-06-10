@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Profiles_That_Cant_Update_Account_Name</fullName>
-    <active>true</active>
-    <errorConditionFormula>AND (ISCHANGED (Name ), OR($Profile.Id=&#39;00e80000001CMFh&#39;,$Profile.Id=&#39;00e80000001CL4D&#39;))</errorConditionFormula>
-    <errorDisplayField>Name</errorDisplayField>
-    <errorMessage>Cannot Update Account Name</errorMessage>
-</ValidationRule>

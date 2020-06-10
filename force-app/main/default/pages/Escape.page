@@ -1,7 +1,0 @@
-<apex:page docType="html-5.0" showHeader="false" standardStylesheets="true" sidebar="false" >
-
-
-        <font size="100%" color="#ff6d42">Email sent.</font>
-
-
-</apex:page>

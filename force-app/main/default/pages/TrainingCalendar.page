@@ -1,3 +1,0 @@
-<apex:page showHeader="false" sidebar="false" applyBodyTag="false" applyHtmlTag="false" standardStylesheets="false" controller="ResponsiveCalendarCtrl">
-    <c:Responsive_Calendar_View />
-</apex:page>

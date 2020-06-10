@@ -1,7 +1,0 @@
-<apex:page standardController="Account" showHeader="false" sidebar="false" lightningStylesheets="true">
-    <script>
-        document.querySelectorAll('[name="Billing Country"]').addEventListener('input',function(e){
-            console.log('typing');
-        },false);
-    </script>
-</apex:page>

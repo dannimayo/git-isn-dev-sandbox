@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>48.0</apiVersion>
-    <availableInTouch>true</availableInTouch>
-    <confirmationTokenRequired>false</confirmationTokenRequired>
-    <description>Displays on Contractor and Data Provider account record types when the vertical team is not CS</description>
-    <label>Managed Account</label>
-</ApexPage>

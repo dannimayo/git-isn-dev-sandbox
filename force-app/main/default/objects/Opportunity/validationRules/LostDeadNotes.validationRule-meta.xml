@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>LostDeadNotes</fullName>
-    <active>true</active>
-    <description>Request Lost/Dead Notes when Oppty Stage is Lost/Dead</description>
-    <errorConditionFormula>TEXT(StageName) = &#39;Lost/Dead&#39; &amp;&amp; ISBLANK(Lost_Dead_Notes__c)&amp;&amp; NOT(RecordTypeId = &#39;01234000000QFnzAAG&#39;)</errorConditionFormula>
-    <errorDisplayField>Lost_Dead_Notes__c</errorDisplayField>
-    <errorMessage>Lost/Dead Notes are required based on Stage.</errorMessage>
-</ValidationRule>

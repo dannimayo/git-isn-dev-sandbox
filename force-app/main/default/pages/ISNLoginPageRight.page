@@ -1,5 +1,0 @@
-<apex:page showHeader="false" showChat="false" sidebar="false">
-
-    <apex:image url="https://isn--c.na29.content.force.com/servlet/servlet.ImageServer?id=01534000001tfj2&oid=00DL0000005xuC6&lastMod=1462308160000" alt="Lightning" style="position:absolute;top:50%;left:50%;width:960px;height:409px;margin-top:-205px;margin-left:-480px;"/>
-
-</apex:page>

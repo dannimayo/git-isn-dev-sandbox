@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>NonStandardRefundApplied</fullName>
-    <active>true</active>
-    <description>Require Supervisor and Notes field when Non-Standard Refund Date field is populated. Request R00605</description>
-    <errorConditionFormula>NOT(ISBLANK(Non_Standard_Refund_Used__c)) &amp;&amp; OR(ISBLANK(Non_Standard_Refund_Notes__c),ISBLANK(Non_Standard_Refund_Approved_By__c))</errorConditionFormula>
-    <errorDisplayField>Non_Standard_Refund_Used__c</errorDisplayField>
-    <errorMessage>Non-Standard Refund Notes and Non-Standard Refund Approved By fields are required because a date was added for Non-Standard Refund Used.</errorMessage>
-</ValidationRule>

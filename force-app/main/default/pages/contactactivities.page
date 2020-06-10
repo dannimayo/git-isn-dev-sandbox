@@ -1,5 +1,0 @@
-<apex:page standardController="Contact">
-  
-  <apex:relatedList title="" subject="{!Contact}" list="OpenActivities" />
- <apex:relatedList title="" subject="{!Contact}" list="ActivityHistories" />
-</apex:page>

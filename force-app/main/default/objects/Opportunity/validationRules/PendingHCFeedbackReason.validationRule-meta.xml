@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>PendingHCFeedbackReason</fullName>
-    <active>true</active>
-    <description>Requires a reason for not subscribing when sub-stage is changing to pending client feedback</description>
-    <errorConditionFormula>ISCHANGED(  Sub_Stage__c ) &amp;&amp;  ISPICKVAL( Sub_Stage__c , &#39;Pending Client Feedback&#39;)  &amp;&amp; ISBLANK(TEXT(  Reason_for_Not_Subscribing__c  ))</errorConditionFormula>
-    <errorDisplayField>Reason_for_Not_Subscribing__c</errorDisplayField>
-    <errorMessage>Reason for Not Subscribing is required prior to changing sub-stage to Pending Client Feedback</errorMessage>
-</ValidationRule>

@@ -1,5 +1,0 @@
-<apex:page showChat="false" showHeader="false" lightningStylesheets="true">
-
-  <chatter:feed showPublisher="false" entityid="0F92T000000fxgySAA"/>
-
-</apex:page>

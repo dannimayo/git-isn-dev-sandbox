@@ -1,5 +1,0 @@
-<apex:page standardController="Publication_Request__c" showHeader="false" sidebar="false" lightningStylesheets="true" docType="html-5.0">
-    <Apex:form >
-        <apex:inputField value="{!Publication_Request__c.Contact__c}"/>
-    </Apex:form>
-</apex:page>

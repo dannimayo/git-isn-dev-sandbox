@@ -1,4 +1,0 @@
-<apex:page standardController="Contact" extensions="contactEmailPreferences" showHeader="true" tabStyle="contact" >
-    
-    
-</apex:page>

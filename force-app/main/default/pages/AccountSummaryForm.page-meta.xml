@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>41.0</apiVersion>
-    <availableInTouch>true</availableInTouch>
-    <confirmationTokenRequired>false</confirmationTokenRequired>
-    <description>Pulls question bank, category, questions, response options and builds form for Account Summaries built into Forms section vs. standard page layout details</description>
-    <label>AccountSummaryForm</label>
-</ApexPage>

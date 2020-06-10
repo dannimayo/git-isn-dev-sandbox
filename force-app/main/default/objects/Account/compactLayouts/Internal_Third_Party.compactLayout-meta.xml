@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Internal_Third_Party</fullName>
-    <fields>Name</fields>
-    <fields>Active__c</fields>
-    <fields>Managed_By__c</fields>
-    <label>Internal Third Party</label>
-</CompactLayout>
