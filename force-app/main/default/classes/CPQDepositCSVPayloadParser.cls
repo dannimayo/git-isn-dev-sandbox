@@ -29,18 +29,22 @@ public class CPQDepositCSVPayloadParser
 
 
     @TestVisible private void splitPayloads(List<Payload__c> allPayloadsToSplit){ 
-        for ( Payload__c iteratedPayload : allPayloadsToSplit){
-            String fileName = (iteratedPayload.Name).toLowerCase();
-
-            if ( fileName.contains('cal') ){
-                CAL_payloads.add(iteratedPayload);
-            }
-            else if ( fileName.contains('dal') ){
-                DAL_payloads.add(iteratedPayload);
-            } else {
-                System.debug('A payload of unknown type has been detected. Here is the payload name: ' + iteratedPayload.Name);
-            }
-        } 
+        if(allPayloadsToSplit != null && !allPayloadsToSplit.isEmpty()){
+            for ( Payload__c iteratedPayload : allPayloadsToSplit){
+                String fileName = (iteratedPayload.Name).toLowerCase();
+    
+                if ( fileName.contains('cal') ){
+                    CAL_payloads.add(iteratedPayload);
+                }
+                else if ( fileName.contains('dal') ){
+                    DAL_payloads.add(iteratedPayload);
+                } else {
+                    System.debug('A payload of unknown type has been detected. Here is the payload name: ' + iteratedPayload.Name);
+                }
+            } 
+        } else {
+            System.debug('No payloads to process. CPQDepositCSVPayloadParser received 0 payloads.');
+        }
     }
 
 
@@ -72,6 +76,7 @@ public class CPQDepositCSVPayloadParser
         } else 
             System.debug('No DAL format payloads to parse');
     }
+                               
     
 
 

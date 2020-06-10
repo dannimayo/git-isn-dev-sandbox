@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Payment_Age__c</fullName>
+    <fullName>Account_HC_Connections__c</fullName>
     <externalId>false</externalId>
-    <formula>TODAY()- Payment_Date__c</formula>
+    <formula>blng__Account__r.Active_HC_Connections__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Payment Age</label>
+    <label>Account HC Connections</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>

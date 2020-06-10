@@ -110,10 +110,12 @@ public class CPQCamt052XMLParser
  
             if (reader.isEndElement()){
                 String endTag = reader.getLocalName().toLowerCase();
+
                 if (endTag == NTRY){
                     CAMT052_deposits.add(currDeposit.clone());
                     currDeposit.Raw_data__c = '';
                 }
+                
                 //update scope
                 XMLState.leaveLevel(endTag);
             }

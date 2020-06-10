@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>CPQCalCSVParser</members>
+		<members>CPQCalCSVParserTest</members>
 		<members>CPQCamt052XMLParser</members>
 		<members>CPQCamt052XMLParserTest</members>
 		<members>CPQCamt053XMLParser</members>
 		<members>CPQCamt053XMLParserTest</members>
 		<members>CPQCamt054XMLParser</members>
 		<members>CPQCamt054XMLParserTest</members>
+		<members>CPQDalCSVParser</members>
+		<members>CPQDalCSVParserTest</members>
 		<members>CPQDepositAccessor</members>
 		<members>CPQDepositAccessorTest</members>
+		<members>CPQDepositCSVPayloadParser</members>
+		<members>CPQDepositCSVPayloadParserTest</members>
 		<members>CPQDepositXMLPayloadParser</members>
 		<members>CPQDepositXMLPayloadParserTest</members>
+		<members>CPQICSVParser</members>
 		<members>CPQICamt052Parser</members>
 		<members>CPQICamt053Parser</members>
 		<members>CPQICamt054Parser</members>
 		<members>CPQIDepositPayloadParser</members>
 		<members>CPQIPaymentParserState</members>
 		<members>CPQParseXmlQueueable</members>
+		<members>CPQPayloadDataFactoryTest</members>
 		<members>CPQPaymentParserState</members>
 		<members>CPQPaymentParserStateTest</members>
 		<members>CPQXMLDataFactoryTest</members>
 		<members>CPQXMLParser</members>
 		<members>CPQXMLParserTest</members>
+		<members>MockCPQCSVParser</members>
 		<members>MockCPQCamt052XMLParser</members>
 		<members>MockCPQCamt053XMLParser</members>
 		<members>MockCPQCamt054XMLParser</members>
