@@ -27,7 +27,6 @@
 		<members>CPQPayloadDataFactoryTest</members>
 		<members>CPQPaymentParserState</members>
 		<members>CPQPaymentParserStateTest</members>
-		<members>CPQXMLDataFactoryTest</members>
 		<members>CPQXMLParser</members>
 		<members>CPQXMLParserTest</members>
 		<members>MockCPQCSVParser</members>
