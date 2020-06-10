@@ -4,7 +4,7 @@ private class CPQDepositXMLPayloadParserTest {
     @isTest static void testParseXMLtoDepositsPositive(){
         //setup
         CPQDepositXMLPayloadParser parser = new CPQDepositXMLPayloadParser();
-        List<Payload__c> allPayloadsToParse = CPQXMLDataFactoryTest.createAll6XMLPayloads();
+        List<Payload__c> allPayloadsToParse = CPQPayloadDataFactoryTest.createAll6XMLPayloads();
 
         //test
         Test.startTest();
@@ -21,7 +21,7 @@ private class CPQDepositXMLPayloadParserTest {
         //setup
         CPQDepositXMLPayloadParser parser = new CPQDepositXMLPayloadParser();
         List<Payload__c> allPayloadsToParse = new List<Payload__c>();
-        Payload__c singleEntryPayload = CPQXMLDataFactoryTest.createSingleEntryPayload_CAMT053();
+        Payload__c singleEntryPayload = CPQPayloadDataFactoryTest.createSingleEntryPayload_CAMT053();
         allPayloadsToParse.add(singleEntryPayload);
 
         //test
@@ -57,7 +57,7 @@ private class CPQDepositXMLPayloadParserTest {
     @isTest static void testSplitPayloadsPositive(){
         //setup
         CPQDepositXMLPayloadParser parser = new CPQDepositXMLPayloadParser();
-        List<Payload__c> all6XMLPayloadTypes = CPQXMLDataFactoryTest.createAll6XMLPayloads();
+        List<Payload__c> all6XMLPayloadTypes = CPQPayloadDataFactoryTest.createAll6XMLPayloads();
         Integer totalPayloadsInput = all6XMLPayloadTypes.size();
 
         //test
@@ -85,7 +85,7 @@ private class CPQDepositXMLPayloadParserTest {
     @isTest static void testSplitPayloadsHandlesInvalidPayloads(){
         //setup
         CPQDepositXMLPayloadParser parser = new CPQDepositXMLPayloadParser();
-        Payload__c invalidPayload = CPQXMLDataFactoryTest.createInvalidNamePayload();
+        Payload__c invalidPayload = CPQPayloadDataFactoryTest.createInvalidNamePayload();
         List<Payload__c> listInvalidPayload = new List<Payload__c>();
         listInvalidPayload.add(invalidPayload);
 
@@ -130,7 +130,7 @@ private class CPQDepositXMLPayloadParserTest {
     @isTest static void testParseAll_NA_CAMT053Positive(){
         //setup
         CPQDepositXMLPayloadParser parser = new CPQDepositXMLPayloadParser();
-        List<Payload__c> payloadsToParse = CPQXMLDataFactoryTest.createPayloadList_CAMT053();
+        List<Payload__c> payloadsToParse = CPQPayloadDataFactoryTest.createPayloadList_CAMT053();
         MockCPQCamt053XMLParser mockCamt053 = new MockCPQCamt053XMLParser();
         parser.camt053 = mockCamt053;  
         
@@ -182,7 +182,7 @@ private class CPQDepositXMLPayloadParserTest {
     @isTest static void testParseAll_EMEA_CAMT053Positive(){
         //setup
         CPQDepositXMLPayloadParser parser = new CPQDepositXMLPayloadParser();
-        List<Payload__c> payloadsToParse = CPQXMLDataFactoryTest.createPayloadList_CAMT053();
+        List<Payload__c> payloadsToParse = CPQPayloadDataFactoryTest.createPayloadList_CAMT053();
         MockCPQCamt053XMLParser mockCamt053 = new MockCPQCamt053XMLParser();
         parser.camt053 = mockCamt053;  
         
@@ -234,7 +234,7 @@ private class CPQDepositXMLPayloadParserTest {
     @isTest static void testParseAll_US_CAMT054Positive(){
         //setup
         CPQDepositXMLPayloadParser parser = new CPQDepositXMLPayloadParser();
-        List<Payload__c> payloadsToParse = CPQXMLDataFactoryTest.createPayloadList_CAMT054();
+        List<Payload__c> payloadsToParse = CPQPayloadDataFactoryTest.createPayloadList_CAMT054();
         MockCPQCamt054XMLParser mockCamt054 = new MockCPQCamt054XMLParser();
         parser.camt054 = mockCamt054;  
         

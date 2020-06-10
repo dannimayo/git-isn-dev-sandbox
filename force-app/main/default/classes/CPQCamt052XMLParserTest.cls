@@ -4,7 +4,7 @@ private class CPQCamt052XMLParserTest {
     @isTest static void testParsePatternCAMT052Positive(){
         //setup
         CPQCamt052XMLParser camt052 = new CPQCamt052XMLParser();
-        Payload__c camt052Payload = CPQXMLDataFactoryTest.createSingleEntryPayload_CAMT052();
+        Payload__c camt052Payload = CPQPayloadDataFactoryTest.createSingleEntryPayload_CAMT052();
         List<Deposit__c> createdDeposits = new List<Deposit__c>();
         Datetime importDate = DateTime.newInstanceGmt(2020, 4, 30, 12, 7, 41);
         Date postmarkDate = Date.newInstance(2020, 4, 30);
@@ -32,7 +32,7 @@ private class CPQCamt052XMLParserTest {
     @isTest static void testParsePatternCAMT052HandleInvalidDates(){
         //setup
         CPQCamt052XMLParser camt052 = new CPQCamt052XMLParser();
-        Payload__c camt052Payload = CPQXMLDataFactoryTest.createInvalidDatePayload_CAMT052();
+        Payload__c camt052Payload = CPQPayloadDataFactoryTest.createInvalidDatePayload_CAMT052();
         List<Deposit__c> createdDeposits = new List<Deposit__c>();
         
         //test
@@ -49,7 +49,7 @@ private class CPQCamt052XMLParserTest {
     @isTest static void testParsePatternCAMT052HandleInvalidAmount(){
         //setup
         CPQCamt052XMLParser camt052 = new CPQCamt052XMLParser();
-        Payload__c camt052Payload = CPQXMLDataFactoryTest.createInvalidAmountPayload_CAMT052();
+        Payload__c camt052Payload = CPQPayloadDataFactoryTest.createInvalidAmountPayload_CAMT052();
         List<Deposit__c> createdDeposits = new List<Deposit__c>();
         String errorMsg;
         

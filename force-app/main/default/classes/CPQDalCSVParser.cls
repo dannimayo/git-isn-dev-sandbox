@@ -2,7 +2,7 @@ public class CPQDalCSVParser
                 implements CPQICSVParser{
 
     @TestVisible private String delim = ',';
-    @TestVisible private String[] csv;
+    @TestVisible private String[] csv = new List<String>();
     @TestVisible private List<Deposit__c> finalDepositList = new List<Deposit__c>();
     @TestVisible private Deposit__c currDeposit = new Deposit__c();
     private static final Integer DAL_importDateRow = 7;

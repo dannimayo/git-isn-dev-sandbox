@@ -5,7 +5,7 @@ public with sharing class anonymousApex {
 
     List<Payload__c> allXMLPayloads = [SELECT Name, Id, Payload__c FROM Payload__c WHERE Name LIKE '%xml%'];
     CPQDepositXMLPayloadParser dma = new CPQDepositXMLPayloadParser();
-    dma.parseXMLtoDeposits(allXMLPayloads);
+    dma.parseToDeposits(allXMLPayloads);
     //done
 
 
@@ -27,12 +27,19 @@ public with sharing class anonymousApex {
     dalParser.parseDalPatternCSVString(DALpayload);
     
 
-    //parseDALvia main class
+    //parse 1 DAL via main class
     Payload__c DALpayload = [SELECT Id, Name, Payload__c FROM Payload__c WHERE Name LIKE '%DAL__841808_IMG_20200413150632%' LIMIT 1];
     List<Payload__c> payloadsToParse = new List<Payload__c>();
     payloadsToParse.add(DALpayload);
     CPQDepositCSVPayloadParser csvParser = new CPQDepositCSVPayloadParser();
-    csvParser.parseCSVtoDeposits(payloadsToParse);
+    csvParser.parseToDeposits(payloadsToParse);
+
+
+
+    //parse all zip (CSV dal & cal files)
+    List<Payload__c> allCSVPayloads = [SELECT Name, Id, Payload__c FROM Payload__c WHERE Name LIKE '%zip%'];
+    CPQDepositCSVPayloadParser csvParser = new CPQDepositCSVPayloadParser();
+    csvParser.parseToDeposits(allCSVPayloads);
 
 
 
