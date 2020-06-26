@@ -34,6 +34,12 @@ public class CPQCamt053XMLParser
                 
 
                 switch on startTag{
+                    when 'cdtdbtind'{
+                        if (XMLState.isWithinLevel(NTRY)){
+                            String depositType = parser.parseFromStream(reader, false);
+                            currDeposit.Deposit_Type__c = depositType;
+                        }
+                    }
                     when 'credttm'{
                         if (XMLState.isWithinLevel(GRPHDR)){
                             System.debug('\n\nHere is the value of credttm start tag ');

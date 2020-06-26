@@ -64,6 +64,7 @@ public class CPQDalCSVParser
         currDeposit.Bank_Country_Raw__c = 'US';
         currDeposit.Check_Num__c = row.get(DAL_checkRow);
         currDeposit.CurrencyIsoCode = 'USD';
+        currDeposit.Deposit_Type__c = 'credit';
         currDeposit.Raw_Account_Name__c = row.get(DAL_remitterNameRow).toUpperCase();
         currDeposit.Raw_Invoice_Num__c = row.get(DAL_rawInvoiceNumRow);
         currDeposit.Raw_Account_Num__c = row.get(DAL_companyNumRow);

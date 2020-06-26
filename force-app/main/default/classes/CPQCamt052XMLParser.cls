@@ -35,6 +35,12 @@ public class CPQCamt052XMLParser
                 
 
                 switch on startTag{
+                    when 'cdtdbtind'{
+                        if (XMLState.isWithinLevel(NTRY)){
+                            String depositType = parser.parseFromStream(reader, false);
+                            currDeposit.Deposit_Type__c = depositType;
+                        }
+                    }
                     when 'credttm'{
                         if (XMLState.isWithinLevel(GRPHDR)){
                             String credttm = parser.parseFromStream(reader, false); //remove T from yyyy-MM-ddTHH:mm:ss

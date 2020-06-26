@@ -66,6 +66,7 @@ public class CPQCalCSVParser
         currDeposit.Bank_Country_Raw__c = 'CA';
         currDeposit.Check_Num__c = row.get(CAL_checkRow);
         currDeposit.CurrencyIsoCode = 'CAD';
+        currDeposit.Deposit_Type__c = 'credit';
         currDeposit.Raw_Account_Name__c = row.get(CAL_remitterNameRow).toUpperCase();
         currDeposit.Raw_Invoice_Num__c = row.get(CAL_rawInvoiceNumRow);
         if (row.size()> 32)
