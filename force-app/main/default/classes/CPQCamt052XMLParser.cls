@@ -88,6 +88,7 @@ public class CPQCamt052XMLParser
                     when 'cd' {
                         if (XMLState.isWithinLevel(NTRY) && XMLState.isWithinLevel(PRTRY)){
                             String BAIcode = parser.parseFromStream(reader, false);
+                            currDeposit.BAI_Code__c = BAIcode;
                             if (depositValidator.isXMLEntryValid(currDeposit, BAIcode) == false){
                                 parser.skipToNextNtry(reader);
                                 XMLState.leaveLevel(NTRY);
