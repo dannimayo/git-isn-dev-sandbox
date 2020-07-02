@@ -38,7 +38,11 @@ public class CPQCamt052XMLParser
                     when 'cdtdbtind'{
                         if (XMLState.isWithinLevel(NTRY)){
                             String depositType = parser.parseFromStream(reader, false);
-                            currDeposit.Deposit_Type__c = depositType;
+                            currDeposit.Deposit_Type__c = depositType.toLowerCase();
+                            if (depositValidator.isXMLEntryValid(currDeposit, '000') == false){
+                                parser.skipToNextNtry(reader, XMLState);
+                                XMLState.leaveLevel(NTRY);
+                            }
                         }
                     }
                     when 'credttm'{
@@ -90,7 +94,7 @@ public class CPQCamt052XMLParser
                             String BAIcode = parser.parseFromStream(reader, false);
                             currDeposit.BAI_Code__c = BAIcode;
                             if (depositValidator.isXMLEntryValid(currDeposit, BAIcode) == false){
-                                parser.skipToNextNtry(reader);
+                                parser.skipToNextNtry(reader, XMLState);
                                 XMLState.leaveLevel(NTRY);
                             }
                         }

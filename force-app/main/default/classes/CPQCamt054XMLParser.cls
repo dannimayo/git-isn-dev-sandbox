@@ -12,6 +12,7 @@ public class CPQCamt054XMLParser
                 
     @TestVisible private CPQPaymentParserState XMLState = new CPQPaymentParserState();
     @TestVisible private CPQXMLParser parser = new CPQXMLParser();
+    @TestVisible private CPQDepositAccessor depositValidator = new CPQDepositAccessor();
     @TestVisible private List<Deposit__c> CAMT054_deposits = new List<Deposit__c>();
     @TestVisible private Deposit__c currDeposit = new Deposit__c();
                 
@@ -37,7 +38,11 @@ public class CPQCamt054XMLParser
                     when 'cdtdbtind'{
                         if (XMLState.isWithinLevel(NTRY)){
                             String depositType = parser.parseFromStream(reader, false);
-                            currDeposit.Deposit_Type__c = depositType;
+                            currDeposit.Deposit_Type__c = depositType.toLowerCase();
+                            if (depositValidator.isXMLEntryValid(currDeposit, '000') == false){
+                                parser.skipToNextNtry(reader, XMLState);
+                                XMLState.leaveLevel(NTRY);
+                            }
                         }
                     }
                     when 'credttm'{

@@ -18,9 +18,17 @@ public class CPQXMLParser {
     }
 
     
-    public void skipToNextNtry(XmlStreamReader reader){
+    public void skipToNextNtry(XmlStreamReader reader, CPQPaymentParserState XMLState){
         System.debug('\n\nLETS FAST FORWARD READER. CURRENT PASSED LOCATION IS: ' + reader.getLocation());
         while(reader.hasNext()){
+            if (reader.isStartElement()){
+                String startTag = reader.getLocalName().toLowerCase();
+                XMLState.enterLevel(startTag);
+            }
+            if (reader.isEndElement()){
+                String endTag = reader.getLocalName().toLowerCase();
+                XMLState.leaveLevel(endTag);
+            }
             if( (reader.getEventType() == XmlTag.START_ELEMENT && reader.getLocalName() == 'ntry') || (reader.getEventType() == XmlTag.END_ELEMENT && reader.getLocalName() == 'stmt') || (reader.getEventType() == XmlTag.END_ELEMENT && reader.getLocalName() == 'ntfctn') ){
                 System.debug('\nNEW LOCATION IS: ' + reader.getLocation());
                 break;
