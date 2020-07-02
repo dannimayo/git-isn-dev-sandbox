@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GL_Code__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( ISBLANK(blng__GLTreatment__c) , &apos;GL treatment field is empty.&apos;, 
+   IF(ISBLANK(blng__GLTreatment__r.blng__CreditGLAccount__c),
+      IF(ISBLANK(blng__GLTreatment__r.blng__DebitGLAccount__c), &apos;GL Treatment is not associated to a GL Account. GL Account values are empty.&apos;, blng__GLTreatment__r.blng__DebitGLAccount__r.blng__GLAccountNumber__c 
+      ), 
+    blng__GLTreatment__r.blng__CreditGLAccount__r.blng__GLAccountNumber__c 
+	)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>GL Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
