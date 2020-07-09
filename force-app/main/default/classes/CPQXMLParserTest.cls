@@ -50,12 +50,13 @@ private class CPQXMLParserTest {
         //setup
         String testXML = '<ntry><inner1></inner1></ntry><breakhere></breakhere><ntry><inner1></inner1></ntry><ntry><inner1></inner1></ntry>';
         CPQXMLParser parser = new CPQXMLParser();
+        CPQPaymentParserState XMLState = new CPQPaymentParserState();
         XmlStreamReader reader = new XmlStreamReader(testXML);
         String startPoint = reader.getLocation();
         
         //test
         Test.startTest();
-        parser.skipToNextNtry(reader);
+        parser.skipToNextNtry(reader, XMLState);
         String endPoint = reader.getLocation();
         Test.stopTest();
 
@@ -67,13 +68,14 @@ private class CPQXMLParserTest {
         //setup
         String testXML = '123456789';
         CPQXMLParser parser = new CPQXMLParser();
+        CPQPaymentParserState XMLState = new CPQPaymentParserState();
         XmlStreamReader reader = new XmlStreamReader(testXML);
         String startPoint = reader.getLocation();
         String error;
         
         //test
         try{
-        	parser.skipToNextNtry(reader);
+        	parser.skipToNextNtry(reader, XMLState);
         }catch(Exception e){
             error = e.getTypeName();
         }

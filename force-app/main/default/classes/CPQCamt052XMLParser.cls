@@ -41,7 +41,6 @@ public class CPQCamt052XMLParser
                             currDeposit.Deposit_Type__c = depositType.toLowerCase();
                             if (depositValidator.isXMLEntryValid(currDeposit, '000') == false){
                                 parser.skipToNextNtry(reader, XMLState);
-                                XMLState.leaveLevel(NTRY);
                             }
                         }
                     }
@@ -95,7 +94,6 @@ public class CPQCamt052XMLParser
                             currDeposit.BAI_Code__c = BAIcode;
                             if (depositValidator.isXMLEntryValid(currDeposit, BAIcode) == false){
                                 parser.skipToNextNtry(reader, XMLState);
-                                XMLState.leaveLevel(NTRY);
                             }
                         }
                     }
