@@ -9,6 +9,7 @@ public class CPQDalCSVParser
     private static final Integer DAL_amountRow = 14;
     private static final Integer DAL_postmarkDateRow = 27;
     private static final Integer DAL_transUIDRow = 5;
+    private static final Integer DAL_lockboxRow = 6;
     private static final Integer DAL_timeRow = 8;
     private static final Integer DAL_batchRow = 9;
     private static final Integer DAL_checkRow = 17;
@@ -55,7 +56,7 @@ public class CPQDalCSVParser
         currDeposit.clear();
 
         currDeposit.Name = row.get(DAL_transUIDRow);
-        currDeposit.Bank_Reference__c = payloadName.left(11) + ' - ' + row.get(DAL_importDateRow) + ' - ' + row.get(DAL_timeRow) + ' - ' + row.get(DAL_batchRow);
+        currDeposit.Bank_Reference__c = row.get(DAL_lockboxRow) + ' - ' + row.get(DAL_importDateRow) + ' - ' + row.get(DAL_timeRow) + ' - ' + row.get(DAL_batchRow);
         currDeposit.Raw_Data__c = rowString;
         currDeposit.Status__c = 'Open';
         currDeposit.Bank_Batch_Reference__c = payloadName;

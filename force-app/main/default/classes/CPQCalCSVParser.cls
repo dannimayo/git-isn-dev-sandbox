@@ -10,6 +10,7 @@ public class CPQCalCSVParser
     private static final Integer CAL_amountRow = 14;
     private static final Integer CAL_postmarkDateRow = 28;
     private static final Integer CAL_transUIDRow = 5;
+    private static final Integer CAL_lockboxRow = 6;
     private static final Integer CAL_timeRow = 8;
     private static final Integer CAL_batchRow = 9;
     private static final Integer CAL_checkRow = 17;
@@ -57,7 +58,7 @@ public class CPQCalCSVParser
         currDeposit.clear();
 
         currDeposit.Name = row.get(CAL_transUIDRow);
-        currDeposit.Bank_Reference__c = payloadName.left(11) + ' - ' + row.get(CAL_importDateRow) + ' - ' + row.get(CAL_timeRow) + ' - ' + row.get(CAL_batchRow);
+        currDeposit.Bank_Reference__c = row.get(CAL_lockboxRow) + ' - ' + row.get(CAL_importDateRow) + ' - ' + row.get(CAL_timeRow) + ' - ' + row.get(CAL_batchRow);
         currDeposit.Raw_Data__c = rowString;
         currDeposit.Status__c = 'Open';
         currDeposit.Bank_Batch_Reference__c = payloadName;
@@ -70,6 +71,7 @@ public class CPQCalCSVParser
         currDeposit.Raw_Account_Name__c = row.get(CAL_remitterNameRow).toUpperCase();
         currDeposit.Raw_Invoice_Num__c = row.get(CAL_rawInvoiceNumRow);
         currDeposit.File_Type__c = 'CSV';
+                
         if (row.size()> 32)
             currDeposit.Raw_Account_Num__c = row.get(CAL_companyNumRow);
         String importDate = row.get(CAL_importDateRow);
@@ -101,8 +103,7 @@ public class CPQCalCSVParser
         //DEPOSIT RECORD COMPLETE & SENT TO FINAL DEPOSIT LIST
         return currDeposit.clone();
     }
-
-
+                        
     public class CPQCALParsingInvalidAmountException extends Exception{  
     }
 
