@@ -1,12 +1,11 @@
 public class CPQDepositCSVPayloadParser 
                 implements CPQIDepositPayloadParser {
 
-    @TestVisible CPQICSVParser CALparser = new CPQCalCSVParser();   
-    @TestVisible CPQICSVParser DALparser = new CPQDalCSVParser();
-
     @TestVisible private List<Payload__c> CAL_payloads = new List<Payload__c>();  
     @TestVisible private List<Payload__c> DAL_payloads = new List<Payload__c>();
     @TestVisible private List<Deposit__c> finalDepositList = new List<Deposit__c>(); 
+    @TestVisible CPQICSVParser CALparser = new CPQCalCSVParser();   
+    @TestVisible CPQICSVParser DALparser = new CPQDalCSVParser();
     
 
     public void parseToDeposits(List<Payload__c> allPayloadsToParse){

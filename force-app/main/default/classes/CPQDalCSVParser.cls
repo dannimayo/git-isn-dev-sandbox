@@ -68,6 +68,8 @@ public class CPQDalCSVParser
         currDeposit.Raw_Account_Name__c = row.get(DAL_remitterNameRow).toUpperCase();
         currDeposit.Raw_Invoice_Num__c = row.get(DAL_rawInvoiceNumRow);
         currDeposit.Raw_Account_Num__c = row.get(DAL_companyNumRow);
+        currDeposit.File_Type__c = 'CSV';
+        
         String importDate = row.get(DAL_importDateRow);
         if (String.isNotBlank(importDate)){
             try{

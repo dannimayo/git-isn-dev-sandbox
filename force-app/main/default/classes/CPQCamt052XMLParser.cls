@@ -24,6 +24,7 @@ public class CPQCamt052XMLParser
         currDeposit.Bank_Batch_Reference__c = payloadToParse.Name;
         currDeposit.Bank_Batch_Type__c = 'Transfer';
         currDeposit.Status__c = 'Open';
+        currDeposit.File_Type__c = 'XML';
         //salesforce doesn't support final vars in switch statements --https://success.salesforce.com/ideaView?id=0873A000000lLkNQAU
 
         while (reader.hasNext()) {

@@ -69,6 +69,7 @@ public class CPQCalCSVParser
         currDeposit.Deposit_Type__c = 'credit';
         currDeposit.Raw_Account_Name__c = row.get(CAL_remitterNameRow).toUpperCase();
         currDeposit.Raw_Invoice_Num__c = row.get(CAL_rawInvoiceNumRow);
+        currDeposit.File_Type__c = 'CSV';
         if (row.size()> 32)
             currDeposit.Raw_Account_Num__c = row.get(CAL_companyNumRow);
         String importDate = row.get(CAL_importDateRow);
